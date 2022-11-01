@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
         {
             for (int j = 0; j < rowLimit; j++) 
             {
-                Instantiate(_prefab, new Vector3(i, 0, j) , Quaternion.identity);
+                Instantiate(_prefab, new Vector3(i, 1, j) , Quaternion.identity);
             }
         }
     }
