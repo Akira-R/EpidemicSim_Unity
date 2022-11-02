@@ -18,7 +18,7 @@ public partial class AgentBehaviorSystem : SystemBase
 
         Entities.ForEach((ref Translation translation, ref AgentBehaviorData agentData) =>
         {
-            translation.Value.y = Mathf.Abs(Mathf.Sin((float)time)) * agentData._moveRate;
+            translation.Value.y = (/*Mathf.Abs*/(Mathf.Sin((float)time * agentData._moveRate))) + 1;
         }).Run();
     }
 
@@ -28,7 +28,7 @@ public partial class AgentBehaviorSystem : SystemBase
 
         Entities.WithAll<AgentBehaviorData>().ForEach((ref AgentBehaviorData agentData) =>
         {
-            agentData._moveRate = random.NextFloat(0.1f, 1.0f);
+            agentData._moveRate = random.NextFloat(0.1f, 2.0f);
         }).ScheduleParallel();
     }
 }
