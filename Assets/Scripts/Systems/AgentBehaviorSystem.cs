@@ -16,7 +16,7 @@ public partial class AgentBehaviorSystem : SystemBase
     {
         double time = Time.ElapsedTime;
 
-        Entities.ForEach((ref Translation translation, ref AgentBehaviorData agentData) =>
+        Entities.WithAll<AgentBehaviorData>().ForEach((ref Translation translation, ref AgentBehaviorData agentData) =>
         {
             translation.Value.y = (/*Mathf.Abs*/(Mathf.Sin((float)time * agentData._moveRate))) + 1;
         }).Run();

@@ -14,6 +14,8 @@ public partial class AgentSpawnerSystem : SystemBase
     private Random _random;
     private BeginSimulationEntityCommandBufferSystem _ecbSystem;
 
+    public List<Entity> _entities;
+
     // Playable limit at 200 (40000 entities total)
     private int perRowColumn = 100;
 
@@ -29,24 +31,20 @@ public partial class AgentSpawnerSystem : SystemBase
         _agentSpawner = GetSingletonEntity<LastSpawnAgent>();
         EntityManager.AddBuffer<SpawnedAgentBufferElement>(_agentSpawner);
 
+        _entities = new List<Entity>();
+
         SpawnAgents();
     }
     protected override void OnUpdate()
     {
-        //if (Input.GetKeyDown(KeyCode.E)) 
-        //{
-        //    var newAgent = EntityManager.Instantiate(_agentPrefab);
-
-        //    SetSingleton(new LastSpawnAgent { Agent = newAgent });
-        //}
-
-        //var lastSpawned = GetSingleton<LastSpawnAgent>().Agent;
-        //if (lastSpawned != Entity.Null) 
-        //{
-        //    var lastPos = GetComponent<Translation>(lastSpawned);
-        //    var upPos = new float3(25, 25, 25);
-        //    Debug.DrawLine(lastPos.Value, upPos, Color.green);
-        //}
+        if (Input.GetKeyDown(KeyCode.Q)) 
+        {
+            foreach(var entity in _entities) 
+            {
+                EntityManager.DestroyEntity(entity);
+            }
+        }
+        
     }
 
     private void SpawnAgents() 
@@ -58,6 +56,7 @@ public partial class AgentSpawnerSystem : SystemBase
             {
                 var newAgent = ecb.Instantiate(_agentPrefab);
                 var newPos = new Translation { Value = new float3(i, 1, j) };
+                _entities.Add(newAgent);
                 ecb.SetComponent(newAgent, newPos);
 
                 ecb.AppendToBuffer(_agentSpawner, new SpawnedAgentBufferElement { Agent = newAgent });
