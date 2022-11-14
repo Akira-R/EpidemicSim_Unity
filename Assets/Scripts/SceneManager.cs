@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SceneManager : MonoBehaviour
 {
+    [Header("Profiler")]
     [SerializeField] private GameObject _profilerUI;
     [SerializeField] private bool _showProfilerUI = false;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+        LeanTween.reset();
+    }
 
     // Start is called before the first frame update
     void Start()
