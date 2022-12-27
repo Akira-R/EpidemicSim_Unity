@@ -6,17 +6,24 @@ public class PlaceEntity : MonoBehaviour
 {
     [SerializeField]
     private List<UnitEntity> _placeContainer = new List<UnitEntity>();
-    public List<UnitEntity> PlaceContainer => _placeContainer;
 
     [SerializeField]
     private int _trafficCount = 0;
     [SerializeField]
     private int _infectCount = 0;
 
-    private void CheckInfect()
-    { 
-        // loop check
+    private void UnitArrive(UnitEntity unit)
+    {
+        _placeContainer.Add(unit);
+    }
 
-        // if true infect
+    private void UnitDepart(UnitEntity unit)
+    {
+        _placeContainer.Remove(unit);
+    }
+    
+    private void Infect()
+    {
+        // dispatch event
     }
 }
