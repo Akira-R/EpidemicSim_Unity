@@ -4,27 +4,42 @@ using UnityEngine;
 
 public class UnitEntity : MonoBehaviour
 {
-    // change to enum
-    [SerializeField]
-    private int _infectionState = 0;
+    public enum InfState 
+    { 
+        Susceptible,
+        Infectious,
+        Recovered
+    }
+
+    public class OnInfect : IEvent {
+        public int id;
+    }
 
     [SerializeField]
-    private List<PlaceEntity> _unitPath = new List<PlaceEntity>();
+    private InfState _infectionState = InfState.Susceptible;
+
+    public InfState InfectionState { get { return _infectionState; } set { _infectionState = value; } }
+
+    [SerializeField]
+    private List<Transform> _unitPath = new List<Transform>();
     [SerializeField]
     private int _pathCounter = 0;
 
-    private void MoveUnit() 
-    { 
-        // move unit position
+    private void Move() 
+    {
+        float distance = Vector3.Distance(_unitPath[_pathCounter].position, this.transform.position);
+        // move long the path
     }
 
-    private void Arrive()
+    //private void Infect()
+    public void Infect()
     {
-        _unitPath[_pathCounter].PlaceContainer.Add(this);
+        // dispatch event
+        EventManager.Instance.Dispatch(new OnInfect() { id = 0 });
     }
 
-    private void Depart()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        _unitPath[_pathCounter].PlaceContainer.Remove(this);
+        Infect();
     }
 }
