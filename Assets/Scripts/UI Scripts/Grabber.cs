@@ -6,10 +6,18 @@ using UnityEngine.EventSystems;
 
 public class Grabber : MonoBehaviour
 {
+    [SerializeField] private GameObject objectToSpawn;
     private GameObject selectedObject;
+    private Vector3 worldPosition;
 
     private void Update()
     {
+        if (selectedObject != null) 
+        {
+            Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
+            worldPosition = Camera.main.ScreenToWorldPoint(position);
+        }
+
         if (Input.GetMouseButtonDown(0)) 
         {
             if (selectedObject == null)
@@ -27,9 +35,6 @@ public class Grabber : MonoBehaviour
             }
             else 
             {
-                Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-
                 selectedObject.transform.position = new Vector3(Mathf.Round(worldPosition.x), 0f, Mathf.Round(worldPosition.z));
                 selectedObject = null;
                 Cursor.visible = true;
@@ -38,12 +43,14 @@ public class Grabber : MonoBehaviour
 
         if (selectedObject != null) 
         {
-            Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-
             selectedObject.transform.position = new Vector3(worldPosition.x, 0.25f, worldPosition.z);
-            //Debug.Log("Selected Position: " + selectedObject.transform.position);
         }
+    }
+
+    public void SpawnObjectAtCursor()
+    {
+        var instancedObject = Instantiate(objectToSpawn, new Vector3(worldPosition.x, 0.25f, worldPosition.z), Quaternion.identity);
+        selectedObject = instancedObject;
     }
 
     private RaycastHit CastRay() 
@@ -69,4 +76,6 @@ public class Grabber : MonoBehaviour
 
         return hit;
     }
+
+   
 }
