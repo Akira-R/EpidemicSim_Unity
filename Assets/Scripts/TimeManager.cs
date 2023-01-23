@@ -39,7 +39,8 @@ public class TimeManager : MonoBehaviour
     {
         if (_isSimPlaying == true) 
         {
-            timeTracker += _timerSpeed;
+            //timeTracker += _timerSpeed;
+            timeTracker++;
 
             if (timeTracker > _maxTime)
             {
@@ -65,10 +66,12 @@ public class TimeManager : MonoBehaviour
         if (_isSimPlaying == true)
         {
             _playPauseButton.GetComponent<Image>().sprite = _playSprite;
+            Time.timeScale = _timerSpeed;
         }
         else 
         {
             _playPauseButton.GetComponent<Image>().sprite = _pauseSprite;
+            Time.timeScale = 0;
         }
     }
 
@@ -76,6 +79,7 @@ public class TimeManager : MonoBehaviour
     {
         _speedIncrementsIdx = (_speedIncrementsIdx + 1) % _speedIncrements.Count;
         _timerSpeed = _speedIncrements[_speedIncrementsIdx];
+        Time.timeScale = _timerSpeed;
 
         _speedControlButtonText.text = "x" + (_timerSpeed).ToString();
     }
