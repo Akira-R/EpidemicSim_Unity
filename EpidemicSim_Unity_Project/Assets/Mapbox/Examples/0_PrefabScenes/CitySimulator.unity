@@ -1361,7 +1361,7 @@ MonoBehaviour:
   _dayCounter: 1
   _playPauseButton: {fileID: 858173801}
   _playSprite: {fileID: 21300000, guid: 3037211bf0e4cdf4dad0ba8555eb462e, type: 3}
-  _pauseSprite: {fileID: 21300000, guid: b6effb1fe9c41ca4c8ee9f4ccb32c80c, type: 3}
+  _pauseSprite: {fileID: 21300000, guid: 03b1ad94fb34c37449d3a1a1fe779ef2, type: 3}
   _speedControlButtonText: {fileID: 989365394}
   _speedIncrements: 010000000200000003000000
   _speedIncrementsIdx: 0
