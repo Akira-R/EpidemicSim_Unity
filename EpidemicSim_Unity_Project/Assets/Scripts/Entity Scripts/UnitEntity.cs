@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class UnitEntity : MonoBehaviour
 {
@@ -11,35 +12,77 @@ public class UnitEntity : MonoBehaviour
         Recovered
     }
 
-    public class OnInfect : IEvent {
-        public int id;
+    public enum MoveState
+    {
+        Stay,
+        Travel
     }
+
+    [SerializeField]
+    private NavMeshAgent _navMeshAgent;
 
     [SerializeField]
     private InfState _infectionState = InfState.Susceptible;
-
-    public InfState InfectionState { get { return _infectionState; } set { _infectionState = value; } }
+    public InfState InfectionState { get { return _infectionState; }}
 
     [SerializeField]
-    private List<Transform> _unitPath = new List<Transform>();
+    private MoveState _movementState = MoveState.Stay;
+    public MoveState MovementState { get { return _movementState; }}
+
+    [SerializeField]
+    private List<int> _unitPath = new List<int>();
     [SerializeField]
     private int _pathCounter = 0;
 
-    private void Move() 
+    [SerializeField]
+    private Material _susceptibleMat;
+    [SerializeField]
+    private Material _infectiousMat;
+
+    Transform _moveTo;
+
+    public void GenerateUnitPath(int pathLength, int placeCount) 
     {
-        float distance = Vector3.Distance(_unitPath[_pathCounter].position, this.transform.position);
-        // move long the path
+        _unitPath.Clear();
+        for (int i = 0; i < pathLength; i++)
+        {
+            int newPathIndex = Random.Range(0, placeCount);
+            if (i > 0 && newPathIndex == _unitPath[i-1])
+                newPathIndex = (newPathIndex+1) % placeCount;
+            _unitPath.Add(newPathIndex);
+        }
+
+        //transform.position = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform.position;
+        Vector3 initialPosition = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform.position;
+
+        NavMeshHit navHit;
+        if (NavMesh.SamplePosition(initialPosition, out navHit, 1.0f, NavMesh.AllAreas))
+        {
+            transform.position = navHit.position;
+
+            Debug.Log("Initial: " + initialPosition);
+            Debug.Log("Nav Hit: " + navHit.position);
+        }
+        else 
+        {
+            Debug.Log("No Nav hit found.");
+        }
+
+        _navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+
     }
 
-    //private void Infect()
-    public void Infect()
+    public void UpdateNextPath() 
     {
-        // dispatch event
-        EventManager.Instance.Dispatch(new OnInfect() { id = 0 });
+        _pathCounter = (_pathCounter + 1) % _unitPath.Count;
+        _moveTo = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform;
+        _movementState = MoveState.Travel;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        Infect();
+        if (_movementState == MoveState.Travel)
+            _navMeshAgent.destination = _moveTo.position;
     }
+
 }
