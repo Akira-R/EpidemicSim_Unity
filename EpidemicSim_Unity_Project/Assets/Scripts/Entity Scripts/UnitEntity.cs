@@ -19,9 +19,6 @@ public class UnitEntity : MonoBehaviour
     }
 
     [SerializeField]
-    private NavMeshAgent _navMeshAgent;
-
-    [SerializeField]
     private InfState _infectionState = InfState.Susceptible;
     public InfState InfectionState { get { return _infectionState; }}
 
@@ -39,7 +36,12 @@ public class UnitEntity : MonoBehaviour
     [SerializeField]
     private Material _infectiousMat;
 
-    Transform _moveTo;
+    private NavMeshAgent _navMeshAgent;
+    private Renderer _renderer;
+
+    private PlaceEntity _moveToPlace;
+    private float _stayDelay = 5.0f;
+    private float _stayCounter = 0.0f;
 
     public void GenerateUnitPath(int pathLength, int placeCount) 
     {
@@ -49,19 +51,17 @@ public class UnitEntity : MonoBehaviour
             int newPathIndex = Random.Range(0, placeCount);
             if (i > 0 && newPathIndex == _unitPath[i-1])
                 newPathIndex = (newPathIndex+1) % placeCount;
+            if(i == pathLength - 1)
+                while (newPathIndex == _unitPath[0] || newPathIndex == _unitPath[i - 1])
+                    newPathIndex = (newPathIndex + 1) % placeCount;
             _unitPath.Add(newPathIndex);
         }
 
-        //transform.position = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform.position;
         Vector3 initialPosition = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform.position;
-
         NavMeshHit navHit;
         if (NavMesh.SamplePosition(initialPosition, out navHit, 1.0f, NavMesh.AllAreas))
         {
             transform.position = navHit.position;
-
-            Debug.Log("Initial: " + initialPosition);
-            Debug.Log("Nav Hit: " + navHit.position);
         }
         else 
         {
@@ -69,20 +69,52 @@ public class UnitEntity : MonoBehaviour
         }
 
         _navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+        _navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        _navMeshAgent.speed = 2.5f; // hard code
+
+        _renderer = gameObject.GetComponent<Renderer>();
 
     }
 
     public void UpdateNextPath() 
     {
         _pathCounter = (_pathCounter + 1) % _unitPath.Count;
-        _moveTo = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform;
+        _moveToPlace = EntityManager.Instance.Places[_unitPath[_pathCounter]];
         _movementState = MoveState.Travel;
+        _renderer.enabled = true;
+    }
+
+    public void SetInfectState(int stateIndex)
+    {
+        _infectionState = (InfState)stateIndex;
+
+        if (_infectionState == InfState.Infectious)
+            _renderer.material = _infectiousMat;
     }
 
     private void FixedUpdate()
     {
         if (_movementState == MoveState.Travel)
-            _navMeshAgent.destination = _moveTo.position;
+            _navMeshAgent.destination = _moveToPlace.transform.position;
+        else if (_movementState == MoveState.Stay)
+        {
+            _stayCounter += Time.deltaTime;
+            if (_stayCounter >= _stayDelay)
+            {
+                _stayCounter = 0;
+                _moveToPlace.UnitDepart(this);
+                UpdateNextPath();
+            }
+        }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag != "PlaceMarker") return;
+        if (ReferenceEquals(other.transform, _moveToPlace.transform))
+        {
+            _movementState = MoveState.Stay;
+            _renderer.enabled = false;
+            _moveToPlace.UnitArrive(this);
+        }
+    }
 }

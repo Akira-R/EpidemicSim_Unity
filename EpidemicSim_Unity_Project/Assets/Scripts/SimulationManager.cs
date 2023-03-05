@@ -57,12 +57,15 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     [Button]
     public void StartSimulation() 
     {
-        if (_newNavMeshRequired)
-            if (!NavBake()) return;
+        if (_simState == SimState.Idle)
+        {
+            if (_newNavMeshRequired)
+                if (!NavBake()) return;
 
-        EntityManager.Instance?.TestEntitySetup();
+            EntityManager.Instance?.TestEntitySetup();
 
-        _simState = SimState.Play;
+            _simState = SimState.Play;
+        }
     }
 
     private bool NavBake()

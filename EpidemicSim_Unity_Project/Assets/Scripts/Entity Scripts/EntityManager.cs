@@ -47,7 +47,12 @@ public class EntityManager : MonoSingleton<EntityManager>
             UnitEntity unit = Instantiate(_unitPrefab,transform).GetComponent<UnitEntity>();
             unit.GenerateUnitPath(_pathLength, _places.Count);
             _units.Add(unit);
-        }   
+        }
+
+        // first Infectious
+        _units[0].SetInfectState((int)UnitEntity.InfState.Infectious);
+
+        TestNextPath();
     }
 
     [Button]

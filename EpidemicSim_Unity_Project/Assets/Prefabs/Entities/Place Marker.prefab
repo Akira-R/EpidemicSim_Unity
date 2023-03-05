@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3344227591563199235}
   - component: {fileID: 3344227591563199232}
   - component: {fileID: 3344227591563199233}
+  - component: {fileID: 1277617012894687144}
   m_Layer: 0
   m_Name: Place Marker
-  m_TagString: Untagged
+  m_TagString: PlaceMarker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +94,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3344227591563199247}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -113,3 +114,19 @@ MonoBehaviour:
   _placeContainer: []
   _trafficCount: 0
   _infectCount: 0
+--- !u!54 &1277617012894687144
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3344227591563199247}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
