@@ -9,6 +9,7 @@ public class CameraControl : MonoBehaviour
     private PlayerControls playerControls;
     private InputAction cameraMovement;
     private InputAction cameraRotation;
+    private InputAction cameraZoom;
     [SerializeField] private Transform _transform;
 
     [BoxGroup("Camera Movement Modifier")]
@@ -24,7 +25,8 @@ public class CameraControl : MonoBehaviour
     private void OnEnable()
     {
         cameraMovement = playerControls.Camera.PlanarMovement;
-        cameraRotation = playerControls.Camera.RotationMovementControl;
+        cameraRotation = playerControls.Camera.RotationControl;
+        cameraZoom = playerControls.Camera.ZoomControl;
         playerControls.Camera.Enable();
     }
     private void OnDisable()
@@ -63,5 +65,9 @@ public class CameraControl : MonoBehaviour
             _transform.rotation.eulerAngles.x, 
             _transform.rotation.eulerAngles.y, 
             rotationInputValue * rotationSpeed + _transform.rotation.eulerAngles.z);
+
+        float zoomInputVale = cameraZoom.ReadValue<float>();
+        GameObject cameraGameObject = _transform.gameObject;
+        cameraGameObject.GetComponent<Camera>().fieldOfView += zoomInputVale; 
     }
 }

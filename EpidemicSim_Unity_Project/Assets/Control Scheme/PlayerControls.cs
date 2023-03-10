@@ -28,7 +28,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ""id"": ""8e0659a8-0f7d-405c-bc44-6316e3535894"",
             ""actions"": [
                 {
-                    ""name"": ""RotationMovementControl"",
+                    ""name"": ""RotationControl"",
                     ""type"": ""Value"",
                     ""id"": ""d9cd3091-a869-4ad9-97e5-11f592dc51f4"",
                     ""expectedControlType"": ""Integer"",
@@ -37,7 +37,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ZoomMovementControl"",
+                    ""name"": ""ZoomControl"",
                     ""type"": ""Value"",
                     ""id"": ""ebbb902d-f9fb-4869-aed1-4a83f1e80e3e"",
                     ""expectedControlType"": ""Integer"",
@@ -63,29 +63,29 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovementControl"",
+                    ""action"": ""RotationControl"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""negative"",
                     ""id"": ""8ff7b995-695f-4d1d-b777-290b8e958a50"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovementControl"",
+                    ""action"": ""RotationControl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""positive"",
                     ""id"": ""49b8acb2-28b4-47d5-acc0-1d84af131788"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovementControl"",
+                    ""action"": ""RotationControl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -96,29 +96,29 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ZoomMovementControl"",
+                    ""action"": ""ZoomControl"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""negative"",
                     ""id"": ""41e61e7b-dd2d-4030-ad57-ae1afbfad169"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ZoomMovementControl"",
+                    ""action"": ""ZoomControl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""positive"",
                     ""id"": ""27795e30-d604-4f42-bf50-34dfbae2ac3d"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ZoomMovementControl"",
+                    ""action"": ""ZoomControl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -129,7 +129,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ZoomMovementControl"",
+                    ""action"": ""ZoomControl"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -140,7 +140,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ZoomMovementControl"",
+                    ""action"": ""ZoomControl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -151,7 +151,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ZoomMovementControl"",
+                    ""action"": ""ZoomControl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -266,15 +266,203 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""MainUI"",
+            ""id"": ""66c8457c-a01f-4046-b592-6cdf1d85190c"",
+            ""actions"": [
+                {
+                    ""name"": ""ParameterUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""437731ba-8ae1-4cef-8626-fbf7e56b1ed3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlaceUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c5b8287-d119-40b1-a5c5-8fec4f3cd111"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FIlterUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d37f6fc-f749-4904-bc1c-e8f1eaafb002"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GraphUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7d9a220-37a0-452e-aa42-4287d5732919"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d780f2ac-ac8f-4be0-85fb-74961684f30c"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9a28f47-2d52-4ffb-ac99-2588ae07fe46"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FIlterUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac0340c7-0285-4c80-9857-92a04f6efa45"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GraphUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79d20a34-cb43-4914-ad60-f8408b438963"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ParameterUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TimeControl"",
+            ""id"": ""84d29a6b-8587-44f1-b388-12e04e41488a"",
+            ""actions"": [
+                {
+                    ""name"": ""PlayPauseControl"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e904485-a219-487a-9edb-2aedc3517a62"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TimeSpeed1"",
+                    ""type"": ""Button"",
+                    ""id"": ""184d807a-67ac-407c-8939-9984907eb7a9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TimeSpeed2"",
+                    ""type"": ""Button"",
+                    ""id"": ""54b34150-932d-415e-a3f2-78c167bf9a75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TimeSpeed3"",
+                    ""type"": ""Button"",
+                    ""id"": ""10303adc-ef46-45da-b921-8f54c685e0af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4821e5fd-9cfb-444e-b4a6-3b0d8e9e119a"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TimeSpeed1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07135435-749f-4a3e-bbcd-e0f8b9f8a62b"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TimeSpeed2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""787370fd-ad91-4f95-8c52-713a5875dce1"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TimeSpeed3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""049b7e65-0efc-4944-8df9-9530998a3034"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayPauseControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
-        m_Camera_RotationMovementControl = m_Camera.FindAction("RotationMovementControl", throwIfNotFound: true);
-        m_Camera_ZoomMovementControl = m_Camera.FindAction("ZoomMovementControl", throwIfNotFound: true);
+        m_Camera_RotationControl = m_Camera.FindAction("RotationControl", throwIfNotFound: true);
+        m_Camera_ZoomControl = m_Camera.FindAction("ZoomControl", throwIfNotFound: true);
         m_Camera_PlanarMovement = m_Camera.FindAction("PlanarMovement", throwIfNotFound: true);
+        // MainUI
+        m_MainUI = asset.FindActionMap("MainUI", throwIfNotFound: true);
+        m_MainUI_ParameterUI = m_MainUI.FindAction("ParameterUI", throwIfNotFound: true);
+        m_MainUI_PlaceUI = m_MainUI.FindAction("PlaceUI", throwIfNotFound: true);
+        m_MainUI_FIlterUI = m_MainUI.FindAction("FIlterUI", throwIfNotFound: true);
+        m_MainUI_GraphUI = m_MainUI.FindAction("GraphUI", throwIfNotFound: true);
+        // TimeControl
+        m_TimeControl = asset.FindActionMap("TimeControl", throwIfNotFound: true);
+        m_TimeControl_PlayPauseControl = m_TimeControl.FindAction("PlayPauseControl", throwIfNotFound: true);
+        m_TimeControl_TimeSpeed1 = m_TimeControl.FindAction("TimeSpeed1", throwIfNotFound: true);
+        m_TimeControl_TimeSpeed2 = m_TimeControl.FindAction("TimeSpeed2", throwIfNotFound: true);
+        m_TimeControl_TimeSpeed3 = m_TimeControl.FindAction("TimeSpeed3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -334,15 +522,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     // Camera
     private readonly InputActionMap m_Camera;
     private ICameraActions m_CameraActionsCallbackInterface;
-    private readonly InputAction m_Camera_RotationMovementControl;
-    private readonly InputAction m_Camera_ZoomMovementControl;
+    private readonly InputAction m_Camera_RotationControl;
+    private readonly InputAction m_Camera_ZoomControl;
     private readonly InputAction m_Camera_PlanarMovement;
     public struct CameraActions
     {
         private @PlayerControls m_Wrapper;
         public CameraActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @RotationMovementControl => m_Wrapper.m_Camera_RotationMovementControl;
-        public InputAction @ZoomMovementControl => m_Wrapper.m_Camera_ZoomMovementControl;
+        public InputAction @RotationControl => m_Wrapper.m_Camera_RotationControl;
+        public InputAction @ZoomControl => m_Wrapper.m_Camera_ZoomControl;
         public InputAction @PlanarMovement => m_Wrapper.m_Camera_PlanarMovement;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
@@ -353,12 +541,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_CameraActionsCallbackInterface != null)
             {
-                @RotationMovementControl.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotationMovementControl;
-                @RotationMovementControl.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotationMovementControl;
-                @RotationMovementControl.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotationMovementControl;
-                @ZoomMovementControl.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomMovementControl;
-                @ZoomMovementControl.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomMovementControl;
-                @ZoomMovementControl.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomMovementControl;
+                @RotationControl.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotationControl;
+                @RotationControl.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotationControl;
+                @RotationControl.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotationControl;
+                @ZoomControl.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomControl;
+                @ZoomControl.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomControl;
+                @ZoomControl.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomControl;
                 @PlanarMovement.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
                 @PlanarMovement.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
                 @PlanarMovement.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
@@ -366,12 +554,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @RotationMovementControl.started += instance.OnRotationMovementControl;
-                @RotationMovementControl.performed += instance.OnRotationMovementControl;
-                @RotationMovementControl.canceled += instance.OnRotationMovementControl;
-                @ZoomMovementControl.started += instance.OnZoomMovementControl;
-                @ZoomMovementControl.performed += instance.OnZoomMovementControl;
-                @ZoomMovementControl.canceled += instance.OnZoomMovementControl;
+                @RotationControl.started += instance.OnRotationControl;
+                @RotationControl.performed += instance.OnRotationControl;
+                @RotationControl.canceled += instance.OnRotationControl;
+                @ZoomControl.started += instance.OnZoomControl;
+                @ZoomControl.performed += instance.OnZoomControl;
+                @ZoomControl.canceled += instance.OnZoomControl;
                 @PlanarMovement.started += instance.OnPlanarMovement;
                 @PlanarMovement.performed += instance.OnPlanarMovement;
                 @PlanarMovement.canceled += instance.OnPlanarMovement;
@@ -379,10 +567,138 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // MainUI
+    private readonly InputActionMap m_MainUI;
+    private IMainUIActions m_MainUIActionsCallbackInterface;
+    private readonly InputAction m_MainUI_ParameterUI;
+    private readonly InputAction m_MainUI_PlaceUI;
+    private readonly InputAction m_MainUI_FIlterUI;
+    private readonly InputAction m_MainUI_GraphUI;
+    public struct MainUIActions
+    {
+        private @PlayerControls m_Wrapper;
+        public MainUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ParameterUI => m_Wrapper.m_MainUI_ParameterUI;
+        public InputAction @PlaceUI => m_Wrapper.m_MainUI_PlaceUI;
+        public InputAction @FIlterUI => m_Wrapper.m_MainUI_FIlterUI;
+        public InputAction @GraphUI => m_Wrapper.m_MainUI_GraphUI;
+        public InputActionMap Get() { return m_Wrapper.m_MainUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MainUIActions set) { return set.Get(); }
+        public void SetCallbacks(IMainUIActions instance)
+        {
+            if (m_Wrapper.m_MainUIActionsCallbackInterface != null)
+            {
+                @ParameterUI.started -= m_Wrapper.m_MainUIActionsCallbackInterface.OnParameterUI;
+                @ParameterUI.performed -= m_Wrapper.m_MainUIActionsCallbackInterface.OnParameterUI;
+                @ParameterUI.canceled -= m_Wrapper.m_MainUIActionsCallbackInterface.OnParameterUI;
+                @PlaceUI.started -= m_Wrapper.m_MainUIActionsCallbackInterface.OnPlaceUI;
+                @PlaceUI.performed -= m_Wrapper.m_MainUIActionsCallbackInterface.OnPlaceUI;
+                @PlaceUI.canceled -= m_Wrapper.m_MainUIActionsCallbackInterface.OnPlaceUI;
+                @FIlterUI.started -= m_Wrapper.m_MainUIActionsCallbackInterface.OnFIlterUI;
+                @FIlterUI.performed -= m_Wrapper.m_MainUIActionsCallbackInterface.OnFIlterUI;
+                @FIlterUI.canceled -= m_Wrapper.m_MainUIActionsCallbackInterface.OnFIlterUI;
+                @GraphUI.started -= m_Wrapper.m_MainUIActionsCallbackInterface.OnGraphUI;
+                @GraphUI.performed -= m_Wrapper.m_MainUIActionsCallbackInterface.OnGraphUI;
+                @GraphUI.canceled -= m_Wrapper.m_MainUIActionsCallbackInterface.OnGraphUI;
+            }
+            m_Wrapper.m_MainUIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ParameterUI.started += instance.OnParameterUI;
+                @ParameterUI.performed += instance.OnParameterUI;
+                @ParameterUI.canceled += instance.OnParameterUI;
+                @PlaceUI.started += instance.OnPlaceUI;
+                @PlaceUI.performed += instance.OnPlaceUI;
+                @PlaceUI.canceled += instance.OnPlaceUI;
+                @FIlterUI.started += instance.OnFIlterUI;
+                @FIlterUI.performed += instance.OnFIlterUI;
+                @FIlterUI.canceled += instance.OnFIlterUI;
+                @GraphUI.started += instance.OnGraphUI;
+                @GraphUI.performed += instance.OnGraphUI;
+                @GraphUI.canceled += instance.OnGraphUI;
+            }
+        }
+    }
+    public MainUIActions @MainUI => new MainUIActions(this);
+
+    // TimeControl
+    private readonly InputActionMap m_TimeControl;
+    private ITimeControlActions m_TimeControlActionsCallbackInterface;
+    private readonly InputAction m_TimeControl_PlayPauseControl;
+    private readonly InputAction m_TimeControl_TimeSpeed1;
+    private readonly InputAction m_TimeControl_TimeSpeed2;
+    private readonly InputAction m_TimeControl_TimeSpeed3;
+    public struct TimeControlActions
+    {
+        private @PlayerControls m_Wrapper;
+        public TimeControlActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PlayPauseControl => m_Wrapper.m_TimeControl_PlayPauseControl;
+        public InputAction @TimeSpeed1 => m_Wrapper.m_TimeControl_TimeSpeed1;
+        public InputAction @TimeSpeed2 => m_Wrapper.m_TimeControl_TimeSpeed2;
+        public InputAction @TimeSpeed3 => m_Wrapper.m_TimeControl_TimeSpeed3;
+        public InputActionMap Get() { return m_Wrapper.m_TimeControl; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TimeControlActions set) { return set.Get(); }
+        public void SetCallbacks(ITimeControlActions instance)
+        {
+            if (m_Wrapper.m_TimeControlActionsCallbackInterface != null)
+            {
+                @PlayPauseControl.started -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnPlayPauseControl;
+                @PlayPauseControl.performed -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnPlayPauseControl;
+                @PlayPauseControl.canceled -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnPlayPauseControl;
+                @TimeSpeed1.started -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed1;
+                @TimeSpeed1.performed -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed1;
+                @TimeSpeed1.canceled -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed1;
+                @TimeSpeed2.started -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed2;
+                @TimeSpeed2.performed -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed2;
+                @TimeSpeed2.canceled -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed2;
+                @TimeSpeed3.started -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed3;
+                @TimeSpeed3.performed -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed3;
+                @TimeSpeed3.canceled -= m_Wrapper.m_TimeControlActionsCallbackInterface.OnTimeSpeed3;
+            }
+            m_Wrapper.m_TimeControlActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PlayPauseControl.started += instance.OnPlayPauseControl;
+                @PlayPauseControl.performed += instance.OnPlayPauseControl;
+                @PlayPauseControl.canceled += instance.OnPlayPauseControl;
+                @TimeSpeed1.started += instance.OnTimeSpeed1;
+                @TimeSpeed1.performed += instance.OnTimeSpeed1;
+                @TimeSpeed1.canceled += instance.OnTimeSpeed1;
+                @TimeSpeed2.started += instance.OnTimeSpeed2;
+                @TimeSpeed2.performed += instance.OnTimeSpeed2;
+                @TimeSpeed2.canceled += instance.OnTimeSpeed2;
+                @TimeSpeed3.started += instance.OnTimeSpeed3;
+                @TimeSpeed3.performed += instance.OnTimeSpeed3;
+                @TimeSpeed3.canceled += instance.OnTimeSpeed3;
+            }
+        }
+    }
+    public TimeControlActions @TimeControl => new TimeControlActions(this);
     public interface ICameraActions
     {
-        void OnRotationMovementControl(InputAction.CallbackContext context);
-        void OnZoomMovementControl(InputAction.CallbackContext context);
+        void OnRotationControl(InputAction.CallbackContext context);
+        void OnZoomControl(InputAction.CallbackContext context);
         void OnPlanarMovement(InputAction.CallbackContext context);
+    }
+    public interface IMainUIActions
+    {
+        void OnParameterUI(InputAction.CallbackContext context);
+        void OnPlaceUI(InputAction.CallbackContext context);
+        void OnFIlterUI(InputAction.CallbackContext context);
+        void OnGraphUI(InputAction.CallbackContext context);
+    }
+    public interface ITimeControlActions
+    {
+        void OnPlayPauseControl(InputAction.CallbackContext context);
+        void OnTimeSpeed1(InputAction.CallbackContext context);
+        void OnTimeSpeed2(InputAction.CallbackContext context);
+        void OnTimeSpeed3(InputAction.CallbackContext context);
     }
 }
