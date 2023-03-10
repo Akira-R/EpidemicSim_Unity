@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 using NaughtyAttributes;
 
 public class EntityManager : MonoSingleton<EntityManager>
@@ -23,6 +23,8 @@ public class EntityManager : MonoSingleton<EntityManager>
     [SerializeField]
     private int _unitCount = 0;
     [SerializeField]
+    private int _placeCount = 0;
+    [SerializeField]
     private List<GameObject> _placeObjs;
 
     [Header("Unit Properties")]
@@ -33,6 +35,10 @@ public class EntityManager : MonoSingleton<EntityManager>
     [SerializeField]
     private float _stayDelay = 0;
 
+    [SerializeField]
+    private List<Transform> _buildings;
+    [SerializeField]
+    private GameObject _mapObj;
 
     [Button]
     public void TestEntitySetup()
@@ -56,10 +62,58 @@ public class EntityManager : MonoSingleton<EntityManager>
     }
 
     [Button]
+    public void AutoPlace()
+    {
+        List<int> randomBuildingIndices = new List<int>();
+
+        // Get all building Objs
+        for (int i = 1; i < _mapObj.transform.childCount; i++)
+        {
+            foreach (Transform building in _mapObj.transform.GetChild(i))
+            {
+                if (building.gameObject.name[0] == 'E') 
+                    _buildings.Add(building);
+            }
+        }
+
+        // Random pick marker from buildings
+        int randomSize = _buildings.Count / _placeCount;
+        for (int i = 0; i < _placeCount; i++)
+        {
+            int randomOffset = Random.Range(1, randomSize);
+            randomBuildingIndices.Add((i * randomSize) + randomOffset);
+        }
+
+        // Instantiate marker Objs
+        for (int i = 0; i < _placeCount; i++)
+        {
+            GameObject place = Instantiate(_placePrefab, _buildings[randomBuildingIndices[i]].position, transform.rotation, transform);
+            
+            //NavMeshHit navHit;
+            //if (NavMesh.SamplePosition(place.transform.position, out navHit, 10.0f, NavMesh.AllAreas))
+            //    transform.position = navHit.position;
+            //else
+            //    Debug.Log("No Nav hit found.");
+
+            _placeObjs.Add(place);
+        }
+    }
+
+    [Button]
     public void TestNextPath()
     {
         foreach (UnitEntity unit in _units)
             unit.UpdateNextPath();
+    }
+
+    [Button]
+    public void ClearEntity()
+    {
+        foreach (UnitEntity unit in _units)
+            unit.gameObject.Destroy();
+        
+        _units.Clear();
+        _places.Clear();
     }
 
 

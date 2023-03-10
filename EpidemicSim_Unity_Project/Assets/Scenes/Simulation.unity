@@ -354,7 +354,7 @@ Transform:
   - {fileID: 72971370}
   - {fileID: 559168475}
   m_Father: {fileID: 1389075267}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &586867134
 MonoBehaviour:
@@ -373,6 +373,7 @@ MonoBehaviour:
   _units: []
   _places: []
   _unitCount: 10
+  _placeCount: 0
   _placeObjs:
   - {fileID: 90308502}
   - {fileID: 1694062836}
@@ -382,6 +383,8 @@ MonoBehaviour:
   _moveSpeed: 0
   _pathLength: 3
   _stayDelay: 5
+  _buildings: []
+  _mapObj: {fileID: 950251802}
 --- !u!1 &703257989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3344227591563199247, guid: d11f04d7309683141999071e1aab4147, type: 3}
@@ -666,8 +669,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1996800472}
   - {fileID: 586867133}
+  - {fileID: 1996800472}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -800,7 +803,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1389075267}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1996800473
 MonoBehaviour:

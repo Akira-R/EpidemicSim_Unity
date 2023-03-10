@@ -68,6 +68,13 @@ public class SimulationManager : MonoSingleton<SimulationManager>
         }
     }
 
+    [Button]
+    public void ResetSimulation()
+    {
+        _simState = SimState.Idle;  
+        EntityManager.Instance?.ClearEntity();
+    }
+
     private bool NavBake()
     {
         if (!_navBakeAllow) return false;
