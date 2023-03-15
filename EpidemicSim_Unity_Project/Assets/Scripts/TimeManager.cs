@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
@@ -24,9 +25,28 @@ public class TimeManager : MonoBehaviour
     public List<int> _speedIncrements;
     [SerializeField] private int _speedIncrementsIdx = 0;
 
+    private PlayerControls playerControls;
+    private InputAction playPauseControl;
+    private InputAction speedOne;
+    private InputAction speedTwo;
+    private InputAction speedThree;
+
     private void Awake()
     {
+        playerControls = new PlayerControls();
+    }
 
+    private void OnEnable()
+    {
+        playPauseControl = playerControls.TimeControl.PlayPauseControl;
+        speedOne = playerControls.TimeControl.TimeSpeed1;
+        speedTwo = playerControls.TimeControl.TimeSpeed2;
+        speedThree = playerControls.TimeControl.TimeSpeed3;
+        playerControls.TimeControl.Enable();
+    }
+    private void OnDisable()
+    {
+        playerControls.TimeControl.Disable();
     }
 
     // Start is called before the first frame update
@@ -57,9 +77,12 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         _dayCounterText.text = "Day: " + _dayCounter;
+        _speedControlButtonText.text = "x" + (_timerSpeed).ToString();
+
+        UpdateInput();
     }
 
-    public void OnPlayPauseButtonPressed() 
+    public void OnPlayPauseButtonPressed()
     {
         _isSimPlaying = !_isSimPlaying;
 
@@ -68,7 +91,7 @@ public class TimeManager : MonoBehaviour
             _playPauseButton.GetComponent<Image>().sprite = _playSprite;
             Time.timeScale = _timerSpeed;
         }
-        else 
+        else
         {
             _playPauseButton.GetComponent<Image>().sprite = _pauseSprite;
             Time.timeScale = 0;
@@ -78,9 +101,36 @@ public class TimeManager : MonoBehaviour
     public void OnSpeedContolButtonPressed() 
     {
         _speedIncrementsIdx = (_speedIncrementsIdx + 1) % _speedIncrements.Count;
-        _timerSpeed = _speedIncrements[_speedIncrementsIdx];
-        Time.timeScale = _timerSpeed;
+        SimulationSpeed(_speedIncrementsIdx);
+    }
 
-        _speedControlButtonText.text = "x" + (_timerSpeed).ToString();
+    private void SimulationSpeed(int incrementIdx)
+    {
+        if (!_isSimPlaying)
+            OnPlayPauseButtonPressed();
+
+        _timerSpeed = _speedIncrements[incrementIdx];
+        Time.timeScale = _timerSpeed;
+    }
+
+    private void UpdateInput() 
+    {
+        playPauseControl.performed += context => 
+        {
+            OnPlayPauseButtonPressed();
+        };
+
+        speedOne.performed += context =>
+        {
+            SimulationSpeed(0);
+        };
+        speedTwo.performed += context =>
+        {
+            SimulationSpeed(1);
+        };
+        speedThree.performed += context =>
+        {
+            SimulationSpeed(2);
+        };
     }
 }
