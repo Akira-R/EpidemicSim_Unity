@@ -6,6 +6,8 @@ using NaughtyAttributes;
 
 public class EntityManager : MonoSingleton<EntityManager>
 {
+    public class OnPlaceModified : IEvent { }
+
     [Header("Entity Info")]
     [SerializeField]
     private GameObject _unitPrefab;
@@ -59,6 +61,15 @@ public class EntityManager : MonoSingleton<EntityManager>
         _units[0].SetInfectState((int)UnitEntity.InfState.Infectious);
 
         TestNextPath();
+    }
+
+    public void PlaceEntitySetup() 
+    {
+        foreach (GameObject placeObj in _placeObjs)
+            _places.Add(placeObj.GetComponent<PlaceEntity>());
+
+        foreach (UnitEntity unit in _units)
+            unit.GenerateUnitPath(_pathLength, _places.Count);
     }
 
     [Button]
@@ -127,19 +138,26 @@ public class EntityManager : MonoSingleton<EntityManager>
         //EventManager.Instance.RemoveListener<UnitEntity.OnInfect>(InfCalculate);
     }
 
-    private void Add() 
+    public void AddPlaceRequest() 
     {
-        
+        GameObject placeObj = Instantiate(_placePrefab, transform);
+        _placeObjs.Add(placeObj);
+
+        ResetPlaceRef();
     }
 
-    private void Delete()
+    public void RemovePlaceRequest(GameObject placeObj)
     {
+        _placeObjs.Remove(placeObj);
+        placeObj.Destroy();
 
+        ResetPlaceRef();   
     }
 
-    private void Clear()
+    private void ResetPlaceRef()
     {
-
+        _places.Clear();
+        EventManager.Instance.Dispatch<OnPlaceModified>();
     }
 
     // called by event-based trigger

@@ -1,0 +1,107 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+using NaughtyAttributes;
+
+public class PlaceModifier : MonoBehaviour
+{
+    [SerializeField]
+    private bool _isEnabled = false;
+    private bool _isDragging = false;
+
+    [SerializeField, ReadOnly]
+    private GameObject _selectedObject;
+
+    private void Update()
+    {
+        if (!_isEnabled) return;
+        if (Input.GetMouseButtonDown(0) && !_isDragging)
+        {
+            _isDragging = true;
+            _selectedObject = null;
+
+            RaycastHit hit = CastRay();
+            if (hit.collider != null)
+            {
+                if (!hit.collider.CompareTag("PlaceMarker") && EventSystem.current.IsPointerOverGameObject())
+                { 
+                    _isDragging = false;
+                    return;
+                }
+                _selectedObject = hit.collider.gameObject;
+                Cursor.visible = false;
+                StartCoroutine(WaitTo_EndDrag());
+            }
+            else 
+            {
+                _isDragging = false;
+            }
+        }
+    }
+
+    [Button]
+    public void AddPlace()
+    {
+        EntityManager.Instance.AddPlaceRequest();
+    }
+
+    [Button]
+    public void RemovePlace()
+    {
+        if (!_selectedObject) return;
+        EntityManager.Instance.RemovePlaceRequest(_selectedObject);
+    }
+
+    //[Button]
+    //public void MovePlace()
+    //{
+
+    //}
+
+    private RaycastHit CastRay()
+    {
+        Vector3 screenMousePosFar = new Vector3
+        (
+            Input.mousePosition.x,
+            Input.mousePosition.y,
+            Camera.main.farClipPlane
+        );
+        Vector3 screenMousePosNear = new Vector3
+        (
+            Input.mousePosition.x,
+            Input.mousePosition.y,
+            Camera.main.nearClipPlane
+        );
+
+        Vector3 worldMousePosFar = Camera.main.ScreenToWorldPoint(screenMousePosFar);
+        Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
+
+        RaycastHit hit;
+        Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit);
+
+        return hit;
+    }
+
+    private IEnumerator WaitTo_EndDrag()
+    {
+        Debug.Log("Drag");
+        Vector3 worldPosition;
+        Vector3 position;
+        while (Input.GetMouseButton(0))
+        {
+            position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(_selectedObject.transform.position).z);
+            worldPosition = Camera.main.ScreenToWorldPoint(position);
+            _selectedObject.transform.position = new Vector3(worldPosition.x, 0.25f, worldPosition.z);
+            yield return null;
+        }
+        EndDrag();
+    }
+
+    private void EndDrag()
+    {
+        Debug.Log("EndDrag");
+        _isDragging = false;
+        Cursor.visible = true;
+    }
+}

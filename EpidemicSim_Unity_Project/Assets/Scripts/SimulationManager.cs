@@ -13,7 +13,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
         Idle,
         Play,
         Pause,
-        End,
+        ReInit,
     }
 
     [Header("Map Info")]
@@ -31,22 +31,19 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     private void OnEnable()
     {
         _abstractMap.OnInitialized += MapInitialization;
+        EventManager.Instance.AddListener<EntityManager.OnPlaceModified>(OnPlaceModified);
     }
 
     private void OnDisable()
     {
         _abstractMap.OnInitialized -= MapInitialization;
+        EventManager.Instance.RemoveListener<EntityManager.OnPlaceModified>(OnPlaceModified);
     }
 
     void Start()
     {
         _mapObj = _abstractMap.gameObject;
         _navSurface = _mapObj.GetComponent<NavMeshSurface>();
-    }
-
-    void Update()
-    {
-
     }
 
     private void MapInitialization()
@@ -65,6 +62,10 @@ public class SimulationManager : MonoSingleton<SimulationManager>
             EntityManager.Instance?.TestEntitySetup();
 
             _simState = SimState.Play;
+        }
+        else if (_simState == SimState.ReInit)
+        {
+            EntityManager.Instance?.PlaceEntitySetup();
         }
     }
 
@@ -90,5 +91,12 @@ public class SimulationManager : MonoSingleton<SimulationManager>
         _navSurface.BuildNavMesh();
         _newNavMeshRequired = false;
         return true;
+    }
+
+    private void OnPlaceModified(IEvent e)
+    {
+        EntityManager.OnPlaceModified data = e as EntityManager.OnPlaceModified;
+        if (data == null) return;
+        _simState = SimState.ReInit;
     }
 }
