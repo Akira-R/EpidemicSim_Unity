@@ -19,10 +19,12 @@ public class UITransformTween : MonoBehaviour
     public Vector3 rotationVector;
     private LTDescr rotTween;
 
+    [SerializeField] private GameObject[] panels;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        panels = GameObject.FindGameObjectsWithTag("Panel");
     }
 
     private void Update()
@@ -32,6 +34,13 @@ public class UITransformTween : MonoBehaviour
 
     public void ButtonToggleEase() 
     {
+        //Debug.Log(toggle);
+        foreach (GameObject panel in panels) 
+        {
+            if(panel.GetComponent<UITransformTween>().GetToggleStatus())
+                panel.GetComponent<UITransformTween>().OnUIEaseOut();
+        }
+
         if (toggle)
         {
             OnUIEaseOut();
@@ -40,20 +49,23 @@ public class UITransformTween : MonoBehaviour
         {
             OnUIEaseIn();
         }
-
-        toggle = !toggle;
     }
 
-    private void OnUIEaseIn() 
+    public void OnUIEaseIn() 
     {
-        Debug.Log(targetPos);
+        if (toggle == false)
+            toggle = true;
+
         LeanTween.moveLocal(gameobjectToTween, targetPos, animationDuration)
                 .setDelay(delay)
                 .setEase(tweenType)
                 .setIgnoreTimeScale(true);
     }
-    private void OnUIEaseOut()
+    public void OnUIEaseOut()
     {
+        if (toggle == true)
+            toggle = false;
+
         LeanTween.moveLocal(gameobjectToTween, originalPos, animationDuration)
                 .setDelay(delay)
                 .setEase(tweenType)
@@ -70,5 +82,10 @@ public class UITransformTween : MonoBehaviour
     public void OnPointerExit()
     {
         LeanTween.cancel(this.gameObject);
+    }
+
+    public bool GetToggleStatus() 
+    {
+        return toggle;
     }
 }

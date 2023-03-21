@@ -103,7 +103,7 @@
                 {
                     "name": "ZoomMovementMouse",
                     "id": "2fb53b22-385d-4e63-aa77-3eb95c3217ce",
-                    "path": "1DAxis",
+                    "path": "1DAxis(minValue=-0.01,maxValue=0.01)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
