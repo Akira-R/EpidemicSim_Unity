@@ -15,8 +15,6 @@ public class UITransformTween : MonoBehaviour
     public Vector3 targetPos;
     [SerializeField] private bool toggle = false;
 
-    [Header("Rotation Tween")]
-    public Vector3 rotationVector;
     private LTDescr rotTween;
 
     [SerializeField] private GameObject[] panels;
@@ -34,12 +32,13 @@ public class UITransformTween : MonoBehaviour
 
     public void ButtonToggleEase() 
     {
-        //Debug.Log(toggle);
-        foreach (GameObject panel in panels) 
-        {
-            if(panel.GetComponent<UITransformTween>().GetToggleStatus())
-                panel.GetComponent<UITransformTween>().OnUIEaseOut();
-        }
+        Debug.Log(toggle);
+
+        //foreach (GameObject panel in panels)
+        //{
+        //    if (panel.GetComponent<UITransformTween>().GetToggleStatus() && panel.gameObject != gameObject)
+        //        panel.GetComponent<UITransformTween>().OnUIEaseOut();
+        //}
 
         if (toggle)
         {
@@ -49,10 +48,19 @@ public class UITransformTween : MonoBehaviour
         {
             OnUIEaseIn();
         }
+
+        foreach (GameObject panel in panels)
+        {
+            if (panel.GetComponent<UITransformTween>().GetToggleStatus() && panel.gameObject != gameObject)
+                panel.GetComponent<UITransformTween>().OnUIEaseOut();
+        }
     }
 
     public void OnUIEaseIn() 
     {
+        //if (toggle == true)
+        //    return;
+
         if (toggle == false)
             toggle = true;
 
@@ -63,6 +71,9 @@ public class UITransformTween : MonoBehaviour
     }
     public void OnUIEaseOut()
     {
+        //if (toggle == false)
+        //    return;
+
         if (toggle == true)
             toggle = false;
 
