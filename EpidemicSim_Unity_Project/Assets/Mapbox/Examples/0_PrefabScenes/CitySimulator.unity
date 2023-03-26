@@ -1686,6 +1686,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: subDivisions.fontSharpness
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: mainDivisions.fontSharpness
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: subDivisions.fractionDigits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: mainDivisions.fractionDigits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: subDivisions.markLength.Automatic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: mainDivisions.markLength.Automatic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2441143221942937632, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2109,6 +2133,30 @@ PrefabInstance:
     - target: {fileID: 4282045440075660761, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: subDivisions.fontSharpness
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: mainDivisions.fontSharpness
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: subDivisions.fractionDigits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: mainDivisions.fractionDigits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: subDivisions.markLength.Automatic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: mainDivisions.markLength.Automatic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fef99f436d638e442af00e682eb76b83, type: 3}
