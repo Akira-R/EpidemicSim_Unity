@@ -352,6 +352,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _profilerUI: {fileID: 864285129}
   _showProfilerUI: 0
+  variableObject: {fileID: 11400000, guid: 7afcdfa2f5326df40a8a3c823a39592d, type: 2}
+  variableData:
+    latlngCoordX: 0
+    latlngCoordY: 0
+    populationNumber: 0
+    populationProtection: 0
+    transmissionRate: 0
+    fatalitiesRate: 0
+    recoveryRate: 0
+    totalSimulationTime: 0
 --- !u!1 &327784168
 GameObject:
   m_ObjectHideFlags: 0

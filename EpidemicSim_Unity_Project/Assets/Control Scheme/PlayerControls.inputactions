@@ -420,6 +420,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "System",
+            "id": "0fca1d8d-deff-4c0e-bb78-23813367db6f",
+            "actions": [
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "37d2c9e6-ee63-49ab-beed-e4cd41128cfc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Profiler",
+                    "type": "Button",
+                    "id": "c98aa913-b794-4c04-916e-f372d8fa5eb5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c8807d2e-4374-4b92-8e05-0980d3684fbc",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe61154d-cbe3-4f2b-b9c7-1af642e48333",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Profiler",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

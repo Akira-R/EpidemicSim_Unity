@@ -30,6 +30,18 @@ public class VariableObject : ScriptableObject
     public float RecoveryRate => recoveryRate;
     public int TotalSimulationTime => totalSimulationTime;
 
+    public void SetDatafromSave(VariableData data) 
+    {
+        latlngCoord.x = data.latlngCoordX;
+        latlngCoord.y = data.latlngCoordY;
+        populationNumber = data.populationNumber;
+        populationProtection = data.populationProtection;
+        transmissionRate = data.transmissionRate;
+        fatalitiesRate = data.fatalitiesRate;
+        recoveryRate = data.recoveryRate;
+        totalSimulationTime = data.totalSimulationTime;
+    }
+
     public void SetLatlngCoord(Vector2 latlng) 
     {
         latlngCoord = latlng;

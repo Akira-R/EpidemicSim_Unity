@@ -53,5 +53,5 @@ public class VariableManager : MonoBehaviour
         variables.SetLatlngCoord(lat, lng);
 
         Debug.Log("Latlng: " + variables.LatlngCoord);
-    } 
+    }
 }
