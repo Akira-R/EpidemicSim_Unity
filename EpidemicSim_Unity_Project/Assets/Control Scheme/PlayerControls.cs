@@ -125,7 +125,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""ZoomMovementMouse"",
                     ""id"": ""2fb53b22-385d-4e63-aa77-3eb95c3217ce"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""1DAxis(minValue=-0.01,maxValue=0.01)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -442,6 +442,54 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""System"",
+            ""id"": ""0fca1d8d-deff-4c0e-bb78-23813367db6f"",
+            ""actions"": [
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""37d2c9e6-ee63-49ab-beed-e4cd41128cfc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Profiler"",
+                    ""type"": ""Button"",
+                    ""id"": ""c98aa913-b794-4c04-916e-f372d8fa5eb5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c8807d2e-4374-4b92-8e05-0980d3684fbc"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe61154d-cbe3-4f2b-b9c7-1af642e48333"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Profiler"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -463,6 +511,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_TimeControl_TimeSpeed1 = m_TimeControl.FindAction("TimeSpeed1", throwIfNotFound: true);
         m_TimeControl_TimeSpeed2 = m_TimeControl.FindAction("TimeSpeed2", throwIfNotFound: true);
         m_TimeControl_TimeSpeed3 = m_TimeControl.FindAction("TimeSpeed3", throwIfNotFound: true);
+        // System
+        m_System = asset.FindActionMap("System", throwIfNotFound: true);
+        m_System_Quit = m_System.FindAction("Quit", throwIfNotFound: true);
+        m_System_Profiler = m_System.FindAction("Profiler", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -681,6 +733,47 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public TimeControlActions @TimeControl => new TimeControlActions(this);
+
+    // System
+    private readonly InputActionMap m_System;
+    private ISystemActions m_SystemActionsCallbackInterface;
+    private readonly InputAction m_System_Quit;
+    private readonly InputAction m_System_Profiler;
+    public struct SystemActions
+    {
+        private @PlayerControls m_Wrapper;
+        public SystemActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Quit => m_Wrapper.m_System_Quit;
+        public InputAction @Profiler => m_Wrapper.m_System_Profiler;
+        public InputActionMap Get() { return m_Wrapper.m_System; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SystemActions set) { return set.Get(); }
+        public void SetCallbacks(ISystemActions instance)
+        {
+            if (m_Wrapper.m_SystemActionsCallbackInterface != null)
+            {
+                @Quit.started -= m_Wrapper.m_SystemActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_SystemActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_SystemActionsCallbackInterface.OnQuit;
+                @Profiler.started -= m_Wrapper.m_SystemActionsCallbackInterface.OnProfiler;
+                @Profiler.performed -= m_Wrapper.m_SystemActionsCallbackInterface.OnProfiler;
+                @Profiler.canceled -= m_Wrapper.m_SystemActionsCallbackInterface.OnProfiler;
+            }
+            m_Wrapper.m_SystemActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
+                @Profiler.started += instance.OnProfiler;
+                @Profiler.performed += instance.OnProfiler;
+                @Profiler.canceled += instance.OnProfiler;
+            }
+        }
+    }
+    public SystemActions @System => new SystemActions(this);
     public interface ICameraActions
     {
         void OnRotationControl(InputAction.CallbackContext context);
@@ -700,5 +793,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnTimeSpeed1(InputAction.CallbackContext context);
         void OnTimeSpeed2(InputAction.CallbackContext context);
         void OnTimeSpeed3(InputAction.CallbackContext context);
+    }
+    public interface ISystemActions
+    {
+        void OnQuit(InputAction.CallbackContext context);
+        void OnProfiler(InputAction.CallbackContext context);
     }
 }
