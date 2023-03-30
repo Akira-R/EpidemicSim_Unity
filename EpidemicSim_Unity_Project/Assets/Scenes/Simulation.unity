@@ -257,7 +257,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3344227591563199246, guid: d11f04d7309683141999071e1aab4147, type: 3}
   m_PrefabInstance: {fileID: 273799632}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &381865419
+--- !u!1 &324575667
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,38 +265,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 381865421}
-  - component: {fileID: 381865420}
+  - component: {fileID: 324575669}
+  - component: {fileID: 324575668}
   m_Layer: 0
-  m_Name: PlaceModifier
+  m_Name: FuzzyCalculator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &381865420
+--- !u!114 &324575668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381865419}
+  m_GameObject: {fileID: 324575667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db12cfa4523153b408fd205342a20418, type: 3}
+  m_Script: {fileID: 11500000, guid: 72fc2e7324f9ade44a8389416b968de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _placeParent: {fileID: 586867133}
-  _placePrefab: {fileID: 3344227591563199247, guid: d11f04d7309683141999071e1aab4147, type: 3}
-  _isEnabled: 1
-  _selectedObject: {fileID: 0}
---- !u!4 &381865421
+  _flvProtection: {fileID: 11400000, guid: 3bfb93ee16bb6f84593f065300a8edd6, type: 2}
+  _flvExposure: {fileID: 11400000, guid: a62c42f46f2489448aef5297f7bc3ad2, type: 2}
+  _flvPossibility: {fileID: 11400000, guid: 756ca69a72e95b144b6ec9be3bf516ae, type: 2}
+  _nonInfectRule: {fileID: 11400000, guid: 026b9c6994be41d4ea247b09077093f1, type: 2}
+  _mildInfectRule: {fileID: 11400000, guid: 5272f20c3428de54a864a6ad0296276c, type: 2}
+  _severeInfectRule: {fileID: 11400000, guid: 2e774233a86a4a143a8924009ec95412, type: 2}
+  testProctection: 20
+  testExposure: 3
+--- !u!4 &324575669
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381865419}
+  m_GameObject: {fileID: 324575667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
