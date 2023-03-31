@@ -292,8 +292,8 @@ MonoBehaviour:
   _nonInfectRule: {fileID: 11400000, guid: 026b9c6994be41d4ea247b09077093f1, type: 2}
   _mildInfectRule: {fileID: 11400000, guid: 5272f20c3428de54a864a6ad0296276c, type: 2}
   _severeInfectRule: {fileID: 11400000, guid: 2e774233a86a4a143a8924009ec95412, type: 2}
-  testProctection: 20
-  testExposure: 3
+  testProctectionValue: 20
+  testExposureValue: 3
 --- !u!4 &324575669
 Transform:
   m_ObjectHideFlags: 0

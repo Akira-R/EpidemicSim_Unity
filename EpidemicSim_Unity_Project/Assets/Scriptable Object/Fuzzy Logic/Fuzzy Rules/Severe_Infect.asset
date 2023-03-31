@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f4f76dc6b288740914213fc1d7224e, type: 3}
   m_Name: Severe_Infect
   m_EditorClassIdentifier: 
-  _fuzzyRuleSets:
+  fuzzyRuleSets:
   - _operator: 0
     _protectionCondition: 0
     _exposureCondition: 0

@@ -16,27 +16,50 @@ public class FLV_Graph : ScriptableObject
     public List<GraphSection_Exposure> _graphSections_Exposure;
     public List<GraphSection_Possibility> _graphSections_Possibility;
 
-    public float GetConfidenceValue(int level, int value) 
+    public float GetConfidenceValue(int level, int time) 
     {
         float confidence = 0.0f;
 
         switch (_fuzzySet)
         {
             case FuzzyTagManager.FuzzySet.FZ_SET_PROTECTION :
-                confidence = _graphSections_Protection[level].curve.Evaluate(value);
+                confidence = _graphSections_Protection[level].curve.Evaluate(time);
                 break;
             case FuzzyTagManager.FuzzySet.FZ_SET_EXPOSURETIME :
-                confidence = _graphSections_Exposure[level].curve.Evaluate(value);
+                confidence = _graphSections_Exposure[level].curve.Evaluate(time);
                 break;
             case FuzzyTagManager.FuzzySet.FZ_SET_POSSIBILITY :
-                confidence = _graphSections_Possibility[level].curve.Evaluate(value);
+                confidence = _graphSections_Possibility[level].curve.Evaluate(time);
                 break;
             default :
-                confidence = _graphSections_Possibility[level].curve.Evaluate(value);
+                confidence = _graphSections_Possibility[level].curve.Evaluate(time);
                 break;
         }
 
         return confidence;
+    }
+
+    public List<float> GetRepresentativeValue()
+    {
+        List<float> representValue = new List<float>();
+
+        foreach (GraphSection_Possibility graphSection in _graphSections_Possibility) 
+        {
+            int keyCount = 0;
+            float totalTime = 0.0f;
+
+            foreach (Keyframe keyframe in graphSection.curve.keys)
+            {
+                if (keyframe.value >= 1.0f)
+                {
+                    keyCount++;
+                    totalTime += keyframe.time;
+                }
+            }
+            representValue.Add((float)totalTime / keyCount);
+        }
+
+        return representValue;
     }
 }
 
