@@ -25,47 +25,47 @@ public class Tooltip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _layoutElement = GetComponent<LayoutElement>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Application.isEditor) 
-        {
-            int headerLength = _headerText.text.Length;
-            int contentLength = _contentText.text.Length;
+        //if (Application.isEditor) 
+        //{
+        //    int headerLength = _headerText.text.Length;
+        //    int contentLength = _contentText.text.Length;
 
-            _layoutElement.enabled = (headerLength > _characterWrapLimit || contentLength > _characterWrapLimit) ? true : false;
-        }
+        //    _layoutElement.enabled = (headerLength > _characterWrapLimit || contentLength > _characterWrapLimit) ? true : false;
+        //}
 
-        Vector2 mousePosition = Input.mousePosition;
+        //Vector2 mousePosition = Input.mousePosition;
 
-        float pivotX = mousePosition.x / Screen.width;
-        float pivotY = mousePosition.y / Screen.height;
+        //float pivotX = mousePosition.x / Screen.width;
+        //float pivotY = mousePosition.y / Screen.height;
 
-        _rectTransform.pivot = new Vector2(pivotX, pivotY);
-        transform.position = mousePosition;
+        //_rectTransform.pivot = new Vector2(pivotX, pivotY);
+        //transform.position = mousePosition;
     }
 
     public void SetText(string content, string header = "") 
     {
         if (string.IsNullOrEmpty(header))
         {
-            _headerText.gameObject.SetActive(false);
+            //_headerText.gameObject.SetActive(false);
         }
-        else 
+        else
         {
-            _headerText.gameObject.SetActive(true);
+            //_headerText.gameObject.SetActive(true);
             _headerText.text = header;
         }
 
         _contentText.text = content;
 
-        int headerLength = _headerText.text.Length;
-        int contentLength = _contentText.text.Length;
+        ////int headerLength = _headerText.text.Length;
+        //int contentLength = _contentText.text.Length;
 
-        _layoutElement.enabled = (headerLength > _characterWrapLimit || contentLength > _characterWrapLimit) ? true : false;
+        //_layoutElement.enabled = (/*headerLength > _characterWrapLimit || */contentLength > _characterWrapLimit) ? true : false;
     }
 
     
