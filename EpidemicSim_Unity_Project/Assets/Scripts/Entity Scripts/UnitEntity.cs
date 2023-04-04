@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class UnitEntity : MonoBehaviour
 {
@@ -11,35 +12,109 @@ public class UnitEntity : MonoBehaviour
         Recovered
     }
 
-    public class OnInfect : IEvent {
-        public int id;
+    public enum MoveState
+    {
+        Stay,
+        Travel
     }
 
     [SerializeField]
     private InfState _infectionState = InfState.Susceptible;
-
-    public InfState InfectionState { get { return _infectionState; } set { _infectionState = value; } }
+    public InfState InfectionState { get { return _infectionState; }}
 
     [SerializeField]
-    private List<Transform> _unitPath = new List<Transform>();
+    private MoveState _movementState = MoveState.Stay;
+    public MoveState MovementState { get { return _movementState; }}
+
+    [SerializeField]
+    private List<int> _unitPath = new List<int>();
     [SerializeField]
     private int _pathCounter = 0;
 
-    private void Move() 
+    [SerializeField]
+    private Material _susceptibleMat;
+    [SerializeField]
+    private Material _infectiousMat;
+
+    private NavMeshAgent _navMeshAgent;
+    private Renderer _renderer;
+
+    private PlaceEntity _moveToPlace;
+    private float _stayDelay = 5.0f;
+    private float _stayCounter = 0.0f;
+
+    public void GenerateUnitPath(int pathLength, int placeCount) 
     {
-        float distance = Vector3.Distance(_unitPath[_pathCounter].position, this.transform.position);
-        // move long the path
+        _unitPath.Clear();
+        for (int i = 0; i < pathLength; i++)
+        {
+            int newPathIndex = Random.Range(0, placeCount);
+            if (i > 0 && newPathIndex == _unitPath[i-1])
+                newPathIndex = (newPathIndex+1) % placeCount;
+            if(i == pathLength - 1)
+                while (newPathIndex == _unitPath[0] || newPathIndex == _unitPath[i - 1])
+                    newPathIndex = (newPathIndex + 1) % placeCount;
+            _unitPath.Add(newPathIndex);
+        }
+
+        Vector3 initialPosition = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform.position;
+        NavMeshHit navHit;
+        if (NavMesh.SamplePosition(initialPosition, out navHit, 1.0f, NavMesh.AllAreas))
+        {
+            transform.position = navHit.position;
+        }
+        else 
+        {
+            Debug.Log("No Nav hit found.");
+        }
+
+        _navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+        _navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        _navMeshAgent.speed = 2.5f; // hard code
+
+        _renderer = gameObject.GetComponent<Renderer>();
+
     }
 
-    //private void Infect()
-    public void Infect()
+    public void UpdateNextPath() 
     {
-        // dispatch event
-        EventManager.Instance.Dispatch(new OnInfect() { id = 0 });
+        _pathCounter = (_pathCounter + 1) % _unitPath.Count;
+        _moveToPlace = EntityManager.Instance.Places[_unitPath[_pathCounter]];
+        _movementState = MoveState.Travel;
+        _renderer.enabled = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void SetInfectState(int stateIndex)
     {
-        Infect();
+        _infectionState = (InfState)stateIndex;
+
+        if (_infectionState == InfState.Infectious)
+            _renderer.material = _infectiousMat;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_movementState == MoveState.Travel)
+            _navMeshAgent.destination = _moveToPlace.transform.position;
+        else if (_movementState == MoveState.Stay)
+        {
+            _stayCounter += Time.deltaTime;
+            if (_stayCounter >= _stayDelay)
+            {
+                _stayCounter = 0;
+                _moveToPlace.UnitDepart(this);
+                UpdateNextPath();
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag != "PlaceMarker") return;
+        if (ReferenceEquals(other.transform, _moveToPlace.transform))
+        {
+            _movementState = MoveState.Stay;
+            _renderer.enabled = false;
+            _moveToPlace.UnitArrive(this);
+        }
     }
 }

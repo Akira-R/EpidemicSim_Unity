@@ -503,87 +503,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!21 &450030164
-Material:
-  serializedVersion: 8
+--- !u!1 &591346073
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultTopMaterial
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
---- !u!21 &502840114
-Material:
-  serializedVersion: 8
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591346074}
+  - component: {fileID: 591346075}
+  m_Layer: 0
+  m_Name: Simulation Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &591346074
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -681,6 +619,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1852283228421216, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114603753021256032, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
       propertyPath: m_Text
       value: '<b> City Simulator Starting Point</b>
@@ -777,7 +719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224835413515161394, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 107.58821
+      value: 90.05784
       objectReference: {fileID: 0}
     - target: {fileID: 224835413515161394, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -785,11 +727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224835413515161394, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -63.794106
+      value: -55.02892
       objectReference: {fileID: 0}
     - target: {fileID: 224857786874416376, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 127.58821
+      value: 110.05784
       objectReference: {fileID: 0}
     - target: {fileID: 224857786874416376, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -821,14 +763,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
---- !u!21 &691970633
+--- !u!21 &716873610
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultSideMaterial
+  m_Name: DarkTopMaterial
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -841,6 +783,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseTex:
+        m_Texture: {fileID: 2800000, guid: 89d3c1f500b7e4b8bba0ce9b760e9134, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -857,12 +803,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DetailTex:
+        m_Texture: {fileID: 2800000, guid: a88424a1da5f049169a689bf6ba4e638, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex1:
+        m_Texture: {fileID: 2800000, guid: a7ad6933f58d64d56a4879cc266290b3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex2:
+        m_Texture: {fileID: 2800000, guid: abf274fea99064d7f9087e58ccaf6d27, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eef5c5fe165da49da9d0ee7a33401d97, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -877,14 +835,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _WindowTex:
+        m_Texture: {fileID: 2800000, guid: a88424a1da5f049169a689bf6ba4e638, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Emission: 0.1
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -896,8 +859,13 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.24999997, g: 0.24999997, b: 0.24999997, a: 1}
+    - _DetailColor: {r: 1, g: 0.99264705, b: 1, a: 1}
+    - _DetailColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _WindowColor: {r: 0.23529412, g: 0.41911763, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!1 &790714667
 GameObject:
@@ -1566,11 +1534,11 @@ PrefabInstance:
     - target: {fileID: 114196496685157712, guid: 5bb46bae81bf04608ac699be504c5e66, type: 3}
       propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].materialOptions.customStyleOptions.materials.Array.data[0].Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 450030164}
+      objectReference: {fileID: 0}
     - target: {fileID: 114196496685157712, guid: 5bb46bae81bf04608ac699be504c5e66, type: 3}
       propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[0].materialOptions.customStyleOptions.materials.Array.data[1].Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 502840114}
+      objectReference: {fileID: 0}
     - target: {fileID: 114196496685157712, guid: 5bb46bae81bf04608ac699be504c5e66, type: 3}
       propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.customStyleOptions.materials.Array.data[0].Materials.Array.data[0]
       value: 
@@ -1578,7 +1546,7 @@ PrefabInstance:
     - target: {fileID: 114196496685157712, guid: 5bb46bae81bf04608ac699be504c5e66, type: 3}
       propertyPath: _vectorData._layerProperty.vectorSubLayers.Array.data[1].materialOptions.customStyleOptions.materials.Array.data[1].Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 691970633}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb46bae81bf04608ac699be504c5e66, type: 3}
 --- !u!1 &1622036365
@@ -1823,12 +1791,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 591346075}
+    - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnPlayPauseButtonPressed
       objectReference: {fileID: 0}
     - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StartSimulation
       objectReference: {fileID: 0}
     - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

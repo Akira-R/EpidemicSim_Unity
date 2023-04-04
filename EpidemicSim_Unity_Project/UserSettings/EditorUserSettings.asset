@@ -18,6 +18,7 @@ EditorUserSettings:
       value: 0108575e00070f595a0c5e7b47225c4440154c732a707061757d4561b0b96261
       flags: 0
     RecentlyUsedSceneGuid-4:
+<<<<<<< HEAD
       value: 515707025d50500f0f0b0f731171594444151e28757e2560787f1866b2b7326c
       flags: 0
     RecentlyUsedSceneGuid-5:
@@ -34,6 +35,24 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedSceneGuid-9:
       value: 0608550704000d0c545e5e2713775e4041151a7e2e792062747b4e30e3e63760
+=======
+      value: 50090453565751090e0a587b40220f4443164b2c2f7d7f667b284c37e1e6616d
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 515707025d50500f0f0b0f731171594444151e28757e2560787f1866b2b7326c
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 550757575d500c5e540b0a21437a0b44424f1d7e747d20347a7b1965b6b06c6b
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 5703525004545e5808590d744077594140161c2f7f797f667b7a1b67b4e3313a
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+      value: 0608550704000d0c545e5e2713775e4041151a7e2e792062747b4e30e3e63760
+      flags: 0
+    RecentlyUsedSceneGuid-9:
+      value: 510103000157585d5c59087341265d44104e1a29797d7166297d4537b7e6613c
+>>>>>>> SimulationPipeline
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
