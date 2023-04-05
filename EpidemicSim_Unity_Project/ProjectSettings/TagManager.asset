@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Panel
+  - PlaceMarker
+  - PlaceObject
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Nav_Walkable
   - 
   - 
   - 

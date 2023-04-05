@@ -3060,7 +3060,6 @@ RectTransform:
   - {fileID: 4857632162681281316}
   - {fileID: 747105900479490080}
   - {fileID: 2441143222489884368}
-  - {fileID: 2441143222647369917}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4054,7 +4053,7 @@ MonoBehaviour:
   MousePan:
     m_PersistentCalls:
       m_Calls: []
-  horizontalPanning: 0
+  horizontalPanning: 1
   verticalPanning: 1
   heightRatio: 300
   widthRatio: 600
@@ -4094,7 +4093,7 @@ MonoBehaviour:
       LineHoverPrefab: {fileID: 0}
       PointHoverPrefab: {fileID: 0}
       MaskPoints: 0
-      Material: {fileID: 2100000, guid: 992f5fc556b48144986d2304815cc367, type: 2}
+      Material: {fileID: 2100000, guid: e4e16f82fb266f240aa11a8fc29bde78, type: 2}
       LineTiling:
         EnableTiling: 0
         TileFactor: 0
@@ -4102,8 +4101,8 @@ MonoBehaviour:
       LineThickness: 0
       StetchFill: 0
       DotPrefab: {fileID: 0}
-      PointMaterial: {fileID: 2100000, guid: c95e124a4a73a8b4788f41098ce36b1c, type: 2}
-      PointSize: 0
+      PointMaterial: {fileID: 2100000, guid: 49b5d148287c83443bd632e6d5b5bd6f, type: 2}
+      PointSize: 6.07
       ViewOrder: 0
       AllowNonFunctionsBeta: 0
   LineClicked:
