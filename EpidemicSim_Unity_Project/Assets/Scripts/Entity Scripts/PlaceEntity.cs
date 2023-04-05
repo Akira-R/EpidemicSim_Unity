@@ -47,8 +47,8 @@ public class PlaceEntity : MonoBehaviour
         foreach (UnitEntity unit in _placeContainer)
         {
             if (unit.InfectionState == UnitEntity.InfState.Infectious) continue;
-            if (Random.value >= 0.5f)
-                unit.SetInfectState((int)UnitEntity.InfState.Infectious);
+            //if (Random.value >= 0.5f)
+            //    unit.SetInfectState((int)UnitEntity.InfState.Infectious);
         }
     }
 }

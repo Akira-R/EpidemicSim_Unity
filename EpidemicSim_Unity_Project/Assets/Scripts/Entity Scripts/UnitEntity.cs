@@ -60,13 +60,9 @@ public class UnitEntity : MonoBehaviour
         Vector3 initialPosition = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform.position;
         NavMeshHit navHit;
         if (NavMesh.SamplePosition(initialPosition, out navHit, 1.0f, NavMesh.AllAreas))
-        {
             transform.position = navHit.position;
-        }
         else 
-        {
             Debug.Log("No Nav hit found.");
-        }
 
         _navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
         _navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;

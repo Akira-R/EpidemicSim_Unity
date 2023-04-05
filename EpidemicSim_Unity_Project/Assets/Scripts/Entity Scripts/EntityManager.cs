@@ -30,12 +30,12 @@ public class EntityManager : MonoSingleton<EntityManager>
     private List<GameObject> _placeObjs;
 
     [Header("Unit Properties")]
+    //[SerializeField]
+    //private float _moveSpeed = 0;
     [SerializeField]
-    private float _moveSpeed = 0;
-    [SerializeField]
-    private int _pathLength = 0;
-    [SerializeField]
-    private float _stayDelay = 0;
+    private int _pathLength = 2;
+    //[SerializeField]
+    //private float _stayDelay = 0;
 
     [SerializeField]
     private List<Transform> _buildings;
