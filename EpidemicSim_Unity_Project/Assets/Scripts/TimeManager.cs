@@ -68,6 +68,8 @@ public class TimeManager : MonoBehaviour
                 _dayCounter++;
             }
 
+            //EntityManager.Instance.UpdateStateCount();
+
             //Debug.Log((float)timeTracker / (float)_fillEvery);
             _timeBarImage.fillAmount = (float)timeTracker / (float)(_maxTime);
         }

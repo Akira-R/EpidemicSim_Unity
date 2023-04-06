@@ -512,7 +512,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 591346074}
-  - component: {fileID: 591346075}
   m_Layer: 0
   m_Name: Simulation Manager
   m_TagString: Untagged
@@ -526,77 +525,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultSideMaterial
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eef5c5fe165da49da9d0ee7a33401d97, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
+  m_GameObject: {fileID: 591346073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &602742133 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6150186200560781346, guid: fef99f436d638e442af00e682eb76b83, type: 3}
@@ -763,110 +700,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98be219873e6d4dffb5949746f515a33, type: 3}
---- !u!21 &716873610
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: DarkTopMaterial
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseTex:
-        m_Texture: {fileID: 2800000, guid: 89d3c1f500b7e4b8bba0ce9b760e9134, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailTex:
-        m_Texture: {fileID: 2800000, guid: a88424a1da5f049169a689bf6ba4e638, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailTex1:
-        m_Texture: {fileID: 2800000, guid: a7ad6933f58d64d56a4879cc266290b3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailTex2:
-        m_Texture: {fileID: 2800000, guid: abf274fea99064d7f9087e58ccaf6d27, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _WindowTex:
-        m_Texture: {fileID: 2800000, guid: a88424a1da5f049169a689bf6ba4e638, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _Emission: 0.1
-    - _GlossMapScale: 1
-    - _Glossiness: 0
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.24999997, g: 0.24999997, b: 0.24999997, a: 1}
-    - _DetailColor: {r: 1, g: 0.99264705, b: 1, a: 1}
-    - _DetailColor1: {r: 1, g: 1, b: 1, a: 1}
-    - _DetailColor2: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _WindowColor: {r: 0.23529412, g: 0.41911763, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &790714667
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,23 +736,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &801061198 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5052910301650314144, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-  m_PrefabInstance: {fileID: 1743167483}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &801061205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801061198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a6242a23e5ddc4792ce982611af6f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &858173801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2441143222442796642, guid: fef99f436d638e442af00e682eb76b83, type: 3}
@@ -1615,26 +1431,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: depth.Value
-      value: -10.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: depth.Automatic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: subDivisions.total
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.total
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.messure
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.fontSize
       value: 20
       objectReference: {fileID: 0}
@@ -1643,16 +1439,12 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.material
-      value: 
-      objectReference: {fileID: 2100000, guid: ba7e2530b20700c4ca957b37c45b6644, type: 2}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.fontSharpness
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.markThickness
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.fontSharpness
@@ -1660,7 +1452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.markThickness
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.fractionDigits
@@ -1668,7 +1460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.textSeperation
-      value: -15
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.fractionDigits
@@ -1676,23 +1468,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.textSeperation
-      value: -15
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.markLength.Value
       value: 111
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: subDivisions.unitsPerDivision
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.markLength.Value
       value: 111
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.unitsPerDivision
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.markLength.Automatic
@@ -1700,10 +1484,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.markLength.Automatic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258505196559839976, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.materialTiling.EnableTiling
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2441143221942937632, guid: fef99f436d638e442af00e682eb76b83, type: 3}
@@ -1793,7 +1573,7 @@ PrefabInstance:
     - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 591346075}
+      objectReference: {fileID: 0}
     - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
@@ -1876,7 +1656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2441143223492377636, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2441143223492377636, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1975,24 +1755,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: verticalPanning
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: verticalScrolling
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: horizontalScrolling
-      value: -20
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: autoScrollVertically
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.verticalViewSize
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: autoScrollHorizontally
@@ -2000,15 +1772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.horizontalViewSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.automaticVerticallView
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.automaticHorizontalView
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.automaticcHorizontaViewGap
@@ -2016,111 +1780,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.data[1].Name
       value: Infectious
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].Material
-      value: 
-      objectReference: {fileID: 2100000, guid: 0000602c14b314841bf04bfce15cbb3b, type: 2}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[1].Material
-      value: 
-      objectReference: {fileID: 2100000, guid: e503e8f2f81fc674f924d5e9ee6602e1, type: 2}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InnerFill
-      value: 
-      objectReference: {fileID: 2100000, guid: d2de0366df3613d4593a6083f8fd1e77, type: 2}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].PointSize
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[1].InnerFill
-      value: 
-      objectReference: {fileID: 2100000, guid: d2de0366df3613d4593a6083f8fd1e77, type: 2}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[1].PointSize
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.data[1].ViewOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].MaskPoints
+      propertyPath: Data.mSerializedData.Array.data[0].IsBezierCurve
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].StetchFill
+      propertyPath: Data.mSerializedData.Array.data[1].IsBezierCurve
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].LineThickness
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].PointMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 9843dc986d4eb53498e98084e7fee1ed, type: 2}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[1].LineThickness
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[1].PointMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 9843dc986d4eb53498e98084e7fee1ed, type: 2}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].LineTiling.TileFactor
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[1].LineTiling.TileFactor
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.size
+      propertyPath: Data.mSerializedData.Array.data[2].IsBezierCurve
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].LineTiling.EnableTiling
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.data[0].x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.data[0].y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.data[1].y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.data[3].y
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.data[4].y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.data[5].y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.data[6].y
+      propertyPath: Data.mSerializedData.Array.data[0].SegmentsPerCurve
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.mSerializedData.Array.data[0].InitialData.Array.data[7].y
-      value: 3
+      propertyPath: Data.mSerializedData.Array.data[1].SegmentsPerCurve
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: Data.mSerializedData.Array.data[2].SegmentsPerCurve
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3561386936875696376, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2395,20 +2087,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: format
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.total
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.total
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.messure
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.fontSize
@@ -2419,16 +2099,12 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.material
-      value: 
-      objectReference: {fileID: 2100000, guid: ba7e2530b20700c4ca957b37c45b6644, type: 2}
-    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.fontSharpness
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.markThickness
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.fontSharpness
@@ -2436,7 +2112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.markThickness
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.fractionDigits
@@ -2455,19 +2131,11 @@ PrefabInstance:
       value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.unitsPerDivision
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: subDivisions.markLength.Automatic
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: mainDivisions.markLength.Automatic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145564701166456877, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: mainDivisions.materialTiling.EnableTiling
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6630783423634927569, guid: fef99f436d638e442af00e682eb76b83, type: 3}

@@ -5,55 +5,6 @@ EditorUserSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 4
   m_ConfigSettings:
-    RecentlyUsedSceneGuid-0:
-      value: 5a040503530058085a58087149215e4410164f2f792d24342c7a4831e6e1363c
-      flags: 0
-    RecentlyUsedSceneGuid-1:
-      value: 5b57035e0657085f5c5e0d701172064413151b737d2b23637b7c1965b6b26039
-      flags: 0
-    RecentlyUsedSceneGuid-2:
-      value: 5355035701540b5d580a5e2044210844424e1c7f2d7b75622b784437b7b5656e
-      flags: 0
-    RecentlyUsedSceneGuid-3:
-      value: 0108575e00070f595a0c5e7b47225c4440154c732a707061757d4561b0b96261
-      flags: 0
-    RecentlyUsedSceneGuid-4:
-<<<<<<< HEAD
-      value: 515707025d50500f0f0b0f731171594444151e28757e2560787f1866b2b7326c
-      flags: 0
-    RecentlyUsedSceneGuid-5:
-      value: 550757575d500c5e540b0a21437a0b44424f1d7e747d20347a7b1965b6b06c6b
-      flags: 0
-    RecentlyUsedSceneGuid-6:
-      value: 50090453565751090e0a587b40220f4443164b2c2f7d7f667b284c37e1e6616d
-      flags: 0
-    RecentlyUsedSceneGuid-7:
-      value: 5157045752565158090b587411225a444f154029752b746279281f35b6e36668
-      flags: 0
-    RecentlyUsedSceneGuid-8:
-      value: 510103000157585d5c59087341265d44104e1a29797d7166297d4537b7e6613c
-      flags: 0
-    RecentlyUsedSceneGuid-9:
-      value: 0608550704000d0c545e5e2713775e4041151a7e2e792062747b4e30e3e63760
-=======
-      value: 50090453565751090e0a587b40220f4443164b2c2f7d7f667b284c37e1e6616d
-      flags: 0
-    RecentlyUsedSceneGuid-5:
-      value: 515707025d50500f0f0b0f731171594444151e28757e2560787f1866b2b7326c
-      flags: 0
-    RecentlyUsedSceneGuid-6:
-      value: 550757575d500c5e540b0a21437a0b44424f1d7e747d20347a7b1965b6b06c6b
-      flags: 0
-    RecentlyUsedSceneGuid-7:
-      value: 5703525004545e5808590d744077594140161c2f7f797f667b7a1b67b4e3313a
-      flags: 0
-    RecentlyUsedSceneGuid-8:
-      value: 0608550704000d0c545e5e2713775e4041151a7e2e792062747b4e30e3e63760
-      flags: 0
-    RecentlyUsedSceneGuid-9:
-      value: 510103000157585d5c59087341265d44104e1a29797d7166297d4537b7e6613c
->>>>>>> SimulationPipeline
-      flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
       flags: 0

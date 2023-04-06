@@ -22,14 +22,15 @@ public class AudioManager : MonoBehaviour
         instance = this;
     }
 
-    public Coroutine Play(AudioObject audio, float delay = 0f) 
+    public void Play(AudioObject audio, float delay = 0f) 
     {
-        return StartCoroutine(PlayAudio(audio, delay));
+        //return StartCoroutine(PlayAudio(audio, delay));
+        PlayAudio(audio, delay);
     }
 
-    private IEnumerator PlayAudio(AudioObject audioRef, float delayRef) 
+    private void PlayAudio(AudioObject audioRef, float delayRef) 
     {
-        yield return new WaitForSeconds(delayRef);
+        //yield return new WaitForSeconds(delayRef);
 
         GameObject obj = new GameObject("AudioObject");
         AudioSource sfx = obj.AddComponent<AudioSource>();
