@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.AI;
+
 public class PlaceEntity : MonoBehaviour
 {
     [SerializeField]
@@ -49,6 +51,31 @@ public class PlaceEntity : MonoBehaviour
             if (unit.InfectionState == UnitEntity.InfState.Infectious) continue;
             //if (Random.value >= 0.5f)
             //    unit.SetInfectState((int)UnitEntity.InfState.Infectious);
+
+            //Debug.Log("Protection: " + unit.protectionValue + " Exposure: " + unit.exposureTime);
+            int result = FuzzyCalculator.Instance.GetHighestProb(unit.protectionValue, unit.exposureTime);
+            switch (result) 
+            {
+                case 0 : // non-infect
+                    unit.IncreaseExposure();
+                    //Debug.Log("non-infect");
+                    break;
+                case 1: // mild-infect
+                    unit.SetInfectState((int)UnitEntity.InfState.Infectious);
+                    _infectCount++;
+                    //Debug.Log("mild-infect");
+                    break;
+                case 2: // severe-infect
+                    unit.SetInfectState((int)UnitEntity.InfState.Infectious);
+                    _infectCount++;
+                    //Debug.Log("severe-infect");
+                    break;
+            }
         }
+    }
+
+    public void SetNavMeshActive(bool state)
+    {
+        GetComponent<NavMeshAgent>().enabled = state;
     }
 }

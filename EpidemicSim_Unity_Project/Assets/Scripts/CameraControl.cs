@@ -11,6 +11,7 @@ public class CameraControl : MonoBehaviour
     private InputAction cameraRotation;
     private InputAction cameraZoom;
     [SerializeField] private Transform _transform;
+    [SerializeField] private Transform _childTransform;
 
     [BoxGroup("Camera Movement Modifier")]
     public float movementspeed = 1f;
@@ -20,6 +21,7 @@ public class CameraControl : MonoBehaviour
     {
         playerControls = new PlayerControls();
         _transform = this.GetComponent<Transform>();
+        _childTransform = _transform.GetChild(0);
     }
 
     private void OnEnable()
@@ -69,5 +71,6 @@ public class CameraControl : MonoBehaviour
         float zoomInputVale = cameraZoom.ReadValue<float>();
         GameObject cameraGameObject = _transform.gameObject;
         cameraGameObject.GetComponent<Camera>().fieldOfView += zoomInputVale; 
+        _childTransform.GetComponent<Camera>().fieldOfView += zoomInputVale;
     }
 }
