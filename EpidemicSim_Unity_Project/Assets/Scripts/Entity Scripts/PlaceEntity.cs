@@ -62,11 +62,13 @@ public class PlaceEntity : MonoBehaviour
                     break;
                 case 1: // mild-infect
                     unit.SetInfectState((int)UnitEntity.InfState.Infectious);
+                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Mild);
                     _infectCount++;
                     //Debug.Log("mild-infect");
                     break;
                 case 2: // severe-infect
                     unit.SetInfectState((int)UnitEntity.InfState.Infectious);
+                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Severe);
                     _infectCount++;
                     //Debug.Log("severe-infect");
                     break;
@@ -77,5 +79,10 @@ public class PlaceEntity : MonoBehaviour
     public void SetNavMeshActive(bool state)
     {
         GetComponent<NavMeshAgent>().enabled = state;
+    }
+
+    public void UnitRecoveredUpdate()
+    {
+        _infectCount--;
     }
 }
