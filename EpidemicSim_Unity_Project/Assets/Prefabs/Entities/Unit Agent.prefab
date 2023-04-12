@@ -118,6 +118,7 @@ MonoBehaviour:
   _pathCounter: 0
   _susceptibleMat: {fileID: 2100000, guid: b2fbb7045bf1d7741ad9624d1bdcf9b6, type: 2}
   _infectiousMat: {fileID: 2100000, guid: 2b0c6194a7ea6bd4bab8db3e7a75f808, type: 2}
+  _recoveredMat: {fileID: 2100000, guid: 3d780a4e5cc8a9144a11240b8d4808be, type: 2}
 --- !u!54 &-6047402177190739174
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3344227591563199234}
   - component: {fileID: 3344227591563199235}
   - component: {fileID: 3344227591563199232}
-  - component: {fileID: 3344227591563199233}
   - component: {fileID: 1277617012894687144}
   m_Layer: 0
   m_Name: Place Marker
@@ -99,21 +98,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3344227591563199233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3344227591563199247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3520b393aa4cad84d941914d2d9f2ccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _placeContainer: []
-  _trafficCount: 0
-  _infectCount: 0
 --- !u!54 &1277617012894687144
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class PlaceModifier : MonoBehaviour
 
     [SerializeField, ReadOnly]
     private GameObject _selectedObject;
+    private Vector3 _mousePositionOffset;
 
     private void Update()
     {
@@ -24,12 +25,13 @@ public class PlaceModifier : MonoBehaviour
             RaycastHit hit = CastRay();
             if (hit.collider != null)
             {
-                if (!hit.collider.CompareTag("PlaceMarker") && EventSystem.current.IsPointerOverGameObject())
+                if (!hit.collider.CompareTag("PlaceMarker"))
                 { 
                     _isDragging = false;
                     return;
                 }
-                _selectedObject = hit.collider.gameObject;
+                _selectedObject = hit.collider.transform.parent.gameObject;
+                _selectedObject.GetComponent<PlaceEntity>()?.SetNavMeshActive(false);
                 Cursor.visible = false;
                 StartCoroutine(WaitTo_EndDrag());
             }
@@ -52,12 +54,6 @@ public class PlaceModifier : MonoBehaviour
         if (!_selectedObject) return;
         EntityManager.Instance.RemovePlaceRequest(_selectedObject);
     }
-
-    //[Button]
-    //public void MovePlace()
-    //{
-
-    //}
 
     private RaycastHit CastRay()
     {
@@ -85,14 +81,19 @@ public class PlaceModifier : MonoBehaviour
 
     private IEnumerator WaitTo_EndDrag()
     {
-        Debug.Log("Drag");
+        //Debug.Log("Drag");
         Vector3 worldPosition;
         Vector3 position;
+
+        position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(_selectedObject.transform.position).z);
+        worldPosition = Camera.main.ScreenToWorldPoint(position);
+        _mousePositionOffset = _selectedObject.transform.position - worldPosition;
+
         while (Input.GetMouseButton(0))
         {
             position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(_selectedObject.transform.position).z);
             worldPosition = Camera.main.ScreenToWorldPoint(position);
-            _selectedObject.transform.position = new Vector3(worldPosition.x, 0.25f, worldPosition.z);
+            _selectedObject.transform.position = new Vector3(worldPosition.x, _selectedObject.transform.position.y , worldPosition.z) + new Vector3(_mousePositionOffset.x, 0.0f, _mousePositionOffset.z);
             yield return null;
         }
         EndDrag();
@@ -100,8 +101,9 @@ public class PlaceModifier : MonoBehaviour
 
     private void EndDrag()
     {
-        Debug.Log("EndDrag");
+        //Debug.Log("EndDrag");
         _isDragging = false;
         Cursor.visible = true;
+        _selectedObject.GetComponent<PlaceEntity>()?.SetNavMeshActive(true);
     }
 }
