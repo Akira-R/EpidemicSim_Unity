@@ -17,7 +17,7 @@ public class ChartValueInit : MonoBehaviour
         graph = GetComponent<GraphChart>();
         if (graph != null)
         {
-            Debug.Log("Graph is not NULL");
+            //Debug.Log("Graph is not NULL");
             graph.DataSource.StartBatch();  // start a new update batch
             graph.DataSource.ClearCategory("Susceptible");  // clear the categories we have created in the inspector
             graph.DataSource.ClearCategory("Infectious");

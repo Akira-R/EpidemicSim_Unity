@@ -12,10 +12,6 @@ public class TooltipSystem : MonoBehaviour
     [Header("Tooltip")]
     [SerializeField] public Tooltip _tooltip;
 
-    [Header("Image Component")]
-    [SerializeField] private Image _image;
-    [Range(0.1f, 1.0f)] public float fadeRate = 0.1f;
-
     private void Awake()
     {
         instance = this;
@@ -23,7 +19,7 @@ public class TooltipSystem : MonoBehaviour
 
     private void Start()
     {
-        instance._tooltip.SetText("");
+        _tooltip.SetText("");
         //_tooltip.gameObject.SetActive(false);
     }
 
