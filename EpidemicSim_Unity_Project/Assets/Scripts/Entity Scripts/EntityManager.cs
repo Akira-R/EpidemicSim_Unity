@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using NaughtyAttributes;
 
 public class EntityManager : MonoSingleton<EntityManager>
@@ -30,14 +29,18 @@ public class EntityManager : MonoSingleton<EntityManager>
     private List<GameObject> _placeObjs;
 
     [Header("Unit Properties")]
-    //[SerializeField]
-    //private float _moveSpeed = 0;
     [SerializeField]
-    private int _pathLength = 2;
-    //[SerializeField]
-    //private float _stayDelay = 0;
+    private int _pathLength = 3;
+    [SerializeField]
+    private float _stayDelay = 5.0f;
 
     [SerializeField]
+    private float _recoverDelay_Mild = 7;
+    public float recoverDelay_Mild => _recoverDelay_Mild;
+    [SerializeField]
+    private float _recoverDelay_Severe = 14;
+    public float recoverDelay_Severe => _recoverDelay_Severe;
+
     private List<Transform> _buildings;
     [SerializeField]
     private GameObject _mapObj;

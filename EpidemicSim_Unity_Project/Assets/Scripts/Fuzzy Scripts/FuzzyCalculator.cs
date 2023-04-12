@@ -60,10 +60,10 @@ public class FuzzyCalculator : MonoSingleton<FuzzyCalculator>
 
             for (int i = 0; i < confidences.Count; i++)
             {
-                resultProb += (float)(confidences[i] * representValues[i]);
-                totalConfidence += (float)confidences[i];
+                resultProb += (confidences[i] * representValues[i]);
+                totalConfidence += confidences[i];
             }
-            resultPossibilities.Add((float)resultProb / totalConfidence);
+            resultPossibilities.Add(resultProb / totalConfidence);
 
             //Debug.Log("rule: " + ruleIndex);
             //for (int i = 0; i < _rules.Count; i++)
@@ -72,6 +72,9 @@ public class FuzzyCalculator : MonoSingleton<FuzzyCalculator>
         }
         //for (int i = 0; i < representValues.Count; i++)
         //    Debug.Log("representValues " + i + " : " + representValues[i]);
+
+        //for (int i = 0; i < resultPossibilities.Count; i++)
+        //    Debug.Log("resultPossibility " + i + " : " + resultPossibilities[i]);
 
         int highestProb = 0;
         for (int i = 0; i < resultPossibilities.Count; i++)
@@ -111,10 +114,10 @@ public class FuzzyCalculator : MonoSingleton<FuzzyCalculator>
 
             for(int i = 0; i < confidences.Count; i++)
             {
-                resultProb += (float)(confidences[i] * representValues[i]);
-                totalConfidence += (float)confidences[i];
+                resultProb += confidences[i] * representValues[i];
+                totalConfidence += confidences[i];
             }
-            resultPossibilities.Add((float)resultProb /totalConfidence);
+            resultPossibilities.Add(resultProb /totalConfidence);
 
             //Debug.Log("rule: " + ruleIndex);
             //for (int i = 0; i < _rules.Count; i++)

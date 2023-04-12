@@ -31,6 +31,7 @@ public class PlaceModifier : MonoBehaviour
                     return;
                 }
                 _selectedObject = hit.collider.transform.parent.gameObject;
+                _selectedObject.GetComponent<PlaceEntity>()?.SetNavMeshActive(false);
                 Cursor.visible = false;
                 StartCoroutine(WaitTo_EndDrag());
             }
@@ -80,7 +81,7 @@ public class PlaceModifier : MonoBehaviour
 
     private IEnumerator WaitTo_EndDrag()
     {
-        Debug.Log("Drag");
+        //Debug.Log("Drag");
         Vector3 worldPosition;
         Vector3 position;
 
@@ -100,8 +101,9 @@ public class PlaceModifier : MonoBehaviour
 
     private void EndDrag()
     {
-        Debug.Log("EndDrag");
+        //Debug.Log("EndDrag");
         _isDragging = false;
         Cursor.visible = true;
+        _selectedObject.GetComponent<PlaceEntity>()?.SetNavMeshActive(true);
     }
 }

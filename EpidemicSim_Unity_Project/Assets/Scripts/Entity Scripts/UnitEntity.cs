@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+using NaughtyAttributes;
+
 public class UnitEntity : MonoBehaviour
 {
     public enum InfState 
@@ -18,11 +20,11 @@ public class UnitEntity : MonoBehaviour
         Travel
     }
 
-    [SerializeField]
+    [SerializeField, ReadOnly]
     private InfState _infectionState = InfState.Susceptible;
     public InfState InfectionState { get { return _infectionState; }}
 
-    [SerializeField]
+    [SerializeField, ReadOnly]
     private MoveState _movementState = MoveState.Stay;
     public MoveState MovementState { get { return _movementState; }}
 
@@ -31,10 +33,18 @@ public class UnitEntity : MonoBehaviour
     [SerializeField]
     private int _pathCounter = 0;
 
+    private int _protectionValue;
+    public int protectionValue => _protectionValue;
+
+    private int _exposureTime;
+    public int exposureTime => _exposureTime;
+
     [SerializeField]
     private Material _susceptibleMat;
     [SerializeField]
     private Material _infectiousMat;
+    [SerializeField]
+    private Material _recoveredMat;
 
     private NavMeshAgent _navMeshAgent;
     private Renderer _renderer;
@@ -62,13 +72,15 @@ public class UnitEntity : MonoBehaviour
         if (NavMesh.SamplePosition(initialPosition, out navHit, 1.0f, NavMesh.AllAreas))
             transform.position = navHit.position;
         else 
-            Debug.Log("No Nav hit found.");
+            Debug.LogWarning("Unit initialize: No navmesh found nearby.");
 
         _navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
         _navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         _navMeshAgent.speed = 2.5f; // hard code
 
         _renderer = gameObject.GetComponent<Renderer>();
+
+        _protectionValue = Random.Range(0, 100);
 
     }
 
@@ -86,6 +98,8 @@ public class UnitEntity : MonoBehaviour
 
         if (_infectionState == InfState.Infectious)
             _renderer.material = _infectiousMat;
+        else if(_infectionState == InfState.Recovered)
+            _renderer.material = _recoveredMat;
     }
 
     private void FixedUpdate()
@@ -105,12 +119,32 @@ public class UnitEntity : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "PlaceMarker") return;
+        if (other.gameObject.tag != "PlaceObject") return;
         if (ReferenceEquals(other.transform, _moveToPlace.transform))
         {
             _movementState = MoveState.Stay;
             _renderer.enabled = false;
             _moveToPlace.UnitArrive(this);
+            _exposureTime = 0;
         }
+    }
+
+    public void IncreaseExposure() 
+    {
+        _exposureTime++;
+    }
+
+    public void SetRecoveryDelay(float time)
+    {
+        StartCoroutine(WaitTo_EndRecoveryDelay(time));
+    }
+
+    IEnumerator WaitTo_EndRecoveryDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SetInfectState((int)InfState.Recovered);
+
+        if (_movementState == MoveState.Stay)
+            _moveToPlace.UnitRecoveredUpdate();
     }
 }
