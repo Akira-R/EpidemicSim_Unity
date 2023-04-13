@@ -68,6 +68,8 @@ public class TimeManager : MonoBehaviour
                 _dayCounter++;
             }
 
+            //EntityManager.Instance.UpdateStateCount();
+
             //Debug.Log((float)timeTracker / (float)_fillEvery);
             _timeBarImage.fillAmount = (float)timeTracker / (float)(_maxTime);
         }
@@ -86,6 +88,8 @@ public class TimeManager : MonoBehaviour
     {
         _isSimPlaying = !_isSimPlaying;
 
+        AudioManager.instance.Play(AudioManager.instance.uiAudioList.sfx_uiClicked);
+
         if (_isSimPlaying == true)
         {
             _playPauseButton.GetComponent<Image>().sprite = _playSprite;
@@ -100,6 +104,8 @@ public class TimeManager : MonoBehaviour
 
     public void OnSpeedContolButtonPressed() 
     {
+        AudioManager.instance.Play(AudioManager.instance.uiAudioList.sfx_uiClicked);
+
         _speedIncrementsIdx = (_speedIncrementsIdx + 1) % _speedIncrements.Count;
         SimulationSpeed(_speedIncrementsIdx);
     }

@@ -68,7 +68,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""positive"",
                     ""id"": ""8ff7b995-695f-4d1d-b777-290b8e958a50"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -79,7 +79,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""negative"",
                     ""id"": ""49b8acb2-28b4-47d5-acc0-1d84af131788"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -134,7 +134,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""positive"",
                     ""id"": ""e32dbbf3-23e7-4ad7-8962-70ffabb101cc"",
                     ""path"": ""<Mouse>/scroll/down"",
                     ""interactions"": """",
@@ -145,7 +145,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""negative"",
                     ""id"": ""02e4a6ca-a9a0-4b3b-a96f-92fb263040e6"",
                     ""path"": ""<Mouse>/scroll/up"",
                     ""interactions"": """",
@@ -433,7 +433,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""049b7e65-0efc-4944-8df9-9530998a3034"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -40,6 +40,8 @@ public class UITransformTween : MonoBehaviour
         //        panel.GetComponent<UITransformTween>().OnUIEaseOut();
         //}
 
+        AudioManager.instance.Play(AudioManager.instance.uiAudioList.sfx_uiClicked);
+
         if (toggle)
         {
             OnUIEaseOut();
