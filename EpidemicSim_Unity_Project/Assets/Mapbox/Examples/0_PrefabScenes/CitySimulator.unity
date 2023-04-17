@@ -605,7 +605,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &602742133 stripped
 MonoBehaviour:
@@ -868,6 +868,7 @@ Transform:
   - {fileID: 1399890727}
   - {fileID: 2144033876}
   - {fileID: 497346488}
+  - {fileID: 1622036366}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1042,6 +1043,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
   m_PrefabInstance: {fileID: 873680790}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1327838700 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2441143223004054490, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+  m_PrefabInstance: {fileID: 1743167483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2521cbabb33d41943a90c3eb04e2b634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &1337859418
 Material:
   serializedVersion: 8
@@ -1405,8 +1417,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 790714668}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1624534840
 PrefabInstance:
@@ -1474,6 +1486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1622036366}
+  - component: {fileID: 1678137872}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -1481,6 +1494,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1678137872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678137871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2665cdc76431a1245befb6b0410cee8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiAudioList:
+    sfx_uiClicked: {fileID: 11400000, guid: 776284c8c7a403b4a89ccaa43d53d486, type: 2}
 --- !u!1 &1699711916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
@@ -1684,14 +1711,14 @@ PrefabInstance:
     - target: {fileID: 2441143222673772703, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1327838700}
     - target: {fileID: 2441143222673772703, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ButtonToggleEase
       objectReference: {fileID: 0}
     - target: {fileID: 2441143222673772703, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIPositionTween, Assembly-CSharp
+      value: UITransformTween, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2441143223004053540, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_IsActive
@@ -1735,7 +1762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2441143223492377636, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2441143223492377636, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2397,7 +2424,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1886355395
 MonoBehaviour:
