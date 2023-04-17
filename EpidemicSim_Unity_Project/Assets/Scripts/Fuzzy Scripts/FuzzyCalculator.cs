@@ -14,6 +14,7 @@ public class FuzzyCalculator : MonoSingleton<FuzzyCalculator>
     [SerializeField] private FuzzyRule _mildInfectRule;
     [SerializeField] private FuzzyRule _severeInfectRule;
 
+    [Header("Test Value")]
     [Range(0.0f, 100.0f)]
     [SerializeField] private int testProctectionValue;
     [Range(0.0f, 10.0f)]

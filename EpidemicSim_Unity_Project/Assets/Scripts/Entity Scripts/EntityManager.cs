@@ -41,9 +41,9 @@ public class EntityManager : MonoSingleton<EntityManager>
     private float _recoverDelay_Severe = 14;
     public float recoverDelay_Severe => _recoverDelay_Severe;
 
-    private List<Transform> _buildings;
-    [SerializeField]
-    private GameObject _mapObj;
+    //private List<Transform> _buildings;
+    //[SerializeField]
+    //private GameObject _mapObj;
 
     [Header("Unit State Count")]
     private int _susceptibleCount = 0;
@@ -67,8 +67,6 @@ public class EntityManager : MonoSingleton<EntityManager>
 
         // first Infectious
         _units[0].SetInfectState((int)UnitEntity.InfState.Infectious);
-
-        TestNextPath();
     }
 
     public void PlaceEntitySetup() 
@@ -80,43 +78,43 @@ public class EntityManager : MonoSingleton<EntityManager>
             unit.GenerateUnitPath(_pathLength, _places.Count);
     }
 
-    [Button]
-    public void AutoPlace()
-    {
-        List<int> randomBuildingIndices = new List<int>();
+    //[Button]
+    //public void AutoPlace()
+    //{
+    //    List<int> randomBuildingIndices = new List<int>();
 
-        // Get all building Objs
-        for (int i = 1; i < _mapObj.transform.childCount; i++)
-        {
-            foreach (Transform building in _mapObj.transform.GetChild(i))
-            {
-                if (building.gameObject.name[0] == 'E') 
-                    _buildings.Add(building);
-            }
-        }
+    //    // Get all building Objs
+    //    for (int i = 1; i < _mapObj.transform.childCount; i++)
+    //    {
+    //        foreach (Transform building in _mapObj.transform.GetChild(i))
+    //        {
+    //            if (building.gameObject.name[0] == 'E') 
+    //                _buildings.Add(building);
+    //        }
+    //    }
 
-        // Random pick marker from buildings
-        int randomSize = _buildings.Count / _placeCount;
-        for (int i = 0; i < _placeCount; i++)
-        {
-            int randomOffset = Random.Range(1, randomSize);
-            randomBuildingIndices.Add((i * randomSize) + randomOffset);
-        }
+    //    // Random pick marker from buildings
+    //    int randomSize = _buildings.Count / _placeCount;
+    //    for (int i = 0; i < _placeCount; i++)
+    //    {
+    //        int randomOffset = Random.Range(1, randomSize);
+    //        randomBuildingIndices.Add((i * randomSize) + randomOffset);
+    //    }
 
-        // Instantiate marker Objs
-        for (int i = 0; i < _placeCount; i++)
-        {
-            GameObject place = Instantiate(_placePrefab, _buildings[randomBuildingIndices[i]].position, transform.rotation, transform);
+    //    // Instantiate marker Objs
+    //    for (int i = 0; i < _placeCount; i++)
+    //    {
+    //        GameObject place = Instantiate(_placePrefab, _buildings[randomBuildingIndices[i]].position, transform.rotation, transform);
             
-            //NavMeshHit navHit;
-            //if (NavMesh.SamplePosition(place.transform.position, out navHit, 10.0f, NavMesh.AllAreas))
-            //    transform.position = navHit.position;
-            //else
-            //    Debug.Log("No Nav hit found.");
+    //        //NavMeshHit navHit;
+    //        //if (NavMesh.SamplePosition(place.transform.position, out navHit, 10.0f, NavMesh.AllAreas))
+    //        //    transform.position = navHit.position;
+    //        //else
+    //        //    Debug.Log("No Nav hit found.");
 
-            _placeObjs.Add(place);
-        }
-    }
+    //        _placeObjs.Add(place);
+    //    }
+    //}
 
     [Button]
     public void TestNextPath()
