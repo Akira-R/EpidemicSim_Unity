@@ -5,6 +5,7 @@ using UnityEngine;
 using Mapbox.Unity.Map;
 using Unity.AI.Navigation;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 
 public class SimulationManager : MonoSingleton<SimulationManager>
 {
@@ -59,7 +60,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
             if (_newNavMeshRequired)
                 if (!NavBake()) return;
 
-            EntityManager.Instance?.TestEntitySetup();
+            EntityManager.Instance.TestEntitySetup();
 
             _simState = SimState.Play;
         }
@@ -78,14 +79,17 @@ public class SimulationManager : MonoSingleton<SimulationManager>
 
     private bool NavBake()
     {
-        if (!_navBakeAllow) return false;
+        //if (!_navBakeAllow) return false;
 
         for (int i = 1; i < _mapObj.transform.childCount; i++)
         {
             foreach (Transform component in _mapObj.transform.GetChild(i))
             {
-                if (component.gameObject.name[0] == 'R')
+                Debug.Log(component.gameObject.name);   
+                if (component.gameObject.name[0] == 'R') 
+                {
                     component.gameObject.layer = LayerMask.NameToLayer("Nav_Walkable");
+                }
             }
         }
         _navSurface.BuildNavMesh();
@@ -98,5 +102,10 @@ public class SimulationManager : MonoSingleton<SimulationManager>
         EntityManager.OnPlaceModified data = e as EntityManager.OnPlaceModified;
         if (data == null) return;
         _simState = SimState.ReInit;
+    }
+
+    public int GetSimState() 
+    {
+        return (int)_simState;
     }
 }

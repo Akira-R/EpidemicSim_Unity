@@ -46,9 +46,9 @@ public class EntityManager : MonoSingleton<EntityManager>
     private GameObject _mapObj;
 
     [Header("Unit State Count")]
-    private int _susceptibleCount = 0;
-    private int _infectiousCount = 0;
-    private int _recoveredCount = 0;
+    [SerializeField] private int _susceptibleCount = 0;
+    [SerializeField] private int _infectiousCount = 0;
+    [SerializeField] private int _recoveredCount = 0;
 
     [Button]
     public void TestEntitySetup()
@@ -170,6 +170,10 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     public void UpdateStateCount() 
     {
+        _susceptibleCount = 0;
+        _infectiousCount = 0;
+        _recoveredCount = 0;
+
         foreach (var unit in _units) 
         {
             if (unit.InfectionState == UnitEntity.InfState.Susceptible)
@@ -182,6 +186,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     }
     public void GetUnitsStateCount(out int susCount, out int infCount, out int recCount) 
     {
+        UpdateStateCount();
         susCount = _susceptibleCount;
         infCount = _infectiousCount;    
         recCount = _recoveredCount;

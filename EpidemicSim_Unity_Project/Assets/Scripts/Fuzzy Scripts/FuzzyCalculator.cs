@@ -44,11 +44,11 @@ public class FuzzyCalculator : MonoSingleton<FuzzyCalculator>
 
             foreach (FuzzyRuleSet ruleSet in _rules[ruleIndex].fuzzyRuleSets)
             {
-                float value_P = _flvProtection.GetConfidenceValue((int)ruleSet._protectionCondition, testProctectionValue);
-                float value_E = _flvExposure.GetConfidenceValue((int)ruleSet._exposureCondition, testExposureValue);
+                float value_P = _flvProtection.GetConfidenceValue((int)ruleSet._protectionCondition, (int)protectionValue);
+                float value_E = _flvExposure.GetConfidenceValue((int)ruleSet._exposureCondition, (int)exposureValue);
                 float value_C = (ruleSet._operator != 0) ? Mathf.Max(value_P, value_E) : Mathf.Min(value_P, value_E);
 
-                //Debug.Log("protection:" + ruleSet._protectionCondition + " & exposure:" + ruleSet._exposureCondition);
+                Debug.Log("protection:" + ruleSet._protectionCondition + " & exposure:" + ruleSet._exposureCondition);
                 //Debug.Log("value_P: " + value_P + ", value_E: " + value_E + ", value_C: " + value_C + " to " + ruleSet._possibilityResult);
 
                 int index_C = (int)ruleSet._possibilityResult;

@@ -40,8 +40,8 @@ public class AudioManager : MonoBehaviour
         sfx.pitch = audioRef.pitch;
         sfx.outputAudioMixerGroup = audioRef.mixerGroup;
 
-        Debug.Log(audioRef.volume);
-        Debug.Log(sfx.volume);
+        //Debug.Log(audioRef.volume);
+        //Debug.Log(sfx.volume);
 
         if (audioRef.isLoop)
             sfx.loop = true;
