@@ -88,7 +88,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
         {
             foreach (Transform component in _mapObj.transform.GetChild(i))
             {
-                if (component.gameObject.name[0] == 'R')
+                if (component.tag == "RoadObj")
                     component.gameObject.layer = LayerMask.NameToLayer("Nav_Walkable");
             }
         }

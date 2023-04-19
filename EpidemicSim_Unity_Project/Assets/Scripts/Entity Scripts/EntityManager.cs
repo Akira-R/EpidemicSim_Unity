@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 using NaughtyAttributes;
+
 
 public class EntityManager : MonoSingleton<EntityManager>
 {
@@ -21,10 +24,10 @@ public class EntityManager : MonoSingleton<EntityManager>
     public List<PlaceEntity> Places { get { return _places; } }
 
     [Header("Test Value")]
-    [SerializeField]
-    private int _unitCount = 0;
-    [SerializeField]
-    private int _placeCount = 0;
+    //[SerializeField]
+    //private int _unitCount = 0;
+    //[SerializeField]
+    //private int _placeCount = 0;
     [SerializeField]
     private List<GameObject> _placeObjs;
 
@@ -54,11 +57,11 @@ public class EntityManager : MonoSingleton<EntityManager>
     public void TestEntitySetup()
     {
         // places
-        foreach (GameObject placeObj in _placeObjs)
+        foreach (GameObject placeObj in _placeObjs) 
             _places.Add(placeObj.GetComponent<PlaceEntity>());
 
         // units
-        for (int i = 0; i < _unitCount; i++)
+        for (int i = 0; i < VariableManager.Instance.variables.PopulationNumber; i++)
         {
             UnitEntity unit = Instantiate(_unitPrefab,transform).GetComponent<UnitEntity>();
             unit.GenerateUnitPath(_pathLength, _places.Count);
