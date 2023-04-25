@@ -91,7 +91,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
             {
                 if (component.tag == "RoadObj")
                     component.gameObject.layer = LayerMask.NameToLayer("Nav_Walkable");
-                }
+            
             }
         }
         _navSurface.BuildNavMesh();
@@ -103,7 +103,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     {
         EntityManager.OnPlaceModified data = e as EntityManager.OnPlaceModified;
         if (data == null) return;
-        _simState = SimState.ReInit;
+            _simState = SimState.ReInit;
     }
 
     private void GetMapVisualMat() 
