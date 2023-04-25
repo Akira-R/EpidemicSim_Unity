@@ -61,12 +61,16 @@ public class SimulationManager : MonoSingleton<SimulationManager>
                 if (!NavBake()) return;
 
             EntityManager.Instance.TestEntitySetup();
+            GetMapVisualMat();
+            EntityManager.Instance.TestNextPath();
 
             _simState = SimState.Play;
         }
         else if (_simState == SimState.ReInit)
         {
-            EntityManager.Instance?.PlaceEntitySetup();
+            EntityManager.Instance.PlaceEntitySetup();
+
+            _simState = SimState.Play;
         }
     }
 
@@ -74,7 +78,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     public void ResetSimulation()
     {
         _simState = SimState.Idle;  
-        EntityManager.Instance?.ClearEntity();
+        EntityManager.Instance.ClearEntity();
     }
 
     private bool NavBake()
@@ -85,9 +89,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
         {
             foreach (Transform component in _mapObj.transform.GetChild(i))
             {
-                Debug.Log(component.gameObject.name);   
-                if (component.gameObject.name[0] == 'R') 
-                {
+                if (component.tag == "RoadObj")
                     component.gameObject.layer = LayerMask.NameToLayer("Nav_Walkable");
                 }
             }
@@ -102,6 +104,24 @@ public class SimulationManager : MonoSingleton<SimulationManager>
         EntityManager.OnPlaceModified data = e as EntityManager.OnPlaceModified;
         if (data == null) return;
         _simState = SimState.ReInit;
+    }
+
+    private void GetMapVisualMat() 
+    {
+        // Get all building Objs
+        for (int i = 1; i < _mapObj.transform.childCount; i++)
+        {
+            VisualFilter.Instance?.AddMapCompMat(_mapObj.transform.GetChild(i).GetComponent<Renderer>().material);
+            //Debug.Log(_mapObj.transform.GetChild(i).gameObject);
+            foreach (Transform transform in _mapObj.transform.GetChild(i))
+            {
+                Renderer transformRender = transform.GetComponent<Renderer>();
+                foreach (Material mat in transformRender.materials)
+                {
+                    VisualFilter.Instance?.AddMapCompMat(mat);
+                }
+            }
+        }
     }
 
     public int GetSimState() 

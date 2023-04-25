@@ -8,6 +8,7 @@ TagManager:
   - PlaceMarker
   - PlaceObject
   - OverlayCam
+  - RoadObj
   layers:
   - Default
   - TransparentFX

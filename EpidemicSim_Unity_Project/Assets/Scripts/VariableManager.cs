@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using NaughtyAttributes;
 
-public class VariableManager : MonoBehaviour
+public class VariableManager : MonoSingleton<VariableManager>
 {
     public VariableObject variables;
 
