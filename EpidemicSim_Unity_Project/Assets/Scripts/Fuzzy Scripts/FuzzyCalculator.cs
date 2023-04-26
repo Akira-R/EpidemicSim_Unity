@@ -49,7 +49,7 @@ public class FuzzyCalculator : MonoSingleton<FuzzyCalculator>
                 float value_E = _flvExposure.GetConfidenceValue((int)ruleSet._exposureCondition, (int)exposureValue);
                 float value_C = (ruleSet._operator != 0) ? Mathf.Max(value_P, value_E) : Mathf.Min(value_P, value_E);
 
-                //Debug.Log("protection:" + ruleSet._protectionCondition + " & exposure:" + ruleSet._exposureCondition);
+                Debug.Log("protection:" + ruleSet._protectionCondition + " & exposure:" + ruleSet._exposureCondition);
                 //Debug.Log("value_P: " + value_P + ", value_E: " + value_E + ", value_C: " + value_C + " to " + ruleSet._possibilityResult);
 
                 int index_C = (int)ruleSet._possibilityResult;

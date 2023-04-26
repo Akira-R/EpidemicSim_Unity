@@ -54,6 +54,7 @@ public class PlaceEntity : MonoBehaviour
 
             //Debug.Log("Protection: " + unit.protectionValue + " Exposure: " + unit.exposureTime);
             int result = FuzzyCalculator.Instance.GetHighestProb(unit.protectionValue, unit.exposureTime);
+            Debug.Log(result);
             switch (result) 
             {
                 case 0 : // non-infect
