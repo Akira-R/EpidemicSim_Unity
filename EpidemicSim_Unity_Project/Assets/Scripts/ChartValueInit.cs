@@ -31,19 +31,27 @@ public class ChartValueInit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //EntityManager.Instance.GetUnitsStateCount(out susCount, out infCount, out recCount);
+        EntityManager.Instance.GetUnitsStateCount(out susCount, out infCount, out recCount);
     }
 
     private IEnumerator UpdateGraph(float delay) 
     {
         while (true) 
         {
+            //yield return new WaitForSeconds(delay);
+
+            //graph.DataSource.StartBatch();  // start a new update batch
+            //graph.DataSource.AddPointToCategory("Susceptible", idx++, Random.Range(1f, 50f) * 2f);
+            //graph.DataSource.AddPointToCategory("Infectious", idx++, Random.Range(1f, 50f) * 2f);
+            //graph.DataSource.AddPointToCategory("Recovered", idx++, Random.Range(1f, 50f) * 2f);
+            //graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
+
             yield return new WaitForSeconds(delay);
 
             graph.DataSource.StartBatch();  // start a new update batch
-            graph.DataSource.AddPointToCategory("Susceptible", idx++, Random.Range(1f, 50f) * 2f);
-            graph.DataSource.AddPointToCategory("Infectious", idx++, Random.Range(1f, 50f) * 2f);
-            graph.DataSource.AddPointToCategory("Recovered", idx++, Random.Range(1f, 50f) * 2f);
+            graph.DataSource.AddPointToCategory("Susceptible", idx++, susCount);
+            graph.DataSource.AddPointToCategory("Infectious", idx++, infCount);
+            graph.DataSource.AddPointToCategory("Recovered", idx++, recCount);
             graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
         }
     }

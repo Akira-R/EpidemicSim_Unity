@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbf6b19a3def8d1479f86f82f6d47ce2, type: 3}
-  m_Name: SystemVariable
+  m_Script: {fileID: 11500000, guid: 05ccea17608e94fb994579409c52fb80, type: 3}
+  m_Name: RoadObjTagModifier
   m_EditorClassIdentifier: 
-  latlngCoord: {x: 0, y: 0}
-  populationNumber: 1000
-  populationProtection: 0
-  transmissionRate: 0
-  fatalitiesRate: 0
-  recoveryRate: 0
-  totalSimulationTime: 0
+  Active: 1
+  _tag: RoadObj

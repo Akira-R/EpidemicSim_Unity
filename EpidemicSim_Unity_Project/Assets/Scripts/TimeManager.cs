@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,7 +19,7 @@ public class TimeManager : MonoBehaviour
     [Header("Time Controls")]
     [SerializeField] private GameObject _playPauseButton;
     [SerializeField] private Sprite _playSprite, _pauseSprite;
-    private bool _isSimPlaying = true;
+    private bool _isSimPlaying;
 
     [Header("Speed Controls")]
     [SerializeField] TMP_Text _speedControlButtonText;
@@ -53,6 +54,8 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         _playPauseButton.GetComponent<Image>().sprite = _playSprite;
+
+        _isSimPlaying = false;
     }
 
     private void FixedUpdate()
@@ -123,6 +126,9 @@ public class TimeManager : MonoBehaviour
     {
         playPauseControl.performed += context => 
         {
+            if (SimulationManager.Instance.GetSimState() == 0)
+                SimulationManager.Instance.StartSimulation();
+
             OnPlayPauseButtonPressed();
         };
 
@@ -139,4 +145,10 @@ public class TimeManager : MonoBehaviour
             SimulationSpeed(2);
         };
     }
+
+    //private void OnFirstSimulationStart()
+    //{
+    //    _isSimPlaying = true;
+    //    SimulationManager.Instance.StartSimulation();
+    //}
 }

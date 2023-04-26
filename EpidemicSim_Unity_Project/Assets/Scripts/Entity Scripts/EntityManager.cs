@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 using NaughtyAttributes;
+
 
 public class EntityManager : MonoSingleton<EntityManager>
 {
@@ -21,10 +24,10 @@ public class EntityManager : MonoSingleton<EntityManager>
     public List<PlaceEntity> Places { get { return _places; } }
 
     [Header("Test Value")]
-    [SerializeField]
-    private int _unitCount = 0;
-    [SerializeField]
-    private int _placeCount = 0;
+    //[SerializeField]
+    //private int _unitCount = 0;
+    //[SerializeField]
+    //private int _placeCount = 0;
     [SerializeField]
     private List<GameObject> _placeObjs;
 
@@ -41,24 +44,24 @@ public class EntityManager : MonoSingleton<EntityManager>
     private float _recoverDelay_Severe = 14;
     public float recoverDelay_Severe => _recoverDelay_Severe;
 
-    private List<Transform> _buildings;
-    [SerializeField]
-    private GameObject _mapObj;
+    //private List<Transform> _buildings;
+    //[SerializeField]
+    //private GameObject _mapObj;
 
     [Header("Unit State Count")]
-    private int _susceptibleCount = 0;
-    private int _infectiousCount = 0;
-    private int _recoveredCount = 0;
+    [SerializeField] private int _susceptibleCount = 0;
+    [SerializeField] private int _infectiousCount = 0;
+    [SerializeField] private int _recoveredCount = 0;
 
     [Button]
     public void TestEntitySetup()
     {
         // places
-        foreach (GameObject placeObj in _placeObjs)
+        foreach (GameObject placeObj in _placeObjs) 
             _places.Add(placeObj.GetComponent<PlaceEntity>());
 
         // units
-        for (int i = 0; i < _unitCount; i++)
+        for (int i = 0; i < VariableManager.Instance.variables.PopulationNumber; i++)
         {
             UnitEntity unit = Instantiate(_unitPrefab,transform).GetComponent<UnitEntity>();
             unit.GenerateUnitPath(_pathLength, _places.Count);
@@ -67,8 +70,6 @@ public class EntityManager : MonoSingleton<EntityManager>
 
         // first Infectious
         _units[0].SetInfectState((int)UnitEntity.InfState.Infectious);
-
-        TestNextPath();
     }
 
     public void PlaceEntitySetup() 
@@ -80,43 +81,43 @@ public class EntityManager : MonoSingleton<EntityManager>
             unit.GenerateUnitPath(_pathLength, _places.Count);
     }
 
-    [Button]
-    public void AutoPlace()
-    {
-        List<int> randomBuildingIndices = new List<int>();
+    //[Button]
+    //public void AutoPlace()
+    //{
+    //    List<int> randomBuildingIndices = new List<int>();
 
-        // Get all building Objs
-        for (int i = 1; i < _mapObj.transform.childCount; i++)
-        {
-            foreach (Transform building in _mapObj.transform.GetChild(i))
-            {
-                if (building.gameObject.name[0] == 'E') 
-                    _buildings.Add(building);
-            }
-        }
+    //    // Get all building Objs
+    //    for (int i = 1; i < _mapObj.transform.childCount; i++)
+    //    {
+    //        foreach (Transform building in _mapObj.transform.GetChild(i))
+    //        {
+    //            if (building.gameObject.name[0] == 'E') 
+    //                _buildings.Add(building);
+    //        }
+    //    }
 
-        // Random pick marker from buildings
-        int randomSize = _buildings.Count / _placeCount;
-        for (int i = 0; i < _placeCount; i++)
-        {
-            int randomOffset = Random.Range(1, randomSize);
-            randomBuildingIndices.Add((i * randomSize) + randomOffset);
-        }
+    //    // Random pick marker from buildings
+    //    int randomSize = _buildings.Count / _placeCount;
+    //    for (int i = 0; i < _placeCount; i++)
+    //    {
+    //        int randomOffset = Random.Range(1, randomSize);
+    //        randomBuildingIndices.Add((i * randomSize) + randomOffset);
+    //    }
 
-        // Instantiate marker Objs
-        for (int i = 0; i < _placeCount; i++)
-        {
-            GameObject place = Instantiate(_placePrefab, _buildings[randomBuildingIndices[i]].position, transform.rotation, transform);
+    //    // Instantiate marker Objs
+    //    for (int i = 0; i < _placeCount; i++)
+    //    {
+    //        GameObject place = Instantiate(_placePrefab, _buildings[randomBuildingIndices[i]].position, transform.rotation, transform);
             
-            //NavMeshHit navHit;
-            //if (NavMesh.SamplePosition(place.transform.position, out navHit, 10.0f, NavMesh.AllAreas))
-            //    transform.position = navHit.position;
-            //else
-            //    Debug.Log("No Nav hit found.");
+    //        //NavMeshHit navHit;
+    //        //if (NavMesh.SamplePosition(place.transform.position, out navHit, 10.0f, NavMesh.AllAreas))
+    //        //    transform.position = navHit.position;
+    //        //else
+    //        //    Debug.Log("No Nav hit found.");
 
-            _placeObjs.Add(place);
-        }
-    }
+    //        _placeObjs.Add(place);
+    //    }
+    //}
 
     [Button]
     public void TestNextPath()
@@ -170,6 +171,10 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     public void UpdateStateCount() 
     {
+        _susceptibleCount = 0;
+        _infectiousCount = 0;
+        _recoveredCount = 0;
+
         foreach (var unit in _units) 
         {
             if (unit.InfectionState == UnitEntity.InfState.Susceptible)
@@ -182,6 +187,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     }
     public void GetUnitsStateCount(out int susCount, out int infCount, out int recCount) 
     {
+        UpdateStateCount();
         susCount = _susceptibleCount;
         infCount = _infectiousCount;    
         recCount = _recoveredCount;
