@@ -30,12 +30,12 @@ public class UnitEntity : MonoBehaviour
 
     [SerializeField]
     private List<int> _unitPath = new List<int>();
-    [SerializeField]
+    [SerializeField, ReadOnly]
     private int _pathCounter = 0;
-
+    [SerializeField, ReadOnly]
     private int _protectionValue;
     public int protectionValue => _protectionValue;
-
+    [SerializeField, ReadOnly]
     private int _exposureTime;
     public int exposureTime => _exposureTime;
 
@@ -52,6 +52,8 @@ public class UnitEntity : MonoBehaviour
     private PlaceEntity _moveToPlace;
     private float _stayDelay = 5.0f;
     private float _stayCounter = 0.0f;
+
+    private IEnumerator _infectCoroutine;
 
     public void GenerateUnitPath(int pathLength, int placeCount) 
     {
@@ -80,7 +82,7 @@ public class UnitEntity : MonoBehaviour
 
         _renderer = gameObject.GetComponent<Renderer>();
 
-        _protectionValue = Random.Range(0, 100);
+        //_protectionValue = Random.Range(0, 100);
 
     }
 
@@ -90,6 +92,11 @@ public class UnitEntity : MonoBehaviour
         _moveToPlace = EntityManager.Instance.Places[_unitPath[_pathCounter]];
         _movementState = MoveState.Travel;
         _renderer.enabled = true;
+
+        if (_infectCoroutine != null)
+        {
+            StopCoroutine(_infectCoroutine);
+        }
     }
 
     public void SetInfectState(int stateIndex)
@@ -126,6 +133,10 @@ public class UnitEntity : MonoBehaviour
             _renderer.enabled = false;
             _moveToPlace.UnitArrive(this);
             _exposureTime = 0;
+
+            if (EntityManager.Instance.infectByPlace) { return; }
+            _infectCoroutine = InfectCoroutine(1.0f / VariableManager.Instance.variables.TransmissionRate);
+            StartCoroutine(_infectCoroutine);
         }
     }
 
@@ -139,6 +150,11 @@ public class UnitEntity : MonoBehaviour
         StartCoroutine(WaitTo_EndRecoveryDelay(time));
     }
 
+    public void SetProtectionValue(int value)
+    {
+        _protectionValue = value;
+    }
+
     IEnumerator WaitTo_EndRecoveryDelay(float time)
     {
         yield return new WaitForSeconds(time);
@@ -146,5 +162,57 @@ public class UnitEntity : MonoBehaviour
 
         if (_movementState == MoveState.Stay)
             _moveToPlace.UnitRecoveredUpdate();
+    }
+
+    IEnumerator InfectCoroutine(float delayTime)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delayTime);
+            Infect();
+        }
+    }
+
+    private void Infect()
+    {
+
+        EntityManager entityManager = EntityManager.Instance;
+        int result;
+
+        if (entityManager.Places[_unitPath[_pathCounter]].infectCount <= 0) return;
+
+        if (entityManager.enableFuzzyLogic)
+        {
+            //Debug.Log("Protection: " + unit.protectionValue + " Exposure: " + unit.exposureTime);
+            result = FuzzyCalculator.Instance.GetHighestProb(_protectionValue, _exposureTime);
+            //Debug.Log(result);
+        }
+        else
+        {
+            result = Random.Range(0, 2); // 0 or 1
+            if (result > 0)
+                result += Random.Range(0, 2); // 0 or 1
+        }
+
+        switch (result)
+        {
+            case 0: // non-infect
+                IncreaseExposure();
+                //Debug.Log("non-infect");
+                break;
+            case 1: // mild-infect
+                SetInfectState((int)UnitEntity.InfState.Infectious);
+                SetRecoveryDelay(EntityManager.Instance.recoverDelay_Mild);
+                entityManager.Places[_unitPath[_pathCounter]].UnitInfectUpdate();
+                //Debug.Log("mild-infect");
+                break;
+            case 2: // severe-infect
+                SetInfectState((int)UnitEntity.InfState.Infectious);
+                SetRecoveryDelay(EntityManager.Instance.recoverDelay_Severe);
+                entityManager.Places[_unitPath[_pathCounter]].UnitInfectUpdate();
+                //Debug.Log("severe-infect");
+                break;
+        }
+        
     }
 }

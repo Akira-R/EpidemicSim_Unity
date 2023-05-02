@@ -53,6 +53,13 @@ public class EntityManager : MonoSingleton<EntityManager>
     [SerializeField] private int _infectiousCount = 0;
     [SerializeField] private int _recoveredCount = 0;
 
+    private DistributionRandom _distributionRandom = new DistributionRandom();
+
+    [SerializeField]
+    public bool infectByPlace = false;
+    [SerializeField]
+    public bool enableFuzzyLogic = false;
+
     [Button]
     public void TestEntitySetup()
     {
@@ -79,6 +86,10 @@ public class EntityManager : MonoSingleton<EntityManager>
 
         foreach (UnitEntity unit in _units)
             unit.GenerateUnitPath(_pathLength, _places.Count);
+
+        List<int> unitProtections = _distributionRandom.GetDistributionRandom(_units.Count, (int)VariableManager.Instance.variables.PopulationProtection);
+        for (int i = 0; i < _units.Count; i++)
+            _units[i].SetProtectionValue(unitProtections[i]);
     }
 
     //[Button]
@@ -191,6 +202,22 @@ public class EntityManager : MonoSingleton<EntityManager>
         susCount = _susceptibleCount;
         infCount = _infectiousCount;    
         recCount = _recoveredCount;
+    }
+
+    [Button]
+    private void TestDistributionRandom()
+    {
+        List<int> unitProtections = _distributionRandom.GetDistributionRandom(VariableManager.Instance.variables.PopulationNumber, (int)VariableManager.Instance.variables.PopulationProtection);
+        float avg = 0;
+
+        for (int i = 0; i < _units.Count; i++)
+        {
+            Debug.Log(unitProtections[i]);
+            avg += unitProtections[i];
+        }
+
+        Debug.Log("AVG: " + avg / _units.Count);
+        
     }
 
     // called by event-based trigger

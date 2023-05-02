@@ -13,10 +13,16 @@ public class PlaceEntity : MonoBehaviour
     private float _infectDelay = 1.0f;
     private float _infectDelayCounter = 0.0f;
 
-    [SerializeField]
-    private int _trafficCount = 0;
+    //[SerializeField]
+    //private int _trafficCount = 0;
     [SerializeField]
     private int _infectCount = 0;
+
+    public int infectCount
+    {
+        get { return _infectCount; }
+        set { _infectCount = value; }
+    }
 
     public void UnitArrive(UnitEntity unit)
     {
@@ -34,6 +40,8 @@ public class PlaceEntity : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!EntityManager.Instance.infectByPlace) { return; }
+
         _infectDelayCounter += Time.deltaTime;
         if (_infectDelayCounter >= _infectDelay)
         {
@@ -49,15 +57,24 @@ public class PlaceEntity : MonoBehaviour
         foreach (UnitEntity unit in _placeContainer)
         {
             if (unit.InfectionState == UnitEntity.InfState.Infectious) continue;
-            //if (Random.value >= 0.5f)
-            //    unit.SetInfectState((int)UnitEntity.InfState.Infectious);
-
-            //Debug.Log("Protection: " + unit.protectionValue + " Exposure: " + unit.exposureTime);
-            int result = FuzzyCalculator.Instance.GetHighestProb(unit.protectionValue, unit.exposureTime);
-            Debug.Log(result);
-            switch (result) 
+            int result;
+            
+            if (EntityManager.Instance.enableFuzzyLogic)
             {
-                case 0 : // non-infect
+                //Debug.Log("Protection: " + unit.protectionValue + " Exposure: " + unit.exposureTime);
+                result = FuzzyCalculator.Instance.GetHighestProb(unit.protectionValue, unit.exposureTime);
+                //Debug.Log(result);
+            }
+            else 
+            {
+                result = Random.Range(0, 2); // 0 or 1
+                if (result > 0)
+                    result += Random.Range(0, 2); // 0 or 1
+            }
+
+            switch (result)
+            {
+                case 0: // non-infect
                     unit.IncreaseExposure();
                     //Debug.Log("non-infect");
                     break;
@@ -85,5 +102,10 @@ public class PlaceEntity : MonoBehaviour
     public void UnitRecoveredUpdate()
     {
         _infectCount--;
+    }
+
+    public void UnitInfectUpdate()
+    {
+        _infectCount++;
     }
 }

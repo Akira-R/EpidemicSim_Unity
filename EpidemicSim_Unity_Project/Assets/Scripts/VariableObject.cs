@@ -12,7 +12,7 @@ public class VariableObject : ScriptableObject
     [Range(0f, 100f)]
     [SerializeField] private float populationProtection;
 
-    [Range(0f, 100f)]
+    [Range(1f, 100f)]
     [SerializeField] private float transmissionRate;
     [Range(0f, 100f)]
     [SerializeField] private float fatalitiesRate;

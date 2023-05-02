@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SystemVariable
   m_EditorClassIdentifier: 
   latlngCoord: {x: 0, y: 0}
-  populationNumber: 1000
-  populationProtection: 0
-  transmissionRate: 0
+  populationNumber: 500
+  populationProtection: 50
+  transmissionRate: 1
   fatalitiesRate: 0
-  recoveryRate: 0
+  recoveryRate: 30
   totalSimulationTime: 0
