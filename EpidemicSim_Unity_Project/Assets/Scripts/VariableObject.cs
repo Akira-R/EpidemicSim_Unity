@@ -7,7 +7,7 @@ public class VariableObject : ScriptableObject
 {
     [SerializeField] private Vector2 latlngCoord;
 
-    [Range(10, 1000)]
+    [Range(10, 10000)]
     [SerializeField] private int populationNumber = 10;
     [Range(0f, 100f)]
     [SerializeField] private float populationProtection;

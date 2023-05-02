@@ -2895,8 +2895,10 @@ MonoBehaviour:
   - {fileID: 1317601381}
   _pathLength: 4
   _stayDelay: 9
-  _recoverDelay_Mild: 60
-  _recoverDelay_Severe: 120
+  _recoverDelay_Mild: 100
+  _recoverDelay_Severe: 200
   _susceptibleCount: 0
   _infectiousCount: 0
   _recoveredCount: 0
+  infectByPlace: 0
+  enableFuzzyLogic: 0

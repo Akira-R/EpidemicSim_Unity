@@ -93,6 +93,8 @@ public class UnitEntity : MonoBehaviour
         _movementState = MoveState.Travel;
         _renderer.enabled = true;
 
+        _navMeshAgent.destination = _moveToPlace.transform.position;
+
         if (_infectCoroutine != null)
         {
             StopCoroutine(_infectCoroutine);
@@ -111,9 +113,9 @@ public class UnitEntity : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_movementState == MoveState.Travel)
+        /*if (_movementState == MoveState.Travel)
             _navMeshAgent.destination = _moveToPlace.transform.position;
-        else if (_movementState == MoveState.Stay)
+        else */if (_movementState == MoveState.Stay)
         {
             _stayCounter += Time.deltaTime;
             if (_stayCounter >= _stayDelay)
