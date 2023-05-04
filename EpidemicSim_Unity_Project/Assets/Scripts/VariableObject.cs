@@ -12,14 +12,14 @@ public class VariableObject : ScriptableObject
     [Range(0f, 100f)]
     [SerializeField] private float populationProtection;
 
-    [Range(1f, 100f)]
+    [Range(0f, 100f)]
     [SerializeField] private float transmissionRate;
     [Range(0f, 100f)]
     [SerializeField] private float fatalitiesRate;
     [Range(0f, 100f)]
     [SerializeField] private float recoveryRate;
 
-    [SerializeField] private int totalSimulationTime;
+    //[SerializeField] private int totalSimulationTime;
 
 
     public Vector2 LatlngCoord => latlngCoord;
@@ -28,7 +28,7 @@ public class VariableObject : ScriptableObject
     public float TransmissionRate => transmissionRate;
     public float FatalitiesRate => fatalitiesRate;
     public float RecoveryRate => recoveryRate;
-    public int TotalSimulationTime => totalSimulationTime;
+    //public int TotalSimulationTime => totalSimulationTime;
 
     public void SetDatafromSave(VariableData data) 
     {
@@ -39,7 +39,7 @@ public class VariableObject : ScriptableObject
         transmissionRate = data.transmissionRate;
         fatalitiesRate = data.fatalitiesRate;
         recoveryRate = data.recoveryRate;
-        totalSimulationTime = data.totalSimulationTime;
+        //totalSimulationTime = data.totalSimulationTime;
     }
 
     public void SetLatlngCoord(Vector2 latlng) 

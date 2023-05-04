@@ -126,21 +126,23 @@ public class UnitEntity : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag != "PlaceObject") return;
-        if (ReferenceEquals(other.transform, _moveToPlace.transform))
-        {
-            _movementState = MoveState.Stay;
-            _renderer.enabled = false;
-            _moveToPlace.UnitArrive(this);
-            _exposureTime = 0;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag != "PlaceObject") return;
 
-            if (EntityManager.Instance.infectByPlace) { return; }
-            _infectCoroutine = InfectCoroutine(1.0f / VariableManager.Instance.variables.TransmissionRate);
-            StartCoroutine(_infectCoroutine);
-        }
-    }
+    //    if (ReferenceEquals(other.transform, _moveToPlace.transform))
+    //    {
+    //        _movementState = MoveState.Stay;
+    //        _renderer.enabled = false;
+    //        _moveToPlace.UnitArrive(this);
+    //        _exposureTime = 0;
+
+    //        if (EntityManager.Instance.infectByPlace) { return; }
+    //        if (VariableManager.Instance.variables.TransmissionRate <= 0) { return; }
+    //        _infectCoroutine = InfectCoroutine(1.0f / VariableManager.Instance.variables.TransmissionRate);
+    //        StartCoroutine(_infectCoroutine);
+    //    }
+    //}
 
     public void IncreaseExposure() 
     {

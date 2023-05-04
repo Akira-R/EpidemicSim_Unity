@@ -9,8 +9,8 @@ public class PlaceEntity : MonoBehaviour
     [SerializeField]
     private List<UnitEntity> _placeContainer = new List<UnitEntity>();
 
-    [SerializeField]
-    private float _infectDelay = 1.0f;
+    //[SerializeField]
+    //private float _infectDelay = 1.0f;
     private float _infectDelayCounter = 0.0f;
 
     //[SerializeField]
@@ -43,7 +43,8 @@ public class PlaceEntity : MonoBehaviour
         if (!EntityManager.Instance.infectByPlace) { return; }
 
         _infectDelayCounter += Time.deltaTime;
-        if (_infectDelayCounter >= _infectDelay)
+        if (VariableManager.Instance.variables.TransmissionRate <= 0) return;
+        if (_infectDelayCounter >= 1.0f / VariableManager.Instance.variables.TransmissionRate)
         {
             _infectDelayCounter = 0;
             Infect();

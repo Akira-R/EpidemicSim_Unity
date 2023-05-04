@@ -75,6 +75,11 @@ public class EntityManager : MonoSingleton<EntityManager>
             _units.Add(unit);
         }
 
+        List<int> unitProtections = _distributionRandom.GetDistributionRandom(_units.Count, (int)VariableManager.Instance.variables.PopulationProtection);
+
+        for (int i = 0; i < _units.Count; i++)
+            _units[i].SetProtectionValue(unitProtections[i]);
+
         // first Infectious
         _units[0].SetInfectState((int)UnitEntity.InfState.Infectious);
     }
@@ -86,10 +91,6 @@ public class EntityManager : MonoSingleton<EntityManager>
 
         foreach (UnitEntity unit in _units)
             unit.GenerateUnitPath(_pathLength, _places.Count);
-
-        List<int> unitProtections = _distributionRandom.GetDistributionRandom(_units.Count, (int)VariableManager.Instance.variables.PopulationProtection);
-        for (int i = 0; i < _units.Count; i++)
-            _units[i].SetProtectionValue(unitProtections[i]);
     }
 
     //[Button]
@@ -208,16 +209,33 @@ public class EntityManager : MonoSingleton<EntityManager>
     private void TestDistributionRandom()
     {
         List<int> unitProtections = _distributionRandom.GetDistributionRandom(VariableManager.Instance.variables.PopulationNumber, (int)VariableManager.Instance.variables.PopulationProtection);
+        List<int> visualizer = new List<int>();
         float avg = 0;
 
-        for (int i = 0; i < _units.Count; i++)
+        for (int i = 0; i < 10; i++)
         {
-            Debug.Log(unitProtections[i]);
+            visualizer.Add(0);
+        }
+
+        for (int i = 0; i < unitProtections.Count; i++)
+        {
+            int index = unitProtections[i] / 10;
+            visualizer[index] = visualizer[index] + 1;
             avg += unitProtections[i];
         }
 
-        Debug.Log("AVG: " + avg / _units.Count);
-        
+        for (int i = 0; i < visualizer.Count; i++)
+        {
+            string str = i + " - " + (i+1) + ": ";
+            for (int j = 0; j < visualizer[i]; j++)
+            {
+                str += "*";
+            }
+            Debug.Log(str);
+        }
+
+        Debug.Log("AVG: " + avg / unitProtections.Count);
+
     }
 
     // called by event-based trigger

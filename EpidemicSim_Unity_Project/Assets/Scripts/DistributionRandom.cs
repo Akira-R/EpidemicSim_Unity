@@ -13,7 +13,7 @@ public class DistributionRandom
 
     public List<int> GetDistributionRandom(int number, int mean)
     {
-        int startRandomValueOffset = mean - (_randomPartitionSetNumber * _partitionRandomRange);
+        int startRandomValueOffset = mean - (_randomPartitionSetNumber * _partitionRandomRange / 2);
         List<int> valueList = new List<int>();
 
         for (int i = 0; i < number; i++)
@@ -35,9 +35,12 @@ public class DistributionRandom
             // get random value inside partition range
             int from = startRandomValueOffset + (_partitionRandomRange * p_index);
             int to = startRandomValueOffset + (_partitionRandomRange * (p_index + 1));
+
+            //Debug.Log("p_index: " + p_index);
+            //Debug.Log(from + " to " + to);
+
             valueList.Add(Mathf.Clamp(Random.Range(from, to), _minValue, _maxValue));
         }
-        Debug.Log(valueList);
         return valueList;
     }
 }

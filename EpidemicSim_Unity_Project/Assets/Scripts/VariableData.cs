@@ -24,6 +24,6 @@ public class VariableData
         transmissionRate = varObj.TransmissionRate;
         fatalitiesRate = varObj.FatalitiesRate;
         recoveryRate = varObj.RecoveryRate;
-        totalSimulationTime = varObj.TotalSimulationTime;
+        //totalSimulationTime = varObj.TotalSimulationTime;
     }
 }
