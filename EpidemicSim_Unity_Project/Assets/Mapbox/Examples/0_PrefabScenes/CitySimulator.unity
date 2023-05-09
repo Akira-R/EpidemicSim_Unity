@@ -2900,5 +2900,5 @@ MonoBehaviour:
   _susceptibleCount: 0
   _infectiousCount: 0
   _recoveredCount: 0
-  infectByPlace: 0
-  enableFuzzyLogic: 0
+  infectByPlace: 1
+  enableFuzzyLogic: 1

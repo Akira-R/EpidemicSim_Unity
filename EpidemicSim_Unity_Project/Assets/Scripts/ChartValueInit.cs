@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class ChartValueInit : MonoBehaviour
 {
+    
     GraphChartBase graph;
     int idx = 30;
 
