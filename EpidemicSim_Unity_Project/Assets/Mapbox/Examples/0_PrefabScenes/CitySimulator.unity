@@ -1837,7 +1837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: verticalScrolling
-      value: -90
+      value: -990
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: horizontalScrolling
@@ -1850,10 +1850,6 @@ PrefabInstance:
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: autoScrollHorizontally
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
-      propertyPath: Data.horizontalViewSize
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.automaticcHorizontaViewGap

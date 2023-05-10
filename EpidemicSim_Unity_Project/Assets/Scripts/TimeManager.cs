@@ -32,6 +32,9 @@ public class TimeManager : MonoBehaviour
     private InputAction speedTwo;
     private InputAction speedThree;
 
+    [Header("Graph")]
+    public ChartValueInit chart;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -69,6 +72,7 @@ public class TimeManager : MonoBehaviour
             {
                 timeTracker = 0;
                 _dayCounter++;
+                chart.UpdateGraphData(_dayCounter);
             }
 
             //EntityManager.Instance.UpdateStateCount();

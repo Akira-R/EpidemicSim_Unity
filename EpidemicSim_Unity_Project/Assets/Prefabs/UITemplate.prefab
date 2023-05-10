@@ -122,18 +122,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 7820373443115427351}
         m_TargetAssemblyTypeName: UITransformTween, Assembly-CSharp
         m_MethodName: ButtonToggleEase
@@ -1171,18 +1159,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
         m_MethodName: OnSpeedContolButtonPressed
         m_Mode: 1
@@ -1548,18 +1524,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2441143222038411209}
         m_TargetAssemblyTypeName: UIPositionTween, Assembly-CSharp
         m_MethodName: ButtonToggleEase
@@ -1708,18 +1672,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
         m_MethodName: OnPlayPauseButtonPressed
@@ -2151,20 +2103,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2441143223004054490}
-        m_TargetAssemblyTypeName: UIPositionTween, Assembly-CSharp
+        m_TargetAssemblyTypeName: UITransformTween, Assembly-CSharp
         m_MethodName: ButtonToggleEase
         m_Mode: 1
         m_Arguments:
@@ -2855,18 +2795,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2441143222816418239}
         m_TargetAssemblyTypeName: UIPositionTween, Assembly-CSharp
         m_MethodName: ButtonToggleEase
@@ -4239,7 +4167,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 600}
+  m_SizeDelta: {x: 1000, y: 714.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2971406280906577617
 MonoBehaviour:
@@ -4262,9 +4190,9 @@ MonoBehaviour:
   vRSpaceText: 0
   vRSpaceScale: 0.48
   maintainLabelSize: 0
-  autoScrollHorizontally: 0
+  autoScrollHorizontally: 1
   horizontalScrolling: 0
-  autoScrollVertically: 0
+  autoScrollVertically: 1
   verticalScrolling: 0
   raycastTarget: 1
   MousePan:
@@ -4272,7 +4200,7 @@ MonoBehaviour:
       m_Calls: []
   horizontalPanning: 1
   verticalPanning: 1
-  heightRatio: 600
+  heightRatio: 714.57
   widthRatio: 1000
   PointClicked:
     m_PersistentCalls:
@@ -4286,18 +4214,18 @@ MonoBehaviour:
   itemFormat: <?x>:<?y>
   Data:
     automaticVerticalViewGap: 0
-    automaticVerticallView: 0
+    automaticVerticallView: 1
     automaticcHorizontaViewGap: 0
-    automaticHorizontalView: 0
-    horizontalViewSize: 25
+    automaticHorizontalView: 1
+    horizontalViewSize: 10
     horizontalViewOrigin: 0
-    verticalViewSize: 100
+    verticalViewSize: 10
     verticalViewOrigin: 0
     mSerializedData:
     - Name: Susceptible
       InitialData: []
       IsBezierCurve: 0
-      SegmentsPerCurve: 0
+      SegmentsPerCurve: 1
       Depth: 0
       LineHoverPrefab: {fileID: 0}
       PointHoverPrefab: {fileID: 0}
@@ -4306,18 +4234,18 @@ MonoBehaviour:
       LineTiling:
         EnableTiling: 0
         TileFactor: 0.01
-      InnerFill: {fileID: 2100000, guid: d2de0366df3613d4593a6083f8fd1e77, type: 2}
+      InnerFill: {fileID: 2100000, guid: 17b534b72a7f8fc44ab9f285219f0f5a, type: 2}
       LineThickness: 5
       StetchFill: 0
       DotPrefab: {fileID: 0}
-      PointMaterial: {fileID: 2100000, guid: 9843dc986d4eb53498e98084e7fee1ed, type: 2}
-      PointSize: 10
+      PointMaterial: {fileID: 0}
+      PointSize: 0
       ViewOrder: 0
       AllowNonFunctionsBeta: 0
     - Name: Infectious
       InitialData: []
       IsBezierCurve: 0
-      SegmentsPerCurve: 0
+      SegmentsPerCurve: 1
       Depth: 0
       LineHoverPrefab: {fileID: 0}
       PointHoverPrefab: {fileID: 0}
@@ -4330,14 +4258,14 @@ MonoBehaviour:
       LineThickness: 5
       StetchFill: 0
       DotPrefab: {fileID: 0}
-      PointMaterial: {fileID: 2100000, guid: 9843dc986d4eb53498e98084e7fee1ed, type: 2}
-      PointSize: 10
+      PointMaterial: {fileID: 0}
+      PointSize: 0
       ViewOrder: 1
       AllowNonFunctionsBeta: 0
     - Name: Recovered
       InitialData: []
       IsBezierCurve: 0
-      SegmentsPerCurve: 0
+      SegmentsPerCurve: 1
       Depth: 0
       LineHoverPrefab: {fileID: 0}
       PointHoverPrefab: {fileID: 0}
@@ -4346,12 +4274,12 @@ MonoBehaviour:
       LineTiling:
         EnableTiling: 0
         TileFactor: 0.01
-      InnerFill: {fileID: 2100000, guid: d2de0366df3613d4593a6083f8fd1e77, type: 2}
+      InnerFill: {fileID: 2100000, guid: 09866d623c8e90140a9c5ac934ccb3bc, type: 2}
       LineThickness: 5
       StetchFill: 0
       DotPrefab: {fileID: 0}
-      PointMaterial: {fileID: 2100000, guid: 9843dc986d4eb53498e98084e7fee1ed, type: 2}
-      PointSize: 10
+      PointMaterial: {fileID: 0}
+      PointSize: 0
       ViewOrder: 2
       AllowNonFunctionsBeta: 0
   LineClicked:
@@ -4386,9 +4314,9 @@ MonoBehaviour:
     Automatic: 1
     Value: -6.53
   mainDivisions:
-    messure: 1
+    messure: 0
     unitsPerDivision: 10
-    total: 3
+    total: 10
     material: {fileID: 2100000, guid: ba7e2530b20700c4ca957b37c45b6644, type: 2}
     materialTiling:
       EnableTiling: 1
@@ -4402,20 +4330,20 @@ MonoBehaviour:
     markDepth:
       Automatic: 1
       Value: 0.5
-    markThickness: 4.5
+    markThickness: 5
     textPrefab: {fileID: 0}
     textPrefix: 
     textSuffix: 
     fractionDigits: 0
     fontSize: 20
-    fontSharpness: 1
+    fontSharpness: 3
     textDepth: 0
-    textSeperation: 0
+    textSeperation: -15
     alignment: 1
   subDivisions:
     messure: 0
     unitsPerDivision: 0
-    total: 3
+    total: 0
     material: {fileID: 0}
     materialTiling:
       EnableTiling: 0
@@ -4429,15 +4357,15 @@ MonoBehaviour:
     markDepth:
       Automatic: 1
       Value: 0.5
-    markThickness: 4.5
+    markThickness: 5
     textPrefab: {fileID: 0}
     textPrefix: 
     textSuffix: 
     fractionDigits: 0
     fontSize: 20
-    fontSharpness: 1
+    fontSharpness: 3
     textDepth: 0
-    textSeperation: 0
+    textSeperation: -15
     alignment: 1
 --- !u!114 &2258505196559839976
 MonoBehaviour:
@@ -4458,9 +4386,9 @@ MonoBehaviour:
     Automatic: 1
     Value: -10.64
   mainDivisions:
-    messure: 1
+    messure: 0
     unitsPerDivision: 2
-    total: 3
+    total: 10
     material: {fileID: 2100000, guid: ba7e2530b20700c4ca957b37c45b6644, type: 2}
     materialTiling:
       EnableTiling: 1
@@ -4470,19 +4398,19 @@ MonoBehaviour:
       Value: 0.5
     markLength:
       Automatic: 1
-      Value: 0.5
+      Value: 111
     markDepth:
       Automatic: 1
       Value: 0.5
-    markThickness: 4.5
+    markThickness: 5
     textPrefab: {fileID: 0}
     textPrefix: 
     textSuffix: 
     fractionDigits: 0
     fontSize: 20
-    fontSharpness: 1
+    fontSharpness: 3
     textDepth: 0
-    textSeperation: 0
+    textSeperation: -35
     alignment: 2
   subDivisions:
     messure: 0
@@ -4497,19 +4425,19 @@ MonoBehaviour:
       Value: 0.5
     markLength:
       Automatic: 1
-      Value: 0.5
+      Value: 111
     markDepth:
       Automatic: 1
       Value: 0.5
-    markThickness: 4.5
+    markThickness: 5
     textPrefab: {fileID: 0}
     textPrefix: 
     textSuffix: 
     fractionDigits: 0
     fontSize: 20
-    fontSharpness: 1
+    fontSharpness: 3
     textDepth: 0
-    textSeperation: 0
+    textSeperation: -35
     alignment: 2
 --- !u!222 &7002350527087129572
 CanvasRenderer:

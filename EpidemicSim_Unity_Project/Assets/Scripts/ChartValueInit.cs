@@ -26,7 +26,7 @@ public class ChartValueInit : MonoBehaviour
             graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
         }
 
-        StartCoroutine(UpdateGraph(0.5f));
+        //StartCoroutine(UpdateGraph(0.5f));
     }
 
     // Update is called once per frame
@@ -55,5 +55,13 @@ public class ChartValueInit : MonoBehaviour
             graph.DataSource.AddPointToCategory("Recovered", idx++, recCount);
             graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
         }
+    }
+    public void UpdateGraphData(int dayCount) 
+    {
+        graph.DataSource.StartBatch();  // start a new update batch
+        graph.DataSource.AddPointToCategory("Susceptible", dayCount, susCount);
+        graph.DataSource.AddPointToCategory("Infectious", dayCount, infCount);
+        graph.DataSource.AddPointToCategory("Recovered", dayCount, recCount);
+        graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
     }
 }
