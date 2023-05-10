@@ -55,7 +55,7 @@ public class UnitEntity : MonoBehaviour
 
     private IEnumerator _infectCoroutine;
 
-    public void GenerateUnitPath(int pathLength, int placeCount) 
+    public void GenerateUnitPath(int pathLength, int placeCount, Transform spawnPoint) 
     {
         _unitPath.Clear();
         for (int i = 0; i < pathLength; i++)
@@ -69,12 +69,14 @@ public class UnitEntity : MonoBehaviour
             _unitPath.Add(newPathIndex);
         }
 
-        Vector3 initialPosition = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform.position;
-        NavMeshHit navHit;
-        if (NavMesh.SamplePosition(initialPosition, out navHit, 1.0f, NavMesh.AllAreas))
-            transform.position = navHit.position;
-        else 
-            Debug.LogWarning("Unit initialize: No navmesh found nearby.");
+        //Vector3 initialPosition = EntityManager.Instance.Places[_unitPath[_pathCounter]].transform.position;
+        //NavMeshHit navHit;
+        //if (NavMesh.SamplePosition(initialPosition, out navHit, 1.0f, NavMesh.AllAreas))
+        //    transform.position = navHit.position;
+        //else
+        //    Debug.LogWarning("Unit initialize: No navmesh found nearby.");
+
+        transform.position = spawnPoint.position;
 
         _navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
         _navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
@@ -126,23 +128,23 @@ public class UnitEntity : MonoBehaviour
             }
         }
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag != "PlaceObject") return;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag != "PlaceObject") return;
 
-    //    if (ReferenceEquals(other.transform, _moveToPlace.transform))
-    //    {
-    //        _movementState = MoveState.Stay;
-    //        _renderer.enabled = false;
-    //        _moveToPlace.UnitArrive(this);
-    //        _exposureTime = 0;
+        if (ReferenceEquals(other.transform, _moveToPlace.transform))
+        {
+            _movementState = MoveState.Stay;
+            _renderer.enabled = false;
+            _moveToPlace.UnitArrive(this);
+            _exposureTime = 0;
 
-    //        if (EntityManager.Instance.infectByPlace) { return; }
-    //        if (VariableManager.Instance.variables.TransmissionRate <= 0) { return; }
-    //        _infectCoroutine = InfectCoroutine(1.0f / VariableManager.Instance.variables.TransmissionRate);
-    //        StartCoroutine(_infectCoroutine);
-    //    }
-    //}
+            if (EntityManager.Instance.infectByPlace) { return; }
+            if (VariableManager.Instance.variables.TransmissionRate <= 0) { return; }
+            _infectCoroutine = InfectCoroutine(1.0f / VariableManager.Instance.variables.TransmissionRate);
+            StartCoroutine(_infectCoroutine);
+        }
+    }
 
     public void IncreaseExposure() 
     {

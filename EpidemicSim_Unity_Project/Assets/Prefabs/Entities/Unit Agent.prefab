@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7150253346966462256}
   - component: {fileID: 7150253346966462263}
   - component: {fileID: -6047402177190739174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Unit Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,6 +116,8 @@ MonoBehaviour:
   _movementState: 0
   _unitPath: 
   _pathCounter: 0
+  _protectionValue: 0
+  _exposureTime: 0
   _susceptibleMat: {fileID: 2100000, guid: b2fbb7045bf1d7741ad9624d1bdcf9b6, type: 2}
   _infectiousMat: {fileID: 2100000, guid: 2b0c6194a7ea6bd4bab8db3e7a75f808, type: 2}
   _recoveredMat: {fileID: 2100000, guid: 3d780a4e5cc8a9144a11240b8d4808be, type: 2}

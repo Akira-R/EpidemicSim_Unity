@@ -9,6 +9,7 @@ TagManager:
   - PlaceObject
   - OverlayCam
   - RoadObj
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - UnitObj
+  - PlaceObj
   - 
   - 
   - Nav_Walkable

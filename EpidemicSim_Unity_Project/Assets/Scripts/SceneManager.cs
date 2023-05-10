@@ -19,7 +19,7 @@ public class SceneManager : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
         LeanTween.reset();
         playerControls = new PlayerControls();
 

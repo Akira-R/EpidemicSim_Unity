@@ -46,7 +46,7 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     //private List<Transform> _buildings;
     //[SerializeField]
-    //private GameObject _mapObj;
+    public GameObject _mapObj;
 
     [Header("Unit State Count")]
     [SerializeField] private int _susceptibleCount = 0;
@@ -60,6 +60,8 @@ public class EntityManager : MonoSingleton<EntityManager>
     [SerializeField]
     public bool enableFuzzyLogic = false;
 
+
+
     [Button]
     public void TestEntitySetup()
     {
@@ -67,11 +69,27 @@ public class EntityManager : MonoSingleton<EntityManager>
         foreach (GameObject placeObj in _placeObjs) 
             _places.Add(placeObj.GetComponent<PlaceEntity>());
 
+        // Find All Spawn point
+        List<Transform> spawnPoints = new List<Transform>();
+        for (int i = 1; i < _mapObj.transform.childCount; i++)
+        {
+            foreach (Transform obj in _mapObj.transform.GetChild(i))
+            {
+                foreach (Transform child in obj)
+                {
+                    if (child.CompareTag("SpawnPoint"))
+                    {
+                        spawnPoints.Add(obj);
+                    }
+                }
+            }
+        }
+
         // units
         for (int i = 0; i < VariableManager.Instance.variables.PopulationNumber; i++)
         {
             UnitEntity unit = Instantiate(_unitPrefab,transform).GetComponent<UnitEntity>();
-            unit.GenerateUnitPath(_pathLength, _places.Count);
+            unit.GenerateUnitPath(_pathLength, _places.Count, spawnPoints[i % spawnPoints.Count]);
             _units.Add(unit);
         }
 
@@ -89,8 +107,25 @@ public class EntityManager : MonoSingleton<EntityManager>
         foreach (GameObject placeObj in _placeObjs)
             _places.Add(placeObj.GetComponent<PlaceEntity>());
 
-        foreach (UnitEntity unit in _units)
-            unit.GenerateUnitPath(_pathLength, _places.Count);
+        // Find All Spawn point
+        List<Transform> spawnPoints = new List<Transform>();
+        for (int i = 1; i < _mapObj.transform.childCount; i++)
+        {
+            foreach (Transform obj in _mapObj.transform.GetChild(i))
+            {
+                foreach (Transform child in obj)
+                {
+                    if (child.CompareTag("SpawnPoint"))
+                    {
+                        spawnPoints.Add(obj);
+                    }
+                }
+            }
+        }
+        
+
+        for (int i = 0; i < VariableManager.Instance.variables.PopulationNumber; i++)
+            _units[i].GenerateUnitPath(_pathLength, _places.Count, spawnPoints[i % spawnPoints.Count]);
     }
 
     //[Button]

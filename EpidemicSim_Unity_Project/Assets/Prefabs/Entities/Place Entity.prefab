@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4660302067736743493}
   - component: {fileID: 4660302067736743492}
   - component: {fileID: 4660302067736743495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Place Entity
   m_TagString: PlaceObject
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4660302067736743494}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -152,8 +152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _placeContainer: []
-  _infectDelay: 1
-  _trafficCount: 0
   _infectCount: 0
 --- !u!1 &4660302068838730918
 GameObject:
