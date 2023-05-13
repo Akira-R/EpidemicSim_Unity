@@ -72,6 +72,8 @@ public class TimeManager : MonoBehaviour
             {
                 timeTracker = 0;
                 _dayCounter++;
+
+                // Update Chart and R0
                 chart.UpdateGraphData(_dayCounter);
             }
 

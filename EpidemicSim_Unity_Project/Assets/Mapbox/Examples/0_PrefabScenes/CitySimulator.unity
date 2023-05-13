@@ -1154,6 +1154,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4660302067736743497, guid: d49ecf99deff838458e146d94631eb58, type: 3}
   m_PrefabInstance: {fileID: 1178538569}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1198107031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8842321613726850858, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+  m_PrefabInstance: {fileID: 1743167483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a6242a23e5ddc4792ce982611af6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1261364489 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5583161480629581407, guid: b0be7a347cebf5145ab34bf330e9a318, type: 3}
@@ -1364,7 +1375,7 @@ MonoBehaviour:
   _speedControlButtonText: {fileID: 989365394}
   _speedIncrements: 010000000200000003000000
   _speedIncrementsIdx: 0
-  chart: {fileID: 0}
+  chart: {fileID: 1198107031}
 --- !u!1 &1520688898 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
@@ -1843,11 +1854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: verticalScrolling
-      value: -990
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: horizontalScrolling
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: autoScrollVertically
@@ -1863,15 +1874,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.data[1].Name
       value: Infectious
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: Data.mSerializedData.Array.data[3].Name
+      value: Predicted Infected
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: Data.mSerializedData.Array.data[3].Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 28bfdd1ef25356d47abc83cc08df4085, type: 2}
+    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.data[1].ViewOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: Data.mSerializedData.Array.data[3].InnerFill
+      value: 
+      objectReference: {fileID: 2100000, guid: d2de0366df3613d4593a6083f8fd1e77, type: 2}
+    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: Data.mSerializedData.Array.data[3].ViewOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.data[0].IsBezierCurve
@@ -1886,6 +1913,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: Data.mSerializedData.Array.data[3].LineThickness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.data[0].SegmentsPerCurve
       value: 1
       objectReference: {fileID: 0}
@@ -1896,6 +1927,14 @@ PrefabInstance:
     - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: Data.mSerializedData.Array.data[2].SegmentsPerCurve
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: Data.mSerializedData.Array.data[3].SegmentsPerCurve
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971406280906577617, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: Data.mSerializedData.Array.data[3].LineTiling.TileFactor
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3561386936875696376, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1951,7 +1990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282045438199844073, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 171.98
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4282045438199844073, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1971,7 +2010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282045438250775022, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 168.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4282045438250775022, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1991,7 +2030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282045438282886336, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 293.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4282045438282886336, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2091,7 +2130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282045439911843061, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 74.885
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4282045439911843061, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2127,7 +2166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282045439988917980, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 166.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4282045439988917980, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2147,7 +2186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282045440052549000, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 81.515
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4282045440052549000, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2902,5 +2941,7 @@ MonoBehaviour:
   _susceptibleCount: 0
   _infectiousCount: 0
   _recoveredCount: 0
+  previousInfectiousCount: 0
+  rNaught: 0
   infectByPlace: 1
   enableFuzzyLogic: 1
