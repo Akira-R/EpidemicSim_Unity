@@ -284,6 +284,11 @@ MonoBehaviour:
     fatalitiesRate: 0
     recoveryRate: 0
     totalSimulationTime: 0
+  mainUI:
+  - {fileID: 1743167487}
+  - {fileID: 1743167486}
+  - {fileID: 1645630015}
+  - {fileID: 1327838700}
 --- !u!21 &274655741
 Material:
   serializedVersion: 8
@@ -1168,8 +1173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 0}
   _childTransform: {fileID: 0}
-  movementspeed: 1
-  rotationSpeed: 1
+  movementspeed: 0.2
+  rotationSpeed: 0.2
 --- !u!1 &1317601381 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
@@ -1359,6 +1364,7 @@ MonoBehaviour:
   _speedControlButtonText: {fileID: 989365394}
   _speedIncrements: 010000000200000003000000
   _speedIncrementsIdx: 0
+  chart: {fileID: 0}
 --- !u!1 &1520688898 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}

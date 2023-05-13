@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SceneManager : MonoBehaviour
 {
     private PlayerControls playerControls;
+    private InputAction mainUIcontrols;
     private InputAction applicationQuit;
     private InputAction profilerUI;
 
@@ -16,6 +17,9 @@ public class SceneManager : MonoBehaviour
 
     public VariableObject variableObject;
     public VariableData variableData;
+
+    [Header("MainUI")]
+    public UITransformTween[] mainUI;
 
     private void Awake()
     {
@@ -29,10 +33,12 @@ public class SceneManager : MonoBehaviour
     {
         applicationQuit = playerControls.System.Quit;
         profilerUI = playerControls.System.Profiler;
+        playerControls.MainUI.Enable();
         playerControls.System.Enable();
     }
     private void OnDisable()
     {
+        playerControls.MainUI.Disable();
         playerControls.System.Disable();
     }
 
@@ -50,6 +56,23 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerControls.MainUI.ParameterUI.performed += context =>
+        {
+            mainUI[0].ButtonToggleEase();
+        };
+        playerControls.MainUI.PlaceUI.performed += context =>
+        {
+            mainUI[1].ButtonToggleEase();
+        };
+        playerControls.MainUI.FIlterUI.performed += context =>
+        {
+            mainUI[2].ButtonToggleEase();
+        };
+        playerControls.MainUI.GraphUI.performed += context =>
+        {
+            mainUI[3].ButtonToggleEase();
+        };
+
         profilerUI.performed += context =>
         {
             _showProfilerUI = !_showProfilerUI;
