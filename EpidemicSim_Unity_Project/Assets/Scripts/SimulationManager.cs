@@ -62,7 +62,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
 
             EntityManager.Instance.TestEntitySetup();
             GetMapVisualMat();
-            EntityManager.Instance.TestNextPath();
+            EntityManager.Instance.UnitFirstPath();
 
             _simState = SimState.Play;
         }

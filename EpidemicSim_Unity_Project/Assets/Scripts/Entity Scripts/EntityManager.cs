@@ -167,10 +167,12 @@ public class EntityManager : MonoSingleton<EntityManager>
     //}
 
     [Button]
-    public void TestNextPath()
+    public void UnitFirstPath()
     {
         foreach (UnitEntity unit in _units)
-            unit.UpdateNextPath();
+            unit.UpdateFirstPath();
+
+        StartCoroutine(WaitTo_AllUnitFindPath());
     }
 
     [Button]
@@ -271,6 +273,30 @@ public class EntityManager : MonoSingleton<EntityManager>
 
         Debug.Log("AVG: " + avg / unitProtections.Count);
 
+    }
+
+    IEnumerator WaitTo_AllUnitFindPath()
+    {
+        bool pass = false;
+        while (!pass)
+        {
+            bool pending = false;
+            yield return new WaitForSecondsRealtime(1.0f);
+
+            foreach (var unit in _units)
+            {
+                // still pending -> wait / check again
+                if (unit.FirstPathPending) pending = true; break;
+            }
+
+            Debug.Log("PathPending: " + pending);
+            if (!pending) pass = true;
+        }
+
+        foreach (var unit in _units)
+            unit.StartNavMeshMoving();
+
+        yield return null;
     }
 
     // called by event-based trigger

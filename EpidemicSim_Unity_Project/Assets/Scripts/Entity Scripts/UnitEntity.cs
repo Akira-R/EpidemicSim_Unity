@@ -55,6 +55,10 @@ public class UnitEntity : MonoBehaviour
 
     private IEnumerator _infectCoroutine;
 
+    NavMeshPath _firstPath;
+    private bool _firstPathPending = true;
+    public bool FirstPathPending => _firstPathPending;
+
     public void GenerateUnitPath(int pathLength, int placeCount, Transform spawnPoint) 
     {
         _unitPath.Clear();
@@ -103,6 +107,20 @@ public class UnitEntity : MonoBehaviour
         }
     }
 
+    public void UpdateFirstPath()
+    {
+        _pathCounter = (_pathCounter + 1) % _unitPath.Count;
+        _moveToPlace = EntityManager.Instance.Places[_unitPath[_pathCounter]];
+        _movementState = MoveState.Travel;
+        _renderer.enabled = true;
+
+        _firstPath = new NavMeshPath();
+        _navMeshAgent.CalculatePath(_moveToPlace.transform.position, _firstPath);
+
+        StartCoroutine(WaitTo_FindPath());
+
+    }
+
     public void SetInfectState(int stateIndex)
     {
         _infectionState = (InfState)stateIndex;
@@ -128,6 +146,7 @@ public class UnitEntity : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "PlaceObject") return;
@@ -177,6 +196,23 @@ public class UnitEntity : MonoBehaviour
             yield return new WaitForSeconds(delayTime);
             Infect();
         }
+    }
+
+    IEnumerator WaitTo_FindPath()
+    {
+        while (_firstPathPending)
+        {
+            yield return null;
+            if (!_navMeshAgent.pathPending)
+                _firstPathPending = false;
+        }
+    }
+
+    public void  StartNavMeshMoving()
+    {
+        //_navMeshAgent.isStopped = false;
+        //_navMeshAgent.destination = _moveToPlace.transform.position;
+        _navMeshAgent.SetPath(_firstPath);
     }
 
     private void Infect()
