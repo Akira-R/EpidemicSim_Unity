@@ -54,7 +54,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     [SerializeField] private int _recoveredCount = 0;
 
     [Header("Basic Reproductive Number")]
-    [SerializeField] private int previousInfectiousCount = 0;
+    [SerializeField] public int previousInfectiousCount = 1;
     [SerializeField] private float rNaught = 0f;
 
     private DistributionRandom _distributionRandom = new DistributionRandom();
@@ -207,23 +207,19 @@ public class EntityManager : MonoSingleton<EntityManager>
         infCount = _infectiousCount;    
         recCount = _recoveredCount;
     }
-    public void CalculateBasicReproductiveNumber(int infCount, out float r0) 
+    public void CalculateReproductiveNumber(int suscount, int infCount, out float R0, out float R, out float HIT) 
     {
         Debug.Log("InfectiousCount: " + infCount);
         Debug.Log("previousInfectiousCount: " + previousInfectiousCount);
-
-        if (previousInfectiousCount <= 0) 
-        {
-            previousInfectiousCount = infCount;
-            r0 = 0f;
-            return;
-        }
-
+        
         rNaught = ((float)infCount / (float)previousInfectiousCount);
-        Debug.Log("R0: " + rNaught);
+        //Debug.Log("R0: " + rNaught);
 
         previousInfectiousCount = infCount;
-        r0 = rNaught;
+        
+        R0 = rNaught;
+        R = R0 * (float)(suscount / 1000f);
+        HIT = 1f - (float)(1f / R0);
     }
 
     [Button]

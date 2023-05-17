@@ -10,7 +10,11 @@ public class ChartValueInit : MonoBehaviour
     int idx = 30;
 
     private int susCount = 0, infCount = 0, recCount = 0;
-    private float rNaught = 0;
+
+    [Header("SIR Related")]
+    [SerializeField] private float basicReproductiveNumber = 0f;
+    [SerializeField] private float effectiveReproductiveNumber = 0f;
+    [SerializeField] private float heardImmunitythreshold = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -56,9 +60,13 @@ public class ChartValueInit : MonoBehaviour
         graph.DataSource.AddPointToCategory("Susceptible", dayCount, susCount);
         graph.DataSource.AddPointToCategory("Infectious", dayCount, infCount);
         graph.DataSource.AddPointToCategory("Recovered", dayCount, recCount);
-        graph.DataSource.AddPointToCategory("Predicted Infected", dayCount++, infCount * rNaught);
         graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
 
-        EntityManager.Instance.CalculateBasicReproductiveNumber(infCount, out rNaught);
+        if (dayCount % 4 == 0 && susCount > 0) 
+            EntityManager.Instance.CalculateReproductiveNumber(susCount, infCount, out basicReproductiveNumber, out effectiveReproductiveNumber, out heardImmunitythreshold);
+
+        Debug.Log("R0: " + basicReproductiveNumber);
+        Debug.Log("R: " + effectiveReproductiveNumber);
+        Debug.Log("HIT: " + heardImmunitythreshold);
     }
 }
