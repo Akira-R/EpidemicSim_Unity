@@ -23,13 +23,38 @@ public class EntityManager : MonoSingleton<EntityManager>
     public List<UnitEntity> Units { get { return _units; } }
     public List<PlaceEntity> Places { get { return _places; } }
 
-    [Header("Test Value")]
+    public class TwoKeyDictionary<K1, K2, T> : Dictionary<K1, Dictionary<K2, T>> 
+    {
+        public void Add(K1 key1, K2 key2, T value)
+        {
+            if (!ContainsKey(key1))
+            {
+                this[key1] = new Dictionary<K2, T>();
+            }
+            this[key1][key2] = value;
+        }
+
+        public T Get(K1 key1, K2 key2)
+        {
+            if (ContainsKey(key1) && this[key1].ContainsKey(key2))
+            {
+                return this[key1][key2];
+            }
+            return default(T);
+        }
+    }
+
+    [SerializeField]
+    private TwoKeyDictionary<int, int, NavMeshPath> _placePaths = new TwoKeyDictionary<int, int, NavMeshPath>();
+    public TwoKeyDictionary<int, int, NavMeshPath> PlacePaths { get { return _placePaths; } }
+
+    //[Header("Test Value")]
     //[SerializeField]
     //private int _unitCount = 0;
     //[SerializeField]
     //private int _placeCount = 0;
-    [SerializeField]
-    private List<GameObject> _placeObjs;
+    //[SerializeField]
+    //private List<GameObject> _placeObjs;
 
     [Header("Unit Properties")]
     [SerializeField]
@@ -65,9 +90,9 @@ public class EntityManager : MonoSingleton<EntityManager>
     [Button]
     public void TestEntitySetup()
     {
-        // places
-        foreach (GameObject placeObj in _placeObjs) 
-            _places.Add(placeObj.GetComponent<PlaceEntity>());
+        //// places
+        //foreach (GameObject placeObj in _placeObjs) 
+        //    _places.Add(placeObj.GetComponent<PlaceEntity>());
 
         // Find All Spawn point
         List<Transform> spawnPoints = new List<Transform>();
@@ -104,8 +129,8 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     public void PlaceEntitySetup() 
     {
-        foreach (GameObject placeObj in _placeObjs)
-            _places.Add(placeObj.GetComponent<PlaceEntity>());
+        //foreach (GameObject placeObj in _placeObjs)
+        //    _places.Add(placeObj.GetComponent<PlaceEntity>());
 
         // Find All Spawn point
         List<Transform> spawnPoints = new List<Transform>();
@@ -122,7 +147,6 @@ public class EntityManager : MonoSingleton<EntityManager>
                 }
             }
         }
-        
 
         for (int i = 0; i < VariableManager.Instance.variables.PopulationNumber; i++)
             _units[i].GenerateUnitPath(_pathLength, _places.Count, spawnPoints[i % spawnPoints.Count]);
@@ -170,19 +194,18 @@ public class EntityManager : MonoSingleton<EntityManager>
     public void UnitFirstPath()
     {
         foreach (UnitEntity unit in _units)
-            unit.UpdateNextPath();
+            unit.UpdateFirstPath();
 
         //StartCoroutine(WaitTo_AllUnitFindPath());
     }
 
     [Button]
-    public void ClearEntity()
+    public void ClearUnitEntity()
     {
         foreach (UnitEntity unit in _units)
             unit.gameObject.Destroy();
         
         _units.Clear();
-        _places.Clear();
     }
 
 
@@ -199,14 +222,14 @@ public class EntityManager : MonoSingleton<EntityManager>
     public void AddPlaceRequest() 
     {
         GameObject placeObj = Instantiate(_placePrefab, transform);
-        _placeObjs.Add(placeObj);
+        _places.Add(placeObj.GetComponent<PlaceEntity>());
 
         ResetPlaceRef();
     }
 
     public void RemovePlaceRequest(GameObject placeObj)
     {
-        _placeObjs.Remove(placeObj);
+        _places.Remove(placeObj.GetComponent<PlaceEntity>());
         placeObj.Destroy();
 
         ResetPlaceRef();   
@@ -275,29 +298,29 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     }
 
-    IEnumerator WaitTo_AllUnitFindPath()
-    {
-        bool pass = false;
-        while (!pass)
-        {
-            bool pending = false;
-            yield return new WaitForSecondsRealtime(1.0f);
+    //IEnumerator WaitTo_AllUnitFindPath()
+    //{
+    //    bool pass = false;
+    //    while (!pass)
+    //    {
+    //        bool pending = false;
+    //        yield return new WaitForSecondsRealtime(1.0f);
 
-            foreach (var unit in _units)
-            {
-                // still pending -> wait / check again
-                if (unit.FirstPathPending) pending = true; break;
-            }
+    //        foreach (var unit in _units)
+    //        {
+    //            // still pending -> wait / check again
+    //            if (unit.FirstPathPending) pending = true; break;
+    //        }
 
-            Debug.Log("PathPending: " + pending);
-            if (!pending) pass = true;
-        }
+    //        Debug.Log("PathPending: " + pending);
+    //        if (!pending) pass = true;
+    //    }
 
-        foreach (var unit in _units)
-            unit.StartNavMeshMoving();
+    //    foreach (var unit in _units)
+    //        unit.StartNavMeshMoving();
 
-        yield return null;
-    }
+    //    yield return null;
+    //}
 
     // called by event-based trigger
     //private void InfCalculate(IEvent e)
@@ -310,4 +333,38 @@ public class EntityManager : MonoSingleton<EntityManager>
     //    if (Random.value >= 0.5f)
     //        _units[data.id].InfectionState = UnitEntity.InfState.Infectious;
     //}
+
+    
+
+    public void CalculateAllPlacePaths()
+    {
+        _placePaths.Clear();
+
+        for (int from = 0; from < _places.Count; from++)
+        {
+            for (int to = 0; to < _places.Count; to++)
+            {
+                if (from == to) continue;
+
+                NavMeshPath newPath = new NavMeshPath();
+                NavMesh.CalculatePath(_places[from].transform.position, _places[to].transform.position, NavMesh.GetAreaFromName("Nav_Walkable"), newPath);
+                _placePaths.Add(from, to, newPath);
+            }
+        }
+    }
+
+    [Header("Nav Path Check")]
+    [SerializeField] int _testFrom = 0;
+    [SerializeField] int _testTo = 1;
+
+    [Button]
+    public void CheckPathData()
+    {
+        //UnitEntity unit = Instantiate(_unitPrefab,_places[_testFrom].transform.position,_places[_testFrom].transform.rotation).GetComponent<UnitEntity>();
+        //unit._navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+        //unit._navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        //unit._navMeshAgent.speed = 2.5f; // hard code
+
+        //unit._navMeshAgent.SetPath(_placePaths.Get(_testFrom, _testTo));
+    }
 }

@@ -24,32 +24,51 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     private NavMeshSurface _navSurface;
     private GameObject _mapObj;
 
-    private bool _navBakeAllow = false;
-    private bool _newNavMeshRequired = true;
-
     private SimState _simState = SimState.Idle;
 
     private void OnEnable()
     {
-        _abstractMap.OnInitialized += MapInitialization;
+        //_abstractMap.OnInitialized += MapInitialization;
         EventManager.Instance.AddListener<EntityManager.OnPlaceModified>(OnPlaceModified);
+
+        _abstractMap.MapVisualizer.OnMapVisualizerStateChanged += (s) =>
+        {
+            if (s == ModuleState.Finished)
+            {
+                MapInitialization();
+            }
+        };
     }
 
     private void OnDisable()
     {
-        _abstractMap.OnInitialized -= MapInitialization;
+        //_abstractMap.OnInitialized -= MapInitialization;
         EventManager.Instance.RemoveListener<EntityManager.OnPlaceModified>(OnPlaceModified);
+
+        _abstractMap.MapVisualizer.OnMapVisualizerStateChanged -= (s) =>
+        {
+            if (s == ModuleState.Finished)
+            {
+                MapInitialization();
+            }
+        };
     }
 
     void Start()
     {
-        _mapObj = _abstractMap.gameObject;
-        _navSurface = _mapObj.GetComponent<NavMeshSurface>();
+        //_mapObj = _abstractMap.gameObject;
+        //_navSurface = _mapObj.GetComponent<NavMeshSurface>();
     }
 
     private void MapInitialization()
     {
-        _navBakeAllow = true;
+        _mapObj = _abstractMap.gameObject;
+        _navSurface = _mapObj.GetComponent<NavMeshSurface>();
+
+        NavBake();
+        GetMapVisualMat();
+
+        EntityManager.Instance.CalculateAllPlacePaths();
     }
 
     [Button]
@@ -57,11 +76,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     {
         if (_simState == SimState.Idle)
         {
-            if (_newNavMeshRequired)
-                if (!NavBake()) return;
-
             EntityManager.Instance.TestEntitySetup();
-            GetMapVisualMat();
             EntityManager.Instance.UnitFirstPath();
 
             _simState = SimState.Play;
@@ -78,13 +93,11 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     public void ResetSimulation()
     {
         _simState = SimState.Idle;  
-        EntityManager.Instance.ClearEntity();
+        EntityManager.Instance.ClearUnitEntity();
     }
 
     private bool NavBake()
     {
-        //if (!_navBakeAllow) return false;
-
         for (int i = 1; i < _mapObj.transform.childCount; i++)
         {
             foreach (Transform component in _mapObj.transform.GetChild(i))
@@ -95,7 +108,6 @@ public class SimulationManager : MonoSingleton<SimulationManager>
             }
         }
         _navSurface.BuildNavMesh();
-        _newNavMeshRequired = false;
         return true;
     }
 

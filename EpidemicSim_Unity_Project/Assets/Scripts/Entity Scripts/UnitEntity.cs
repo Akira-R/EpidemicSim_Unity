@@ -55,9 +55,10 @@ public class UnitEntity : MonoBehaviour
 
     private IEnumerator _infectCoroutine;
 
-    NavMeshPath _firstPath;
+    //NavMeshPath _firstPath;
     private bool _firstPathPending = true;
     public bool FirstPathPending => _firstPathPending;
+
 
     public void GenerateUnitPath(int pathLength, int placeCount, Transform spawnPoint) 
     {
@@ -94,12 +95,14 @@ public class UnitEntity : MonoBehaviour
 
     public void UpdateNextPath() 
     {
+        int fromPath = _unitPath[_pathCounter];
         _pathCounter = (_pathCounter + 1) % _unitPath.Count;
+        int toPath = _unitPath[_pathCounter];
         _moveToPlace = EntityManager.Instance.Places[_unitPath[_pathCounter]];
         _movementState = MoveState.Travel;
         _renderer.enabled = true;
 
-        _navMeshAgent.destination = _moveToPlace.transform.position;
+        _navMeshAgent.SetPath(EntityManager.Instance.PlacePaths.Get(fromPath, toPath));
 
         if (_infectCoroutine != null)
         {
@@ -109,15 +112,20 @@ public class UnitEntity : MonoBehaviour
 
     public void UpdateFirstPath()
     {
-        _pathCounter = (_pathCounter + 1) % _unitPath.Count;
-        _moveToPlace = EntityManager.Instance.Places[_unitPath[_pathCounter]];
+        //_pathCounter = (_pathCounter + 1) % _unitPath.Count;
+
+        _pathCounter = 0;
+        EntityManager entityManager = EntityManager.Instance;
+        _moveToPlace = entityManager.Places[_unitPath[_pathCounter]];
         _movementState = MoveState.Travel;
         _renderer.enabled = true;
 
-        _firstPath = new NavMeshPath();
-        _navMeshAgent.CalculatePath(_moveToPlace.transform.position, _firstPath);
+        _navMeshAgent.destination = _moveToPlace.transform.position;
 
-        StartCoroutine(WaitTo_FindPath());
+        //_firstPath = new NavMeshPath();
+        //_navMeshAgent.CalculatePath(_moveToPlace.transform.position, _firstPath);
+
+        //StartCoroutine(WaitTo_FindPath());
 
     }
 
@@ -195,6 +203,9 @@ public class UnitEntity : MonoBehaviour
         {
             yield return new WaitForSeconds(delayTime);
             Infect();
+
+            if (_infectionState != InfState.Susceptible)
+                break;
         }
     }
 
@@ -208,12 +219,12 @@ public class UnitEntity : MonoBehaviour
         }
     }
 
-    public void  StartNavMeshMoving()
-    {
-        //_navMeshAgent.isStopped = false;
-        //_navMeshAgent.destination = _moveToPlace.transform.position;
-        _navMeshAgent.SetPath(_firstPath);
-    }
+    //public void  StartNavMeshMoving()
+    //{
+    //    //_navMeshAgent.isStopped = false;
+    //    //_navMeshAgent.destination = _moveToPlace.transform.position;
+    //    _navMeshAgent.SetPath(_firstPath);
+    //}
 
     private void Infect()
     {
