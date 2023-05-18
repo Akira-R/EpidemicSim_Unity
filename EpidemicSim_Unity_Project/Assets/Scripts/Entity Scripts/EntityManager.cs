@@ -170,9 +170,9 @@ public class EntityManager : MonoSingleton<EntityManager>
     public void UnitFirstPath()
     {
         foreach (UnitEntity unit in _units)
-            unit.UpdateFirstPath();
+            unit.UpdateNextPath();
 
-        StartCoroutine(WaitTo_AllUnitFindPath());
+        //StartCoroutine(WaitTo_AllUnitFindPath());
     }
 
     [Button]
