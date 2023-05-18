@@ -102,7 +102,12 @@ public class UnitEntity : MonoBehaviour
         _movementState = MoveState.Travel;
         _renderer.enabled = true;
 
-        _navMeshAgent.SetPath(EntityManager.Instance.PlacePaths.Get(fromPath, toPath));
+        NavMeshPath nextPath = EntityManager.Instance.PlacePaths.Get(fromPath, toPath);
+        Debug.Log("From Path: " + fromPath + " Status: " + nextPath.status);
+        if (nextPath.status == NavMeshPathStatus.PathComplete)
+            _navMeshAgent.SetPath(EntityManager.Instance.PlacePaths.Get(fromPath, toPath));
+        else
+            _navMeshAgent.destination = _moveToPlace.transform.position;
 
         if (_infectCoroutine != null)
         {

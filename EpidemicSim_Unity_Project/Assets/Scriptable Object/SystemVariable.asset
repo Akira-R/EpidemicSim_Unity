@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SystemVariable
   m_EditorClassIdentifier: 
   latlngCoord: {x: 0, y: 0}
-  populationNumber: 1000
+  populationNumber: 2000
   populationProtection: 50
   transmissionRate: 10
   fatalitiesRate: 50
