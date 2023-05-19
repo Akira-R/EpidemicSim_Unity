@@ -12,6 +12,7 @@ public class ChartValueInit : MonoBehaviour
     private int susCount = 0, infCount = 0, recCount = 0;
 
     [Header("SIR Related")]
+    [SerializeField] private int previousInfectiousCount = 1;
     [SerializeField] private float basicReproductiveNumber = 0f;
     [SerializeField] private float effectiveReproductiveNumber = 0f;
     [SerializeField] private float heardImmunitythreshold = 0f;
@@ -25,8 +26,8 @@ public class ChartValueInit : MonoBehaviour
             //Debug.Log("Graph is not NULL");
             graph.DataSource.StartBatch();  // start a new update batch
             graph.DataSource.ClearCategory("Susceptible");  // clear the categories we have created in the inspector
-            graph.DataSource.ClearCategory("Infectious");
             graph.DataSource.ClearCategory("Recovered");
+            graph.DataSource.ClearCategory("Infectious");
             graph.DataSource.ClearCategory("Predicted Infected");
             graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
         }
@@ -57,16 +58,33 @@ public class ChartValueInit : MonoBehaviour
     {
         EntityManager.Instance.GetUnitsStateCount(out susCount, out infCount, out recCount);
         graph.DataSource.StartBatch();  // start a new update batch
-        graph.DataSource.AddPointToCategory("Susceptible", dayCount, susCount);
+        graph.DataSource.AddPointToCategory("Susceptible", dayCount, 1000);
+        graph.DataSource.AddPointToCategory("Recovered", dayCount, recCount + infCount);
         graph.DataSource.AddPointToCategory("Infectious", dayCount, infCount);
-        graph.DataSource.AddPointToCategory("Recovered", dayCount, recCount);
         graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
 
         if (dayCount % 4 == 0 && susCount > 0) 
-            EntityManager.Instance.CalculateReproductiveNumber(susCount, infCount, out basicReproductiveNumber, out effectiveReproductiveNumber, out heardImmunitythreshold);
+        {
+            CalculateReproductiveNumber(susCount, infCount, out basicReproductiveNumber, out effectiveReproductiveNumber, out heardImmunitythreshold);
+        }
 
         Debug.Log("R0: " + basicReproductiveNumber);
         Debug.Log("R: " + effectiveReproductiveNumber);
         Debug.Log("HIT: " + heardImmunitythreshold);
+    }
+
+    public void CalculateReproductiveNumber(int suscount, int infCount, out float R0, out float R, out float HIT)
+    {
+        Debug.Log("InfectiousCount: " + infCount);
+        Debug.Log("previousInfectiousCount: " + previousInfectiousCount);
+
+        float rNaught = ((float)infCount / (float)previousInfectiousCount);
+        //Debug.Log("R0: " + rNaught);
+
+        previousInfectiousCount = infCount;
+
+        R0 = rNaught;
+        R = R0 * (float)(suscount / 1000f);
+        HIT = 1f - (float)(1f / R0);
     }
 }

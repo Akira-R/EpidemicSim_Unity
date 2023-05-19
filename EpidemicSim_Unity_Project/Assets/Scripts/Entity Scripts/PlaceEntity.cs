@@ -56,7 +56,7 @@ public class PlaceEntity : MonoBehaviour
 
         foreach (UnitEntity unit in _placeContainer)
         {
-            if (unit.InfectionState == UnitEntity.InfState.Infectious) continue;
+            if (unit.InfectionState != UnitEntity.InfState.Susceptible) continue;
             int result;
             
             if (EntityManager.Instance.enableFuzzyLogic)

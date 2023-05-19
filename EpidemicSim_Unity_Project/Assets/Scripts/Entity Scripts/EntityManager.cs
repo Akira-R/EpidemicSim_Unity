@@ -207,20 +207,6 @@ public class EntityManager : MonoSingleton<EntityManager>
         infCount = _infectiousCount;    
         recCount = _recoveredCount;
     }
-    public void CalculateReproductiveNumber(int suscount, int infCount, out float R0, out float R, out float HIT) 
-    {
-        Debug.Log("InfectiousCount: " + infCount);
-        Debug.Log("previousInfectiousCount: " + previousInfectiousCount);
-        
-        rNaught = ((float)infCount / (float)previousInfectiousCount);
-        //Debug.Log("R0: " + rNaught);
-
-        previousInfectiousCount = infCount;
-        
-        R0 = rNaught;
-        R = R0 * (float)(suscount / 1000f);
-        HIT = 1f - (float)(1f / R0);
-    }
 
     [Button]
     private void TestDistributionRandom()

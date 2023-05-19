@@ -4234,33 +4234,13 @@ MonoBehaviour:
       LineTiling:
         EnableTiling: 0
         TileFactor: 0.01
-      InnerFill: {fileID: 2100000, guid: 17b534b72a7f8fc44ab9f285219f0f5a, type: 2}
+      InnerFill: {fileID: 2100000, guid: ef6c956ca085647fba4624a08c344419, type: 2}
       LineThickness: 5
       StetchFill: 0
       DotPrefab: {fileID: 0}
       PointMaterial: {fileID: 0}
       PointSize: 0
       ViewOrder: 0
-      AllowNonFunctionsBeta: 0
-    - Name: Infectious
-      InitialData: []
-      IsBezierCurve: 0
-      SegmentsPerCurve: 1
-      Depth: 0
-      LineHoverPrefab: {fileID: 0}
-      PointHoverPrefab: {fileID: 0}
-      MaskPoints: 0
-      Material: {fileID: 2100000, guid: e503e8f2f81fc674f924d5e9ee6602e1, type: 2}
-      LineTiling:
-        EnableTiling: 0
-        TileFactor: 0.01
-      InnerFill: {fileID: 2100000, guid: d2de0366df3613d4593a6083f8fd1e77, type: 2}
-      LineThickness: 5
-      StetchFill: 0
-      DotPrefab: {fileID: 0}
-      PointMaterial: {fileID: 0}
-      PointSize: 0
-      ViewOrder: 1
       AllowNonFunctionsBeta: 0
     - Name: Recovered
       InitialData: []
@@ -4274,7 +4254,27 @@ MonoBehaviour:
       LineTiling:
         EnableTiling: 0
         TileFactor: 0.01
-      InnerFill: {fileID: 2100000, guid: 09866d623c8e90140a9c5ac934ccb3bc, type: 2}
+      InnerFill: {fileID: 2100000, guid: 1a6185b0a5845ed44ae78c6570343ed9, type: 2}
+      LineThickness: 5
+      StetchFill: 0
+      DotPrefab: {fileID: 0}
+      PointMaterial: {fileID: 0}
+      PointSize: 0
+      ViewOrder: 1
+      AllowNonFunctionsBeta: 0
+    - Name: Infectious
+      InitialData: []
+      IsBezierCurve: 0
+      SegmentsPerCurve: 1
+      Depth: 0
+      LineHoverPrefab: {fileID: 0}
+      PointHoverPrefab: {fileID: 0}
+      MaskPoints: 0
+      Material: {fileID: 2100000, guid: e503e8f2f81fc674f924d5e9ee6602e1, type: 2}
+      LineTiling:
+        EnableTiling: 0
+        TileFactor: 0.01
+      InnerFill: {fileID: 2100000, guid: 5031682d66fa23544b84d6b6d507b2a4, type: 2}
       LineThickness: 5
       StetchFill: 0
       DotPrefab: {fileID: 0}
@@ -4483,6 +4483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a6242a23e5ddc4792ce982611af6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicReproductiveNumber: 0
+  effectiveReproductiveNumber: 0
+  heardImmunitythreshold: 0
 --- !u!1 &5633820669549461893
 GameObject:
   m_ObjectHideFlags: 0

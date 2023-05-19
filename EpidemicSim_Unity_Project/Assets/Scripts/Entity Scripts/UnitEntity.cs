@@ -136,7 +136,7 @@ public class UnitEntity : MonoBehaviour
             _moveToPlace.UnitArrive(this);
             _exposureTime = 0;
 
-            if (EntityManager.Instance.infectByPlace) { return; }
+            if (EntityManager.Instance.infectByPlace && _infectionState == InfState.Susceptible) { return; }
             _infectCoroutine = InfectCoroutine(1.0f / VariableManager.Instance.variables.TransmissionRate);
             StartCoroutine(_infectCoroutine);
         }
@@ -172,6 +172,9 @@ public class UnitEntity : MonoBehaviour
         {
             yield return new WaitForSeconds(delayTime);
             Infect();
+
+            if (_infectionState != InfState.Susceptible)
+                break;
         }
     }
 
