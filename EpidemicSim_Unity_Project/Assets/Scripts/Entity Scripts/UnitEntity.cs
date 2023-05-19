@@ -105,7 +105,7 @@ public class UnitEntity : MonoBehaviour
         NavMeshPath nextPath = EntityManager.Instance.PlacePaths.Get(fromPath, toPath);
         Debug.Log("From Path: " + fromPath + " Status: " + nextPath.status);
         if (nextPath.status == NavMeshPathStatus.PathComplete)
-            _navMeshAgent.SetPath(EntityManager.Instance.PlacePaths.Get(fromPath, toPath));
+            _navMeshAgent.SetPath(nextPath);
         else
             _navMeshAgent.destination = _moveToPlace.transform.position;
 
