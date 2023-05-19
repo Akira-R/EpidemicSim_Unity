@@ -15,7 +15,11 @@ public class UITransformTween : MonoBehaviour
     public Vector3 targetPos;
     [SerializeField] private bool toggle = false;
 
+    private LTDescr EaseTween;
     private LTDescr rotTween;
+    private Coroutine timeKeeper;
+
+    //private bool isTweenComplete = false;
 
     [SerializeField] private GameObject[] panels;
 
@@ -27,18 +31,12 @@ public class UITransformTween : MonoBehaviour
 
     private void Update()
     {
-
+        //Debug.Log("Tween: " + LeanTween.isTweening());
     }
 
     public void ButtonToggleEase() 
     {
         Debug.Log(toggle);
-
-        //foreach (GameObject panel in panels)
-        //{
-        //    if (panel.GetComponent<UITransformTween>().GetToggleStatus() && panel.gameObject != gameObject)
-        //        panel.GetComponent<UITransformTween>().OnUIEaseOut();
-        //}
 
         AudioManager.instance.Play(AudioManager.instance.uiAudioList.sfx_uiClicked);
 
@@ -53,7 +51,7 @@ public class UITransformTween : MonoBehaviour
 
         foreach (GameObject panel in panels)
         {
-            if (panel.GetComponent<UITransformTween>().GetToggleStatus() && panel.gameObject != gameObject)
+            if (panel.gameObject != gameObject)
                 panel.GetComponent<UITransformTween>().OnUIEaseOut();
         }
     }
@@ -62,43 +60,57 @@ public class UITransformTween : MonoBehaviour
     {
         //if (toggle == true)
         //    return;
+        //isTweenComplete = false;
+        //Debug.Log("Ease IN");
 
         if (toggle == false)
             toggle = true;
 
-        LeanTween.moveLocal(gameobjectToTween, targetPos, animationDuration)
-                .setDelay(delay)
+        /*EaseTween = */LeanTween.moveLocal(gameobjectToTween, targetPos, animationDuration)
                 .setEase(tweenType)
-                .setIgnoreTimeScale(true);
+                .setIgnoreTimeScale(true)
+                .setOnStart(() =>
+                {
+                    if (timeKeeper != null)
+                        StopCoroutine(timeKeeper);
+
+                    timeKeeper = StartCoroutine(keepTime(targetPos));
+                })
+                .setOnComplete(() => { /*Debug.Log("Ease IN ------ DONE " + gameObject.name); isTweenComplete = true;*/ });   
     }
     public void OnUIEaseOut()
     {
         //if (toggle == false)
         //    return;
+        //isTweenComplete = false;
+        Debug.Log("Ease OUT");
 
         if (toggle == true)
             toggle = false;
 
-        LeanTween.moveLocal(gameobjectToTween, originalPos, animationDuration)
-                .setDelay(delay)
+        /*EaseTween = */LeanTween.moveLocal(gameobjectToTween, originalPos, animationDuration)
                 .setEase(tweenType)
-                .setIgnoreTimeScale(true);
-    }
+                .setIgnoreTimeScale(true)
+                .setOnStart(() => 
+                {
+                    if (timeKeeper != null)
+                        StopCoroutine(timeKeeper);
 
-    public void OnPointerEnter() 
-    {
-        rotTween = LeanTween.rotate(this.gameObject, new Vector3(0, 0, 180), animationDuration)
-                            .setDelay(delay)
-                            .setEase(tweenType)
-                            .setIgnoreTimeScale(true);
-    }
-    public void OnPointerExit()
-    {
-        LeanTween.cancel(this.gameObject);
+                    timeKeeper = StartCoroutine(keepTime(originalPos));
+                })
+                .setOnComplete(() => { /*Debug.Log("Ease OUT ------ DONE " + gameObject.name); isTweenComplete = true;*/ });
     }
 
     public bool GetToggleStatus() 
     {
         return toggle;
+    }
+
+    private IEnumerator keepTime(Vector3 setPos) 
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        //isTweenComplete = true;
+
+        gameobjectToTween.transform.localPosition = setPos;
     }
 }

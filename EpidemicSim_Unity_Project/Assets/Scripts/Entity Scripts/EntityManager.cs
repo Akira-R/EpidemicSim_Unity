@@ -78,6 +78,10 @@ public class EntityManager : MonoSingleton<EntityManager>
     [SerializeField] private int _infectiousCount = 0;
     [SerializeField] private int _recoveredCount = 0;
 
+    [Header("Basic Reproductive Number")]
+    [SerializeField] public int previousInfectiousCount = 1;
+    [SerializeField] private float rNaught = 0f;
+
     private DistributionRandom _distributionRandom = new DistributionRandom();
 
     [SerializeField]
