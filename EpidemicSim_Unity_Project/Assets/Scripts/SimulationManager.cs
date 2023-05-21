@@ -67,8 +67,6 @@ public class SimulationManager : MonoSingleton<SimulationManager>
 
         NavBake();
         GetMapVisualMat();
-
-        EntityManager.Instance.CalculateAllPlacePaths();
     }
 
     [Button]
@@ -76,6 +74,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     {
         if (_simState == SimState.Idle)
         {
+            EntityManager.Instance.CalculateAllPlacePaths();
             EntityManager.Instance.TestEntitySetup();
             EntityManager.Instance.UnitFirstPath();
 

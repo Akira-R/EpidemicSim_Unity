@@ -56,8 +56,8 @@ public class UnitEntity : MonoBehaviour
     private IEnumerator _infectCoroutine;
 
     //NavMeshPath _firstPath;
-    private bool _firstPathPending = true;
-    public bool FirstPathPending => _firstPathPending;
+    //private bool _firstPathPending = true;
+    //public bool FirstPathPending => _firstPathPending;
 
 
     public void GenerateUnitPath(int pathLength, int placeCount, Transform spawnPoint) 
@@ -103,7 +103,7 @@ public class UnitEntity : MonoBehaviour
         _renderer.enabled = true;
 
         NavMeshPath nextPath = EntityManager.Instance.PlacePaths.Get(fromPath, toPath);
-        Debug.Log("From Path: " + fromPath + " Status: " + nextPath.status);
+        //Debug.Log("From Path: " + fromPath + " Status: " + nextPath.status);
         if (nextPath.status == NavMeshPathStatus.PathComplete)
             _navMeshAgent.SetPath(nextPath);
         else
@@ -146,9 +146,24 @@ public class UnitEntity : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*if (_movementState == MoveState.Travel)
-            _navMeshAgent.destination = _moveToPlace.transform.position;
-        else */if (_movementState == MoveState.Stay)
+        if (_movementState == MoveState.Travel && !_navMeshAgent.pathPending)
+        {
+            if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+            {
+                if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    _movementState = MoveState.Stay;
+                    _renderer.enabled = false;
+                    _moveToPlace.UnitArrive(this);
+                    _exposureTime = 0;
+
+                    if (EntityManager.Instance.infectByPlace && _infectionState == InfState.Susceptible) { return; }
+                    _infectCoroutine = InfectCoroutine(1.0f/* / VariableManager.Instance.variables.TransmissionRate*/);
+                    StartCoroutine(_infectCoroutine);
+                }
+            }
+        }
+        else if (_movementState == MoveState.Stay)
         {
             _stayCounter += Time.deltaTime;
             if (_stayCounter >= _stayDelay)
@@ -160,22 +175,22 @@ public class UnitEntity : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag != "PlaceObject") return;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag != "PlaceObject") return;
 
-        if (ReferenceEquals(other.transform, _moveToPlace.transform))
-        {
-            _movementState = MoveState.Stay;
-            _renderer.enabled = false;
-            _moveToPlace.UnitArrive(this);
-            _exposureTime = 0;
+    //    if (ReferenceEquals(other.transform, _moveToPlace.transform))
+    //    {
+    //        _movementState = MoveState.Stay;
+    //        _renderer.enabled = false;
+    //        _moveToPlace.UnitArrive(this);
+    //        _exposureTime = 0;
 
-            if (EntityManager.Instance.infectByPlace && _infectionState == InfState.Susceptible) { return; }
-            _infectCoroutine = InfectCoroutine(1.0f / VariableManager.Instance.variables.TransmissionRate);
-            StartCoroutine(_infectCoroutine);
-        }
-    }
+    //        if (EntityManager.Instance.infectByPlace && _infectionState == InfState.Susceptible) { return; }
+    //        _infectCoroutine = InfectCoroutine(1.0f / VariableManager.Instance.variables.TransmissionRate);
+    //        StartCoroutine(_infectCoroutine);
+    //    }
+    //}
 
     public void IncreaseExposure() 
     {
@@ -213,15 +228,15 @@ public class UnitEntity : MonoBehaviour
         }
     }
 
-    IEnumerator WaitTo_FindPath()
-    {
-        while (_firstPathPending)
-        {
-            yield return null;
-            if (!_navMeshAgent.pathPending)
-                _firstPathPending = false;
-        }
-    }
+    //IEnumerator WaitTo_FindPath()
+    //{
+    //    while (_firstPathPending)
+    //    {
+    //        yield return null;
+    //        if (!_navMeshAgent.pathPending)
+    //            _firstPathPending = false;
+    //    }
+    //}
 
     //public void  StartNavMeshMoving()
     //{
@@ -241,7 +256,8 @@ public class UnitEntity : MonoBehaviour
         if (entityManager.enableFuzzyLogic)
         {
             //Debug.Log("Protection: " + unit.protectionValue + " Exposure: " + unit.exposureTime);
-            result = FuzzyCalculator.Instance.GetHighestProb(_protectionValue, _exposureTime);
+            float transmissionModifier = ((100.0f - VariableManager.Instance.variables.TransmissionRate) / 100.0f);
+            result = FuzzyCalculator.Instance.GetHighestProb(_protectionValue * transmissionModifier, _exposureTime);
             //Debug.Log(result);
         }
         else
@@ -259,13 +275,13 @@ public class UnitEntity : MonoBehaviour
                 break;
             case 1: // mild-infect
                 SetInfectState((int)UnitEntity.InfState.Infectious);
-                SetRecoveryDelay(EntityManager.Instance.recoverDelay_Mild);
+                SetRecoveryDelay(EntityManager.Instance.recoverDelay_Mild * (VariableManager.Instance.variables.RecoveryRate / 100.0f));
                 entityManager.Places[_unitPath[_pathCounter]].UnitInfectUpdate();
                 //Debug.Log("mild-infect");
                 break;
             case 2: // severe-infect
                 SetInfectState((int)UnitEntity.InfState.Infectious);
-                SetRecoveryDelay(EntityManager.Instance.recoverDelay_Severe);
+                SetRecoveryDelay(EntityManager.Instance.recoverDelay_Severe * (VariableManager.Instance.variables.RecoveryRate / 100.0f));
                 entityManager.Places[_unitPath[_pathCounter]].UnitInfectUpdate();
                 //Debug.Log("severe-infect");
                 break;

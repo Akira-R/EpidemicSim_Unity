@@ -43,8 +43,8 @@ public class PlaceEntity : MonoBehaviour
         if (!EntityManager.Instance.infectByPlace) { return; }
 
         _infectDelayCounter += Time.deltaTime;
-        if (VariableManager.Instance.variables.TransmissionRate <= 0) return;
-        if (_infectDelayCounter >= 1.0f / VariableManager.Instance.variables.TransmissionRate)
+        //if (VariableManager.Instance.variables.TransmissionRate <= 0) return;
+        if (_infectDelayCounter >= 1.0f /*/ VariableManager.Instance.variables.TransmissionRate*/)
         {
             _infectDelayCounter = 0;
             Infect();
@@ -63,7 +63,9 @@ public class PlaceEntity : MonoBehaviour
             if (EntityManager.Instance.enableFuzzyLogic)
             {
                 //Debug.Log("Protection: " + unit.protectionValue + " Exposure: " + unit.exposureTime);
-                result = FuzzyCalculator.Instance.GetHighestProb(unit.protectionValue, unit.exposureTime);
+                float transmissionModifier = ((100.0f - VariableManager.Instance.variables.TransmissionRate) / 100.0f);
+                Debug.Log(transmissionModifier);
+                result = FuzzyCalculator.Instance.GetHighestProb(unit.protectionValue * transmissionModifier, unit.exposureTime);
                 //Debug.Log(result);
             }
             else 
@@ -81,13 +83,13 @@ public class PlaceEntity : MonoBehaviour
                     break;
                 case 1: // mild-infect
                     unit.SetInfectState((int)UnitEntity.InfState.Infectious);
-                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Mild);
+                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Mild * (VariableManager.Instance.variables.RecoveryRate / 100.0f));
                     _infectCount++;
                     //Debug.Log("mild-infect");
                     break;
                 case 2: // severe-infect
                     unit.SetInfectState((int)UnitEntity.InfState.Infectious);
-                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Severe);
+                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Severe* (VariableManager.Instance.variables.RecoveryRate / 100.0f));
                     _infectCount++;
                     //Debug.Log("severe-infect");
                     break;

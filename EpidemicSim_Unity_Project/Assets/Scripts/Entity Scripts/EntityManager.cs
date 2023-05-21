@@ -357,18 +357,18 @@ public class EntityManager : MonoSingleton<EntityManager>
         }
     }
 
-    [Header("Nav Path Check")]
-    [SerializeField] int _testFrom = 0;
-    [SerializeField] int _testTo = 1;
+    //[Header("Nav Path Check")]
+    //[SerializeField] int _testFrom = 0;
+    //[SerializeField] int _testTo = 1;
 
-    [Button]
-    public void CheckPathData()
-    {
-        //UnitEntity unit = Instantiate(_unitPrefab,_places[_testFrom].transform.position,_places[_testFrom].transform.rotation).GetComponent<UnitEntity>();
-        //unit._navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
-        //unit._navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-        //unit._navMeshAgent.speed = 2.5f; // hard code
+    //[Button]
+    //public void CheckPathData()
+    //{
+    //    //UnitEntity unit = Instantiate(_unitPrefab,_places[_testFrom].transform.position,_places[_testFrom].transform.rotation).GetComponent<UnitEntity>();
+    //    //unit._navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+    //    //unit._navMeshAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+    //    //unit._navMeshAgent.speed = 2.5f; // hard code
 
-        //unit._navMeshAgent.SetPath(_placePaths.Get(_testFrom, _testTo));
-    }
+    //    //unit._navMeshAgent.SetPath(_placePaths.Get(_testFrom, _testTo));
+    //}
 }
