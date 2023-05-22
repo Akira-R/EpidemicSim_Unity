@@ -18,6 +18,11 @@ public class PlaceEntity : MonoBehaviour
     [SerializeField]
     private int _infectCount = 0;
 
+    [SerializeField]
+    private GameObject greenSprite;
+    [SerializeField]
+    private GameObject redSprite;
+
     public int infectCount
     {
         get { return _infectCount; }
@@ -110,5 +115,11 @@ public class PlaceEntity : MonoBehaviour
     public void UnitInfectUpdate()
     {
         _infectCount++;
+    }
+
+    public void SetRedMarker(bool state)
+    {
+        greenSprite.SetActive(!state);
+        redSprite.SetActive(state);
     }
 }
