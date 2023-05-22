@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: 
-  content: Filter
+  content: 'Filter: Use to focus on each state of units and buildings'
 --- !u!1 &1062256338979258624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: 
-  content: Parameter
+  content: 'Parameters: Use to adjust simulation parameters such as transmission
+    rate'
 --- !u!1 &2441143222442796642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,7 +2129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: 
-  content: Chart
+  content: 'Chart: Use to view overall state of units in simulation. Also show values
+    related to Epidemiology model.'
 --- !u!1 &2441143222714134895
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,7 +2825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: 
-  content: Building
+  content: 'Place: Use to add, remove, relocate place markers on the map'
 --- !u!1 &2441143223230818390
 GameObject:
   m_ObjectHideFlags: 0
@@ -3697,6 +3699,7 @@ GameObject:
   - component: {fileID: 4692200139202106298}
   - component: {fileID: 2822474194827566763}
   - component: {fileID: 5445218731842217117}
+  - component: {fileID: 9076414004018165427}
   m_Layer: 5
   m_Name: R0
   m_TagString: Untagged
@@ -3821,6 +3824,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &9076414004018165427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036466485976367655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afabe08ad2cf3ad4b90d7ad23de78d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: 
+  content: 'Basic Reproductive Number: ratio between infected in given time. In this
+    case, time between each day.'
 --- !u!1 &3815988971530681209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,6 +4024,7 @@ GameObject:
   - component: {fileID: 3859267813714053285}
   - component: {fileID: 8423671693881701728}
   - component: {fileID: 3018639202633706149}
+  - component: {fileID: 3986643356506503245}
   m_Layer: 5
   m_Name: HIT
   m_TagString: Untagged
@@ -4130,6 +4149,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3986643356506503245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348835607329438601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afabe08ad2cf3ad4b90d7ad23de78d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: 
+  content: 'Herd Immnity Threshold: Minimum Percentage of immune units in population
+    to prevent any further spread'
 --- !u!1 &4894300587977704901
 GameObject:
   m_ObjectHideFlags: 0
@@ -5275,6 +5309,7 @@ GameObject:
   - component: {fileID: 5260509912412146881}
   - component: {fileID: 5929313739304122801}
   - component: {fileID: 1765174945492936648}
+  - component: {fileID: 7703572586818619943}
   m_Layer: 5
   m_Name: R
   m_TagString: Untagged
@@ -5399,6 +5434,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7703572586818619943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993314475745236672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afabe08ad2cf3ad4b90d7ad23de78d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: 
+  content: 'Effective Reproductive Number: Average number of new case in partially
+    infected population.'
 --- !u!1 &7248837485392121499
 GameObject:
   m_ObjectHideFlags: 0
