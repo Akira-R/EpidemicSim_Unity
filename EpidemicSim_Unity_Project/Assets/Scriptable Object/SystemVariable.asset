@@ -15,6 +15,6 @@ MonoBehaviour:
   latlngCoord: {x: 0, y: 0}
   populationNumber: 1000
   populationProtection: 50
-  transmissionRate: 10
+  transmissionRate: 70
   fatalitiesRate: 50
   recoveryRate: 50

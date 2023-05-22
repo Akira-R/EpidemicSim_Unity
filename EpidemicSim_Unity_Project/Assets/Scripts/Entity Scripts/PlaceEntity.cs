@@ -64,7 +64,7 @@ public class PlaceEntity : MonoBehaviour
             {
                 //Debug.Log("Protection: " + unit.protectionValue + " Exposure: " + unit.exposureTime);
                 float transmissionModifier = ((100.0f - VariableManager.Instance.variables.TransmissionRate) / 100.0f);
-                Debug.Log(transmissionModifier);
+                //Debug.Log(transmissionModifier);
                 result = FuzzyCalculator.Instance.GetHighestProb(unit.protectionValue * transmissionModifier, unit.exposureTime);
                 //Debug.Log(result);
             }
