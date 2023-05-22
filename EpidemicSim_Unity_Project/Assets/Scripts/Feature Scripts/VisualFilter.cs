@@ -31,8 +31,11 @@ public class VisualFilter : MonoSingleton<VisualFilter>
 
     private List<Color> _entityCols = new List<Color>();
 
-    [Header("Filter")]
-    [SerializeField] private FilterType _selectedFilter;
+    //[Header("Filter")]
+    //[SerializeField] private FilterType _selectedFilter;
+
+    [SerializeField]
+    private UITransformTween _filterPanel;
 
     void Start()
     {
@@ -75,6 +78,8 @@ public class VisualFilter : MonoSingleton<VisualFilter>
     [Button]
     public void DefaultFilter() 
     {
+        if (_filterPanel.GetToggleStatus()) return;
+
         for (int i = 0; i < _entityMats.Count; i++)
         {
             _entityMats[i].color = _entityCols[i];
@@ -82,14 +87,17 @@ public class VisualFilter : MonoSingleton<VisualFilter>
 
         foreach(Material mat in _mapCompMats)
             mat.DisableKeyword(c_EmissionKey);
+
+        EntityManager.Instance.SetDisplayMarker(false);
+        EntityManager.Instance.SetDisplayStatus(false);
+        EntityManager.Instance.ResetDisplayStatus();
     }
 
-    [Button]
-    public void SetFilter()
+    public void SetFilter(FilterType filter)
     {
         for (int i = 0; i < _entityMats.Count; i++)
         {
-            if (i == (int)_selectedFilter)
+            if (i == (int)filter)
             {
                 _entityMats[i].color = _entityCols[i];
                 //_entityMats[i].DisableKeyword(c_EmissionKey);
@@ -105,5 +113,28 @@ public class VisualFilter : MonoSingleton<VisualFilter>
 
         foreach (Material mat in _mapCompMats)
             mat.EnableKeyword(c_EmissionKey);
+
+        EntityManager.Instance.SetDisplayMarker(filter == FilterType.Place);
+        EntityManager.Instance.SetDisplayStatus(filter == FilterType.Place);
+    }
+
+    public void SusFilter()
+    {
+        SetFilter(FilterType.Susceptible);
+    }
+
+    public void InfFilter()
+    {
+        SetFilter(FilterType.Infectious);
+    }
+
+    public void RecFilter()
+    {
+        SetFilter(FilterType.Recovered);
+    }
+
+    public void PlaceFilter()
+    {
+        SetFilter(FilterType.Place);
     }
 }

@@ -21,18 +21,17 @@ public class PlaceModifier : MonoBehaviour
     {
         if (!_buildingPanel.GetToggleStatus())
         {
-            EntityManager.Instance.SetDisplayMarker(false);
+            if(_isEnabled) EntityManager.Instance.SetDisplayMarker(false);
             _isEnabled = false;
         }
         else 
         {
-            EntityManager.Instance.SetDisplayMarker(true);
+            if (!_isEnabled) EntityManager.Instance.SetDisplayMarker(true);
             _isEnabled = true;
 
             if (Input.GetMouseButtonDown(0) && !_isDragging)
             {
                 _isDragging = true;
-                _selectedObject = null;
 
                 RaycastHit hit = CastRay();
                 if (hit.collider != null)
@@ -66,6 +65,7 @@ public class PlaceModifier : MonoBehaviour
     {
         if (!_selectedObject) return;
         EntityManager.Instance.RemovePlaceRequest(_selectedObject);
+        _selectedObject = null;
     }
 
     private RaycastHit CastRay()

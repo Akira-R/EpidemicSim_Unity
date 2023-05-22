@@ -36,7 +36,7 @@ public class UITransformTween : MonoBehaviour
 
     public void ButtonToggleEase() 
     {
-        Debug.Log(toggle);
+        //Debug.Log(toggle);
 
         AudioManager.instance.Play(AudioManager.instance.uiAudioList.sfx_uiClicked);
 

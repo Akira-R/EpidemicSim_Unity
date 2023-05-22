@@ -228,16 +228,12 @@ public class EntityManager : MonoSingleton<EntityManager>
     {
         GameObject placeObj = Instantiate(_placePrefab, transform);
         _places.Add(placeObj.GetComponent<PlaceEntity>());
-
-        ResetPlaceRef();
     }
 
     public void RemovePlaceRequest(GameObject placeObj)
     {
         _places.Remove(placeObj.GetComponent<PlaceEntity>());
         placeObj.Destroy();
-
-        ResetPlaceRef();   
     }
 
     private void ResetPlaceRef()
@@ -364,6 +360,37 @@ public class EntityManager : MonoSingleton<EntityManager>
         _displayMarker = state;
         foreach (PlaceEntity place in _places)
             place.transform.GetChild(0).gameObject.SetActive(state);
+    }
+
+    IEnumerator displayStatusCoroutine;
+
+    public void SetDisplayStatus(bool state)
+    {
+        if (displayStatusCoroutine != null)
+            StopCoroutine(displayStatusCoroutine);
+
+        if (state)
+        {
+            displayStatusCoroutine = DisplayingStatus();
+            StartCoroutine(displayStatusCoroutine);
+        }    
+    }
+
+    public void ResetDisplayStatus()
+    {
+        foreach (PlaceEntity place in _places)
+            place.SetRedMarker(false);
+    }
+
+    IEnumerator DisplayingStatus()
+    {
+        while (true)
+        {
+            foreach (PlaceEntity place in _places) 
+                place.SetRedMarker((place.infectCount > 0));
+
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
     }
 
     //[Header("Nav Path Check")]
