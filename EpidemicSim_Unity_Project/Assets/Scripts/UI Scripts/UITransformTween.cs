@@ -83,7 +83,7 @@ public class UITransformTween : MonoBehaviour
         //if (toggle == false)
         //    return;
         //isTweenComplete = false;
-        Debug.Log("Ease OUT");
+        //Debug.Log("Ease OUT");
 
         if (toggle == true)
             toggle = false;

@@ -6,6 +6,11 @@ using NaughtyAttributes;
 
 public class VisualFilter : MonoSingleton<VisualFilter>
 {
+    const string suscolor_code = "#00C8FF";
+    const string infcolor_code = "#FF0000";
+    const string reccolor_code = "#00FF00";
+    const string placecolor_code = "#FFFF00";
+
     public enum FilterType {
         Susceptible,
         Infectious,
@@ -24,6 +29,8 @@ public class VisualFilter : MonoSingleton<VisualFilter>
     private List<Material> _mapCompMats = new List<Material>();
     private List<Material> _entityMats = new List<Material>();
 
+    private List<Color> _entityCols = new List<Color>();
+
     [Header("Filter")]
     [SerializeField] private FilterType _selectedFilter;
 
@@ -33,14 +40,28 @@ public class VisualFilter : MonoSingleton<VisualFilter>
         AddEntityMat(_infMat);
         AddEntityMat(_recMat);
         AddEntityMat(_placeMat);
+
+        AddEntityColor(suscolor_code);
+        AddEntityColor(infcolor_code);
+        AddEntityColor(reccolor_code);
+        AddEntityColor(placecolor_code);
+
+        DefaultFilter();
     }
 
     public void AddEntityMat(Material newMat)
     {
         //newMat.EnableKeyword(c_EmissionKey);
-        newMat.SetColor("_EmissionColor", _emissionColor);
-        newMat.DisableKeyword(c_EmissionKey);
+        //newMat.SetColor("_EmissionColor", _emissionColor);
+        //newMat.DisableKeyword(c_EmissionKey);
         _entityMats.Add(newMat);
+    }
+
+    public void AddEntityColor(string colorCode) 
+    {
+        Color color;
+        ColorUtility.TryParseHtmlString(colorCode, out color);
+        _entityCols.Add(color);
     }
 
     public void AddMapCompMat(Material newMat)
@@ -56,8 +77,7 @@ public class VisualFilter : MonoSingleton<VisualFilter>
     {
         for (int i = 0; i < _entityMats.Count; i++)
         {
-            if (i == (int)_selectedFilter)
-                _entityMats[i].DisableKeyword(c_EmissionKey);
+            _entityMats[i].color = _entityCols[i];
         }
 
         foreach(Material mat in _mapCompMats)
@@ -68,11 +88,19 @@ public class VisualFilter : MonoSingleton<VisualFilter>
     public void SetFilter()
     {
         for (int i = 0; i < _entityMats.Count; i++)
-        { 
-            if(i == (int)_selectedFilter)
-                _entityMats[i].DisableKeyword(c_EmissionKey);
+        {
+            if (i == (int)_selectedFilter)
+            {
+                _entityMats[i].color = _entityCols[i];
+                //_entityMats[i].DisableKeyword(c_EmissionKey);
+                //Debug.Log("Disable filter " + i);
+            }
             else
-                _entityMats[i].EnableKeyword(c_EmissionKey);
+            {
+                _entityMats[i].color = _emissionColor;
+                //_entityMats[i].EnableKeyword(c_EmissionKey);
+                //Debug.Log("Enable filter " + i);
+            }
         }
 
         foreach (Material mat in _mapCompMats)

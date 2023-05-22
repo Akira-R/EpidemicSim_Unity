@@ -399,11 +399,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4660302067736743497, guid: d49ecf99deff838458e146d94631eb58, type: 3}
   m_PrefabInstance: {fileID: 334491677}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &334491679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
-  m_PrefabInstance: {fileID: 334491677}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &386167625
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,24 +532,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitPrefab: {fileID: 7150253346966462261, guid: af6a3a1786731ec419dbbcc5e8396e8d, type: 3}
-  _placePrefab: {fileID: 3344227591563199247, guid: d11f04d7309683141999071e1aab4147, type: 3}
+  _placePrefab: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
   _units: []
   _places: []
-  _placeObjs:
-  - {fileID: 1454791524}
-  - {fileID: 931040211}
-  - {fileID: 814061342}
-  - {fileID: 334491679}
-  - {fileID: 1846361661}
   _pathLength: 3
   _stayDelay: 5
   _recoverDelay_Mild: 60
   _recoverDelay_Severe: 180
+  _mapObj: {fileID: 950251802}
   _susceptibleCount: 0
   _infectiousCount: 0
   _recoveredCount: 0
-  infectByPlace: 0
-  enableFuzzyLogic: 0
+  previousInfectiousCount: 1
+  rNaught: 0
+  infectByPlace: 1
+  enableFuzzyLogic: 1
 --- !u!1 &641423296
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,11 +657,6 @@ PrefabInstance:
 --- !u!4 &814061341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4660302067736743497, guid: d49ecf99deff838458e146d94631eb58, type: 3}
-  m_PrefabInstance: {fileID: 814061340}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &814061342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
   m_PrefabInstance: {fileID: 814061340}
   m_PrefabAsset: {fileID: 0}
 --- !u!21 &906453363
@@ -842,11 +829,6 @@ PrefabInstance:
 --- !u!4 &931040210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4660302067736743497, guid: d49ecf99deff838458e146d94631eb58, type: 3}
-  m_PrefabInstance: {fileID: 931040209}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &931040211 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
   m_PrefabInstance: {fileID: 931040209}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &950251799
@@ -1857,11 +1839,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!1 &1454791524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
-  m_PrefabInstance: {fileID: 4660302069050234146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1454791531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4660302067736743497, guid: d49ecf99deff838458e146d94631eb58, type: 3}
@@ -2037,11 +2014,6 @@ PrefabInstance:
 --- !u!4 &1846361660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4660302067736743497, guid: d49ecf99deff838458e146d94631eb58, type: 3}
-  m_PrefabInstance: {fileID: 1846361659}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1846361661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4660302067736743494, guid: d49ecf99deff838458e146d94631eb58, type: 3}
   m_PrefabInstance: {fileID: 1846361659}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1862393419

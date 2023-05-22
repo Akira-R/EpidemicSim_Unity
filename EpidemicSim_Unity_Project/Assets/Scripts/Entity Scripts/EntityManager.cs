@@ -89,6 +89,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     [SerializeField]
     public bool enableFuzzyLogic = false;
 
+    private bool _displayMarker = true;
 
 
     [Button]
@@ -355,6 +356,14 @@ public class EntityManager : MonoSingleton<EntityManager>
                 _placePaths.Add(from, to, newPath);
             }
         }
+    }
+
+    public void SetDisplayMarker(bool state)
+    {
+        if (state == _displayMarker) return;
+        _displayMarker = state;
+        foreach (PlaceEntity place in _places)
+            place.transform.GetChild(0).gameObject.SetActive(state);
     }
 
     //[Header("Nav Path Check")]

@@ -14,30 +14,43 @@ public class PlaceModifier : MonoBehaviour
     private GameObject _selectedObject;
     private Vector3 _mousePositionOffset;
 
+    [SerializeField]
+    private UITransformTween _buildingPanel;
+
     private void Update()
     {
-        if (!_isEnabled) return;
-        if (Input.GetMouseButtonDown(0) && !_isDragging)
+        if (!_buildingPanel.GetToggleStatus())
         {
-            _isDragging = true;
-            _selectedObject = null;
+            EntityManager.Instance.SetDisplayMarker(false);
+            _isEnabled = false;
+        }
+        else 
+        {
+            EntityManager.Instance.SetDisplayMarker(true);
+            _isEnabled = true;
 
-            RaycastHit hit = CastRay();
-            if (hit.collider != null)
+            if (Input.GetMouseButtonDown(0) && !_isDragging)
             {
-                if (!hit.collider.CompareTag("PlaceMarker"))
-                { 
-                    _isDragging = false;
-                    return;
+                _isDragging = true;
+                _selectedObject = null;
+
+                RaycastHit hit = CastRay();
+                if (hit.collider != null)
+                {
+                    if (!hit.collider.CompareTag("PlaceMarker"))
+                    {
+                        _isDragging = false;
+                        return;
+                    }
+                    _selectedObject = hit.collider.transform.parent.gameObject;
+                    _selectedObject.GetComponent<PlaceEntity>()?.SetNavMeshActive(false);
+                    Cursor.visible = false;
+                    StartCoroutine(WaitTo_EndDrag());
                 }
-                _selectedObject = hit.collider.transform.parent.gameObject;
-                _selectedObject.GetComponent<PlaceEntity>()?.SetNavMeshActive(false);
-                Cursor.visible = false;
-                StartCoroutine(WaitTo_EndDrag());
-            }
-            else 
-            {
-                _isDragging = false;
+                else
+                {
+                    _isDragging = false;
+                }
             }
         }
     }
