@@ -23,6 +23,8 @@ public class SimulationManager : MonoSingleton<SimulationManager>
 
     private NavMeshSurface _navSurface;
     private GameObject _mapObj;
+    [SerializeField]
+    private TimeManager _time;
 
     private SimState _simState = SimState.Idle;
 
@@ -80,12 +82,12 @@ public class SimulationManager : MonoSingleton<SimulationManager>
 
             _simState = SimState.Play;
         }
-        else if (_simState == SimState.ReInit)
-        {
-            EntityManager.Instance.PlaceEntitySetup();
+        //else if (_simState == SimState.ReInit)
+        //{
+        //    EntityManager.Instance.PlaceEntitySetup();
 
-            _simState = SimState.Play;
-        }
+        //    _simState = SimState.Play;
+        //}
     }
 
     [Button]
@@ -93,6 +95,9 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     {
         _simState = SimState.Idle;  
         EntityManager.Instance.ClearUnitEntity();
+        EntityManager.Instance.ClearPlaceContainer();
+
+        _time.ResetTime();
     }
 
     private bool NavBake()

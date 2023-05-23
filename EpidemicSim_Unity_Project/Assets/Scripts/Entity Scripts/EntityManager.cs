@@ -236,10 +236,10 @@ public class EntityManager : MonoSingleton<EntityManager>
         placeObj.Destroy();
     }
 
-    private void ResetPlaceRef()
+    public void ClearPlaceContainer()
     {
-        _places.Clear();
-        EventManager.Instance.Dispatch<OnPlaceModified>();
+        foreach (PlaceEntity place in _places)
+            place.ClearContainer();
     }
 
     public void UpdateStateCount() 
@@ -258,6 +258,7 @@ public class EntityManager : MonoSingleton<EntityManager>
                 _recoveredCount++;
         }
     }
+
     public void GetUnitsStateCount(out int susCount, out int infCount, out int recCount) 
     {
         UpdateStateCount();

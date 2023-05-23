@@ -43,6 +43,12 @@ public class PlaceEntity : MonoBehaviour
             _infectCount--;
     }
 
+    public void ClearContainer()
+    {
+        _placeContainer.Clear();
+        _infectCount = 0;
+    }
+
     private void FixedUpdate()
     {
         if (!EntityManager.Instance.infectByPlace) { return; }
