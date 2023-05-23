@@ -111,4 +111,14 @@ public class ChartValueInit : MonoBehaviour
         if (herdImmunitythreshold <= 0f)
             herdImmunitythreshold = 0f;
     }
+
+    public void ResetGraph() 
+    {
+        graph.DataSource.StartBatch();  // start a new update batch
+        graph.DataSource.ClearCategory("Susceptible");  // clear the categories we have created in the inspector
+        graph.DataSource.ClearCategory("Recovered");
+        graph.DataSource.ClearCategory("Infectious");
+        graph.DataSource.ClearCategory("Predicted Infected");
+        graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
+    }
 }

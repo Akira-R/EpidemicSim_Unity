@@ -152,6 +152,17 @@ public class TimeManager : MonoBehaviour
         };
     }
 
+    public void ResetTime() 
+    {
+        _isSimPlaying = false;
+        timeTracker = 0;
+        _dayCounter = 1;
+
+        _playPauseButton.GetComponent<Image>().sprite = _playSprite;
+        _timeBarImage.fillAmount = 0;
+        chart.ResetGraph();
+    }
+
     //private void OnFirstSimulationStart()
     //{
     //    _isSimPlaying = true;
