@@ -10,12 +10,14 @@ public class CameraControl : MonoBehaviour
     private InputAction cameraMovement;
     private InputAction cameraRotation;
     private InputAction cameraZoom;
+    private InputAction cameraSpeedMod;
     [SerializeField] private Transform _transform;
     [SerializeField] private Transform _childTransform;
 
     [BoxGroup("Camera Movement Modifier")]
-    public float movementspeed = 1f;
-    public float rotationSpeed = 1f;
+    [Range(0f, 1f)] public float movementspeed = 0.1f;
+    [BoxGroup("Camera Movement Modifier")]
+    [Range(0f, 1f)] public float rotationSpeed = 0.1f;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class CameraControl : MonoBehaviour
         cameraMovement = playerControls.Camera.PlanarMovement;
         cameraRotation = playerControls.Camera.RotationControl;
         cameraZoom = playerControls.Camera.ZoomControl;
+        cameraSpeedMod = playerControls.Camera.CameraSpeedMod;
         playerControls.Camera.Enable();
     }
     private void OnDisable()
@@ -57,6 +60,20 @@ public class CameraControl : MonoBehaviour
 
     private void UpdateInput()
     {
+        float cameraSpeedModValue = cameraSpeedMod.ReadValue<float>();
+        movementspeed += cameraSpeedModValue;
+        rotationSpeed += cameraSpeedModValue;
+
+        if (movementspeed < 0f)
+            movementspeed = 0f;
+        else if (movementspeed > 1f)
+            movementspeed = 1f;
+
+        if (rotationSpeed < 0f)
+            rotationSpeed = 0f;
+        else if (rotationSpeed > 1f)
+            rotationSpeed = 1f;
+
         Vector3 planarInputValue = cameraMovement.ReadValue<Vector2>().x * CameraHorizontalMovement() +
                                    cameraMovement.ReadValue<Vector2>().y * CameraVerticalMovement();
         planarInputValue = planarInputValue.normalized;
@@ -68,9 +85,9 @@ public class CameraControl : MonoBehaviour
             _transform.rotation.eulerAngles.y, 
             rotationInputValue * rotationSpeed + _transform.rotation.eulerAngles.z);
 
-        float zoomInputVale = cameraZoom.ReadValue<float>();
+        float zoomInputValue = cameraZoom.ReadValue<float>();
         GameObject cameraGameObject = _transform.gameObject;
-        cameraGameObject.GetComponent<Camera>().fieldOfView += zoomInputVale; 
-        _childTransform.GetComponent<Camera>().fieldOfView += zoomInputVale;
+        cameraGameObject.GetComponent<Camera>().fieldOfView += zoomInputValue; 
+        _childTransform.GetComponent<Camera>().fieldOfView += zoomInputValue;
     }
 }

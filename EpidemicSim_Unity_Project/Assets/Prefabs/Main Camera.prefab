@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 0}
   _childTransform: {fileID: 0}
-  movementspeed: 1
-  rotationSpeed: 1
+  movementspeed: 0.1
+  rotationSpeed: 0.1
 --- !u!1 &5583161481553301212
 GameObject:
   m_ObjectHideFlags: 0

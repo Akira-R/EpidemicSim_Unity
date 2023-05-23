@@ -53,6 +53,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""CameraSpeedMod"",
+                    ""type"": ""Value"",
+                    ""id"": ""bd66441e-999b-4e0f-9172-ce0cb26cd92b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -92,7 +101,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""ZoomMovementKeyboard"",
                     ""id"": ""b48caca2-c67b-4a48-bba5-76b78fbf3730"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""1DAxis(minValue=-0.05,maxValue=0.05)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -125,7 +134,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""ZoomMovementMouse"",
                     ""id"": ""2fb53b22-385d-4e63-aa77-3eb95c3217ce"",
-                    ""path"": ""1DAxis(minValue=-0.01,maxValue=0.01)"",
+                    ""path"": ""1DAxis(minValue=-0.05,maxValue=0.05)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -262,6 +271,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""CameraSpeedKeyboard"",
+                    ""id"": ""e7a51b5f-4971-458a-8e30-440723691e68"",
+                    ""path"": ""1DAxis(minValue=-0.001,maxValue=0.001)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraSpeedMod"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""edee2bdf-4027-4ad4-a6ba-def6287dd2f6"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraSpeedMod"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""7363ffc1-49a2-4f01-b2a3-cdfdc2833fc2"",
+                    ""path"": ""<Keyboard>/equals"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraSpeedMod"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""CameraSpeedNumPad"",
+                    ""id"": ""52467a2d-a34e-4e57-ba51-b877d3e77551"",
+                    ""path"": ""1DAxis(minValue=-0.001,maxValue=0.001)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraSpeedMod"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""9da97089-8ad1-44a7-9efd-13de62823339"",
+                    ""path"": ""<Keyboard>/numpadMinus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraSpeedMod"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""2a481b0e-6008-4c88-81e3-2aba0cfb2fb5"",
+                    ""path"": ""<Keyboard>/numpadPlus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraSpeedMod"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -499,6 +574,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Camera_RotationControl = m_Camera.FindAction("RotationControl", throwIfNotFound: true);
         m_Camera_ZoomControl = m_Camera.FindAction("ZoomControl", throwIfNotFound: true);
         m_Camera_PlanarMovement = m_Camera.FindAction("PlanarMovement", throwIfNotFound: true);
+        m_Camera_CameraSpeedMod = m_Camera.FindAction("CameraSpeedMod", throwIfNotFound: true);
         // MainUI
         m_MainUI = asset.FindActionMap("MainUI", throwIfNotFound: true);
         m_MainUI_ParameterUI = m_MainUI.FindAction("ParameterUI", throwIfNotFound: true);
@@ -577,6 +653,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Camera_RotationControl;
     private readonly InputAction m_Camera_ZoomControl;
     private readonly InputAction m_Camera_PlanarMovement;
+    private readonly InputAction m_Camera_CameraSpeedMod;
     public struct CameraActions
     {
         private @PlayerControls m_Wrapper;
@@ -584,6 +661,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @RotationControl => m_Wrapper.m_Camera_RotationControl;
         public InputAction @ZoomControl => m_Wrapper.m_Camera_ZoomControl;
         public InputAction @PlanarMovement => m_Wrapper.m_Camera_PlanarMovement;
+        public InputAction @CameraSpeedMod => m_Wrapper.m_Camera_CameraSpeedMod;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -602,6 +680,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @PlanarMovement.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
                 @PlanarMovement.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
                 @PlanarMovement.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
+                @CameraSpeedMod.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraSpeedMod;
+                @CameraSpeedMod.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraSpeedMod;
+                @CameraSpeedMod.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraSpeedMod;
             }
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
@@ -615,6 +696,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @PlanarMovement.started += instance.OnPlanarMovement;
                 @PlanarMovement.performed += instance.OnPlanarMovement;
                 @PlanarMovement.canceled += instance.OnPlanarMovement;
+                @CameraSpeedMod.started += instance.OnCameraSpeedMod;
+                @CameraSpeedMod.performed += instance.OnCameraSpeedMod;
+                @CameraSpeedMod.canceled += instance.OnCameraSpeedMod;
             }
         }
     }
@@ -779,6 +863,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRotationControl(InputAction.CallbackContext context);
         void OnZoomControl(InputAction.CallbackContext context);
         void OnPlanarMovement(InputAction.CallbackContext context);
+        void OnCameraSpeedMod(InputAction.CallbackContext context);
     }
     public interface IMainUIActions
     {
