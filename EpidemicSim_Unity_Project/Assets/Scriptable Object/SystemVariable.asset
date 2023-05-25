@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   latlngCoord: {x: 0, y: 0}
   populationNumber: 1000
-  populationProtection: 13.3
-  transmissionRate: 65.8
-  fatalitiesRate: 50
+  populationProtection: 50
+  transmissionRate: 50
   recoveryRate: 50
