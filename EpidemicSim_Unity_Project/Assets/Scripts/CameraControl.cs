@@ -19,6 +19,13 @@ public class CameraControl : MonoBehaviour
     [BoxGroup("Camera Movement Modifier")]
     [Range(0f, 1f)] public float rotationSpeed = 0.1f;
 
+    [BoxGroup("Initial Camera State")]
+    [SerializeField] private Vector3 initCamPos;
+    [BoxGroup("Initial Camera State")]
+    [SerializeField] private Quaternion initCamRot;
+    [BoxGroup("Initial Camera State")]
+    [SerializeField] private float initCamFOV;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -39,10 +46,23 @@ public class CameraControl : MonoBehaviour
         playerControls.Camera.Disable();
     }
 
+    private void Start()
+    {
+        initCamPos = transform.position;
+        initCamRot = transform.rotation;
+        initCamFOV = GetComponent<Camera>().fieldOfView;
+    }
     // Update is called once per frame
     void Update()
     {
         UpdateInput();
+    }
+
+    public void ResetCameraState() 
+    {
+        transform.position = initCamPos;
+        transform.rotation = initCamRot;
+        GetComponent<Camera>().fieldOfView = initCamFOV;
     }
 
     private Vector3 CameraVerticalMovement() 
@@ -89,5 +109,10 @@ public class CameraControl : MonoBehaviour
         GameObject cameraGameObject = _transform.gameObject;
         cameraGameObject.GetComponent<Camera>().fieldOfView += zoomInputValue; 
         _childTransform.GetComponent<Camera>().fieldOfView += zoomInputValue;
+
+        playerControls.Camera.ResetCamera.performed += context => 
+        {
+            ResetCameraState();
+        };
     }
 }

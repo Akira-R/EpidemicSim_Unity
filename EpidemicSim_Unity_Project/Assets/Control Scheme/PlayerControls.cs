@@ -62,6 +62,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ResetCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""b662478e-1f23-44e0-bdf4-6526df29ebe0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -339,6 +348,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""CameraSpeedMod"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c377a836-ba7f-4d34-9335-d4c68f338eb9"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -387,7 +407,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d780f2ac-ac8f-4be0-85fb-74961684f30c"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -398,7 +418,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e9a28f47-2d52-4ffb-ac99-2588ae07fe46"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -409,7 +429,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ac0340c7-0285-4c80-9857-92a04f6efa45"",
-                    ""path"": ""<Keyboard>/v"",
+                    ""path"": ""<Keyboard>/semicolon"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -420,7 +440,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""79d20a34-cb43-4914-ad60-f8408b438963"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -575,6 +595,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Camera_ZoomControl = m_Camera.FindAction("ZoomControl", throwIfNotFound: true);
         m_Camera_PlanarMovement = m_Camera.FindAction("PlanarMovement", throwIfNotFound: true);
         m_Camera_CameraSpeedMod = m_Camera.FindAction("CameraSpeedMod", throwIfNotFound: true);
+        m_Camera_ResetCamera = m_Camera.FindAction("ResetCamera", throwIfNotFound: true);
         // MainUI
         m_MainUI = asset.FindActionMap("MainUI", throwIfNotFound: true);
         m_MainUI_ParameterUI = m_MainUI.FindAction("ParameterUI", throwIfNotFound: true);
@@ -654,6 +675,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Camera_ZoomControl;
     private readonly InputAction m_Camera_PlanarMovement;
     private readonly InputAction m_Camera_CameraSpeedMod;
+    private readonly InputAction m_Camera_ResetCamera;
     public struct CameraActions
     {
         private @PlayerControls m_Wrapper;
@@ -662,6 +684,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @ZoomControl => m_Wrapper.m_Camera_ZoomControl;
         public InputAction @PlanarMovement => m_Wrapper.m_Camera_PlanarMovement;
         public InputAction @CameraSpeedMod => m_Wrapper.m_Camera_CameraSpeedMod;
+        public InputAction @ResetCamera => m_Wrapper.m_Camera_ResetCamera;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -683,6 +706,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CameraSpeedMod.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraSpeedMod;
                 @CameraSpeedMod.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraSpeedMod;
                 @CameraSpeedMod.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraSpeedMod;
+                @ResetCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnResetCamera;
+                @ResetCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnResetCamera;
+                @ResetCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnResetCamera;
             }
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
@@ -699,6 +725,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CameraSpeedMod.started += instance.OnCameraSpeedMod;
                 @CameraSpeedMod.performed += instance.OnCameraSpeedMod;
                 @CameraSpeedMod.canceled += instance.OnCameraSpeedMod;
+                @ResetCamera.started += instance.OnResetCamera;
+                @ResetCamera.performed += instance.OnResetCamera;
+                @ResetCamera.canceled += instance.OnResetCamera;
             }
         }
     }
@@ -864,6 +893,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnZoomControl(InputAction.CallbackContext context);
         void OnPlanarMovement(InputAction.CallbackContext context);
         void OnCameraSpeedMod(InputAction.CallbackContext context);
+        void OnResetCamera(InputAction.CallbackContext context);
     }
     public interface IMainUIActions
     {

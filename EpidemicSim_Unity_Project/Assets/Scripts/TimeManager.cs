@@ -121,8 +121,8 @@ public class TimeManager : MonoBehaviour
 
     private void SimulationSpeed(int incrementIdx)
     {
-        if (!_isSimPlaying)
-            OnPlayPauseButtonPressed();
+        //if (!_isSimPlaying)
+        //    OnPlayPauseButtonPressed();
 
         _timerSpeed = _speedIncrements[incrementIdx];
         Time.timeScale = _timerSpeed;
