@@ -94,13 +94,13 @@ public class PlaceEntity : MonoBehaviour
                     break;
                 case 1: // mild-infect
                     unit.SetInfectState((int)UnitEntity.InfState.Infectious);
-                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Mild * (VariableManager.Instance.variables.RecoveryRate / 100.0f));
+                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Mild * ((100.0f - VariableManager.Instance.variables.RecoveryRate) / 100.0f));
                     _infectCount++;
                     //Debug.Log("mild-infect");
                     break;
                 case 2: // severe-infect
                     unit.SetInfectState((int)UnitEntity.InfState.Infectious);
-                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Severe* (VariableManager.Instance.variables.RecoveryRate / 100.0f));
+                    unit.SetRecoveryDelay(EntityManager.Instance.recoverDelay_Severe* ((100.0f - VariableManager.Instance.variables.RecoveryRate) / 100.0f));
                     _infectCount++;
                     //Debug.Log("severe-infect");
                     break;

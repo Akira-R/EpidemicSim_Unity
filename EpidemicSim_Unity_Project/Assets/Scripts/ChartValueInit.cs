@@ -19,6 +19,8 @@ public class ChartValueInit : MonoBehaviour
     [BoxGroup("Display Text")] public TMP_Text R0_Text;
     [BoxGroup("Display Text")] public TMP_Text R_Text;
     [BoxGroup("Display Text")] public TMP_Text HIT_Text;
+
+    [SerializeField] private int maxUnit;
     
     [BoxGroup("SIR Variables")]
     [SerializeField] private int previousInfectiousCount = 1;
@@ -33,7 +35,7 @@ public class ChartValueInit : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         graph = GetComponent<GraphChart>();
         if (graph != null)
         {
@@ -52,7 +54,7 @@ public class ChartValueInit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+        maxUnit = EntityManager.Instance.Units.Count;
     }
 
     private IEnumerator UpdateGraph(float delay) 
@@ -72,7 +74,7 @@ public class ChartValueInit : MonoBehaviour
     {
         EntityManager.Instance.GetUnitsStateCount(out susCount, out infCount, out recCount);
         graph.DataSource.StartBatch();  // start a new update batch
-        graph.DataSource.AddPointToCategory("Susceptible", dayCount, 1000);
+        graph.DataSource.AddPointToCategory("Susceptible", dayCount, maxUnit);
         graph.DataSource.AddPointToCategory("Recovered", dayCount, recCount + infCount);
         graph.DataSource.AddPointToCategory("Infectious", dayCount, infCount);
         graph.DataSource.EndBatch(); // end the update batch . this call will render the graph
@@ -83,11 +85,6 @@ public class ChartValueInit : MonoBehaviour
         }
 
         totalBRNAverage += basicReproductiveNumber;
-
-        //Debug.Log("R0: " + basicReproductiveNumber);
-        //Debug.Log("Avg.R0: " + totalBRNAverage / dayCount);
-        //Debug.Log("R: " + effectiveReproductiveNumber);
-        //Debug.Log("HIT: " + herdImmunitythreshold);
 
         R0_Text.text = "R0: " + Math.Round(basicReproductiveNumber, 2);
         R_Text.text = "R: " + Math.Round(effectiveReproductiveNumber, 2);
@@ -105,7 +102,7 @@ public class ChartValueInit : MonoBehaviour
         previousInfectiousCount = infCount;
 
         basicReproductiveNumber = rNaught;
-        effectiveReproductiveNumber = basicReproductiveNumber * (float)(1f - (suscount / 1000f));
+        effectiveReproductiveNumber = basicReproductiveNumber * (1f - ((float)suscount / (float)maxUnit));
         herdImmunitythreshold = 1f - (float)(1f / basicReproductiveNumber);
 
         if (herdImmunitythreshold <= 0f)
