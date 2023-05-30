@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using NaughtyAttributes;
-
 using UnityEngine.UI;
+using Mapbox.Unity.Map;
 
 public class VariableManager : MonoSingleton<VariableManager>
 {
@@ -30,6 +30,8 @@ public class VariableManager : MonoSingleton<VariableManager>
     public TMP_InputField transRateText;
     [BoxGroup("Text Group")]
     public TMP_InputField recRateText;
+
+    [SerializeField] private AbstractMap map;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +68,8 @@ public class VariableManager : MonoSingleton<VariableManager>
     [Button]
     public void UpdateLatlngCoords() 
     {
+        AudioManager.instance.Play(AudioManager.instance.uiAudioList.sfx_uiClicked);
+
         bool isNumber;
         float lat;
         isNumber = float.TryParse(latitudeInput.text.ToString(), out lat);
@@ -84,8 +88,9 @@ public class VariableManager : MonoSingleton<VariableManager>
         }
 
         variables.SetLatlngCoord(lat, lng);
-
         Debug.Log("Latlng: " + variables.LatlngCoord);
+
+        map.UpdateMap(new Mapbox.Utils.Vector2d(variables.LatlngCoord.x, variables.LatlngCoord.y));
     }
 
     public void UpdateUI()

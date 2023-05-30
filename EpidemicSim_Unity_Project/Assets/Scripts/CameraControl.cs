@@ -52,10 +52,26 @@ public class CameraControl : MonoBehaviour
         initCamRot = transform.rotation;
         initCamFOV = GetComponent<Camera>().fieldOfView;
     }
-    // Update is called once per frame
+
     void Update()
     {
         UpdateInput();
+    }
+    private void FixedUpdate()
+    {
+        float cameraSpeedModValue = cameraSpeedMod.ReadValue<float>();
+        movementspeed += cameraSpeedModValue;
+        rotationSpeed += cameraSpeedModValue;
+
+        if (movementspeed < 0f)
+            movementspeed = 0f;
+        else if (movementspeed > 1f)
+            movementspeed = 1f;
+
+        if (rotationSpeed < 0f)
+            rotationSpeed = 0f;
+        else if (rotationSpeed > 1f)
+            rotationSpeed = 1f;
     }
 
     public void ResetCameraState() 
@@ -63,6 +79,7 @@ public class CameraControl : MonoBehaviour
         transform.position = initCamPos;
         transform.rotation = initCamRot;
         GetComponent<Camera>().fieldOfView = initCamFOV;
+        _childTransform.GetComponent<Camera>().fieldOfView = initCamFOV;
     }
 
     private Vector3 CameraVerticalMovement() 
@@ -80,20 +97,6 @@ public class CameraControl : MonoBehaviour
 
     private void UpdateInput()
     {
-        float cameraSpeedModValue = cameraSpeedMod.ReadValue<float>();
-        movementspeed += cameraSpeedModValue;
-        rotationSpeed += cameraSpeedModValue;
-
-        if (movementspeed < 0f)
-            movementspeed = 0f;
-        else if (movementspeed > 1f)
-            movementspeed = 1f;
-
-        if (rotationSpeed < 0f)
-            rotationSpeed = 0f;
-        else if (rotationSpeed > 1f)
-            rotationSpeed = 1f;
-
         Vector3 planarInputValue = cameraMovement.ReadValue<Vector2>().x * CameraHorizontalMovement() +
                                    cameraMovement.ReadValue<Vector2>().y * CameraVerticalMovement();
         planarInputValue = planarInputValue.normalized;

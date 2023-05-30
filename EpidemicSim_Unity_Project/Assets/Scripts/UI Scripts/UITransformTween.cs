@@ -58,15 +58,10 @@ public class UITransformTween : MonoBehaviour
 
     public void OnUIEaseIn() 
     {
-        //if (toggle == true)
-        //    return;
-        //isTweenComplete = false;
-        //Debug.Log("Ease IN");
-
         if (toggle == false)
             toggle = true;
 
-        /*EaseTween = */LeanTween.moveLocal(gameobjectToTween, targetPos, animationDuration)
+        LeanTween.moveLocal(gameobjectToTween, targetPos, animationDuration)
                 .setEase(tweenType)
                 .setIgnoreTimeScale(true)
                 .setOnStart(() =>
@@ -75,30 +70,23 @@ public class UITransformTween : MonoBehaviour
                         StopCoroutine(timeKeeper);
 
                     timeKeeper = StartCoroutine(keepTime(targetPos));
-                })
-                .setOnComplete(() => { /*Debug.Log("Ease IN ------ DONE " + gameObject.name); isTweenComplete = true;*/ });   
+                });  
     }
     public void OnUIEaseOut()
     {
-        //if (toggle == false)
-        //    return;
-        //isTweenComplete = false;
-        //Debug.Log("Ease OUT");
-
         if (toggle == true)
             toggle = false;
 
-        /*EaseTween = */LeanTween.moveLocal(gameobjectToTween, originalPos, animationDuration)
+        LeanTween.moveLocal(gameobjectToTween, originalPos, animationDuration)
                 .setEase(tweenType)
                 .setIgnoreTimeScale(true)
-                .setOnStart(() => 
+                .setOnStart(() =>
                 {
                     if (timeKeeper != null)
                         StopCoroutine(timeKeeper);
 
                     timeKeeper = StartCoroutine(keepTime(originalPos));
-                })
-                .setOnComplete(() => { /*Debug.Log("Ease OUT ------ DONE " + gameObject.name); isTweenComplete = true;*/ });
+                });
     }
 
     public bool GetToggleStatus() 
