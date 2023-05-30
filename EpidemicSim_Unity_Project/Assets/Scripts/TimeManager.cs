@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -8,22 +9,27 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-    [Header("Time Bar")]
+    [BoxGroup("Time Bar")]
     [SerializeField] private Image _timeBarImage;
+    [BoxGroup("Time Bar")]
     [SerializeField] private TMP_Text _dayCounterText;
+    [BoxGroup("Time Bar")]
     [SerializeField] private int _dayCounter = 1;
     private int _timerSpeed = 1;
     private int timeTracker = 0;
     private int _maxTime = 300;
 
-    [Header("Time Controls")]
+    [BoxGroup("Time Controls")]
     [SerializeField] private GameObject _playPauseButton;
+    [BoxGroup("Time Controls")]
     [SerializeField] private Sprite _playSprite, _pauseSprite;
     private bool _isSimPlaying;
 
-    [Header("Speed Controls")]
+    [BoxGroup("Speed Controls")]
     [SerializeField] TMP_Text _speedControlButtonText;
+    [BoxGroup("Speed Controls")]
     public List<int> _speedIncrements;
+    [BoxGroup("Speed Controls")]
     [SerializeField] private int _speedIncrementsIdx = 0;
 
     private PlayerControls playerControls;
@@ -32,8 +38,19 @@ public class TimeManager : MonoBehaviour
     private InputAction speedTwo;
     private InputAction speedThree;
 
-    [Header("Graph")]
+    [BoxGroup("Graph")]
     public ChartValueInit chart;
+
+    [BoxGroup("Panel")]
+    [SerializeField] private Button parameterButton;
+    [BoxGroup("Panel")]
+    [SerializeField] private Image parameterButtonImg;
+    [BoxGroup("Panel")]
+    [SerializeField] private Button placeButton;
+    [BoxGroup("Panel")]
+    [SerializeField] private Image placeButtonImg;
+    [BoxGroup("Panel")]
+    [SerializeField] private bool panelActiveStatus = true;
 
     private void Awake()
     {
@@ -59,6 +76,12 @@ public class TimeManager : MonoBehaviour
         _playPauseButton.GetComponent<Image>().sprite = _playSprite;
 
         _isSimPlaying = false;
+
+        parameterButton.interactable = panelActiveStatus;
+        placeButton.interactable = panelActiveStatus;
+
+        parameterButtonImg.color = Color.white;
+        placeButtonImg.color = Color.white;
     }
 
     private void FixedUpdate()
@@ -87,6 +110,25 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SimulationManager.Instance.GetSimState() != 0)
+        {
+            panelActiveStatus = false;
+            parameterButton.interactable = panelActiveStatus;
+            placeButton.interactable = panelActiveStatus;
+
+            parameterButtonImg.color = Color.gray;
+            placeButtonImg.color = Color.gray;
+        }
+        else 
+        {
+            panelActiveStatus = true;
+            parameterButton.interactable = panelActiveStatus;
+            placeButton.interactable = panelActiveStatus;
+
+            parameterButtonImg.color = Color.white;
+            placeButtonImg.color = Color.white;
+        }
+
         _dayCounterText.text = "Day: " + _dayCounter;
         _speedControlButtonText.text = "x" + (_timerSpeed).ToString();
 
