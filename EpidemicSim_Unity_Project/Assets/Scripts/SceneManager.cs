@@ -58,12 +58,15 @@ public class SceneManager : MonoBehaviour
     {
         playerControls.MainUI.ParameterUI.performed += context =>
         {
-            mainUI[0].ButtonToggleEase();
+            if (SimulationManager.Instance.GetSimState() == 0)
+                mainUI[0].ButtonToggleEase();
         };
         playerControls.MainUI.PlaceUI.performed += context =>
         {
-            mainUI[1].ButtonToggleEase();
+            if (SimulationManager.Instance.GetSimState() == 0)
+                mainUI[1].ButtonToggleEase();
         };
+        
         playerControls.MainUI.FIlterUI.performed += context =>
         {
             mainUI[2].ButtonToggleEase();

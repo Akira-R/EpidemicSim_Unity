@@ -2584,6 +2584,22 @@ PrefabInstance:
       propertyPath: m_CharacterValidation
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2441143222001853931, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1507932539}
+    - target: {fileID: 2441143222001853931, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSpeedContolButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1507932539}
+    - target: {fileID: 2441143222442796640, guid: fef99f436d638e442af00e682eb76b83, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPlayPauseButtonPressed
+      objectReference: {fileID: 0}
     - target: {fileID: 2441143223154839929, guid: fef99f436d638e442af00e682eb76b83, type: 3}
       propertyPath: m_Color.b
       value: 1

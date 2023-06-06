@@ -137,6 +137,9 @@ public class TimeManager : MonoBehaviour
 
     public void OnPlayPauseButtonPressed()
     {
+        if (SimulationManager.Instance.GetSimState() == 0)
+            SimulationManager.Instance.StartSimulation();
+
         _isSimPlaying = !_isSimPlaying;
 
         AudioManager.instance.Play(AudioManager.instance.uiAudioList.sfx_uiClicked);
@@ -174,9 +177,6 @@ public class TimeManager : MonoBehaviour
     {
         playPauseControl.performed += context => 
         {
-            if (SimulationManager.Instance.GetSimState() == 0)
-                SimulationManager.Instance.StartSimulation();
-
             OnPlayPauseButtonPressed();
         };
 
